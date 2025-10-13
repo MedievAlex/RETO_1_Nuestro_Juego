@@ -4,12 +4,14 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Floor
+  - Ground
   - Wall
   - Ceiling
   - DeathPoint
   - SpawnZone
   - CheckPoint
+  - Floor
+  - DamageDealer
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ public class ObjetoMovilAutomaticoABC : MonoBehaviour
     // Se ejecuta Start una vez antes de que se ejecute por primera vez Update
     void Start()
     {
-        transform.position = puntoA; // Posición inicial
+        
     }
 
     // Se ejecuta Update una vez por frame

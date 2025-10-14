@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 36064627}
   m_Layer: 0
   m_Name: Platforms
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1222,11 +1222,11 @@ Transform:
   m_GameObject: {fileID: 488893505}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: 9, z: 2}
+  m_LocalPosition: {x: 12, y: 9, z: 0}
   m_LocalScale: {x: 30, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1049592736}
+  m_Father: {fileID: 1966554772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &488893507
 MeshCollider:
@@ -2011,6 +2011,10 @@ PrefabInstance:
     - target: {fileID: 2814446186009641706, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
       propertyPath: m_Name
       value: MovilePlatform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814446186009641706, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
+      propertyPath: m_TagString
+      value: Platform
       objectReference: {fileID: 0}
     - target: {fileID: 7367041857666691975, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2952,11 +2956,11 @@ Transform:
   m_GameObject: {fileID: 1011657146}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50, y: -13, z: 3}
+  m_LocalPosition: {x: 50, y: -13, z: 1}
   m_LocalScale: {x: 80, y: 35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1049592736}
+  m_Father: {fileID: 1966554772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1011657148
 MeshCollider:
@@ -3062,8 +3066,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 488893506}
-  - {fileID: 1011657147}
+  - {fileID: 1966554772}
   - {fileID: 1787541181}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3854,7 +3857,7 @@ Transform:
   m_GameObject: {fileID: 1362992422}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4907,6 +4910,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovilePlatform (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2814446186009641706, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     - target: {fileID: 7367041857666691975, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
       propertyPath: m_LocalPosition.x
       value: 46
@@ -5242,7 +5249,7 @@ Transform:
   m_GameObject: {fileID: 1787541180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5908,6 +5915,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovilePlatform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2814446186009641706, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     - target: {fileID: 7367041857666691975, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38
@@ -6382,7 +6393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422047578974398242, guid: 35fa53ad0bcaaf24d8c9dfdb41797e87, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6503,6 +6514,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963248604}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1966554771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1966554772}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1966554772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966554771}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 488893506}
+  - {fileID: 1011657147}
+  m_Father: {fileID: 1049592736}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2004294245
 GameObject:
   m_ObjectHideFlags: 0
@@ -6969,6 +7013,10 @@ PrefabInstance:
     - target: {fileID: 6034179288668892447, guid: c2918875c45b0c8479a9c8618537acfc, type: 3}
       propertyPath: m_Name
       value: BreakablePlatform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034179288668892447, guid: c2918875c45b0c8479a9c8618537acfc, type: 3}
+      propertyPath: m_TagString
+      value: Platform
       objectReference: {fileID: 0}
     - target: {fileID: 7488760639745334691, guid: c2918875c45b0c8479a9c8618537acfc, type: 3}
       propertyPath: m_LocalPosition.x

@@ -10,8 +10,8 @@ TagManager:
   - DeathPoint
   - SpawnZone
   - CheckPoint
-  - Floor
   - DamageDealer
+  - Platform
   layers:
   - Default
   - TransparentFX

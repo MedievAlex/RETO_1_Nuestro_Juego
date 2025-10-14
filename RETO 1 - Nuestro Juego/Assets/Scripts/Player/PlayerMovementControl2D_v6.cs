@@ -19,6 +19,7 @@ public class PlayerMovementControl2D_v6 : MonoBehaviour
     private float speed; // Actual speed
     private float jumpForce = 5f; // Jump force
     private int jumpsLeft; // Remaining extra jumps
+    private bool jumpsReset = false; // To check if the counter had been reset
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private Rigidbody rb; // Referencia al Rigidbody
 
@@ -54,6 +55,7 @@ public class PlayerMovementControl2D_v6 : MonoBehaviour
         // Jump
         if (jumpsLeft > 0 && Input.GetKeyDown(KeyCode.Space))
         {
+            jumpsReset = false;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpsLeft--;
         }  
@@ -62,9 +64,10 @@ public class PlayerMovementControl2D_v6 : MonoBehaviour
     // Se ejecuta cuando ocurre una colision
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground")) // Check that the collided object has the "Ground" label
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") && !jumpsReset) // Check that the collided object has the "Ground" or "Platform" label
         {
             jumpsLeft = extraJumps; // Resets the jump counter
+            jumpsReset = true;
         }
 
         if (collision.gameObject.CompareTag("DeathPoint") || collision.gameObject.CompareTag("DamageDealer")) // Check that the collided object has the "DeathPoint" label

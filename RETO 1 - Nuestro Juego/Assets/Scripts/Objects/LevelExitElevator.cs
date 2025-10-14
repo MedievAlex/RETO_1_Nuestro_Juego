@@ -1,19 +1,24 @@
 using UnityEngine;
 
-public class LevelEnterElevator : MonoBehaviour
+public class LevelExitElevator : MonoBehaviour
 {
     // Visible variables
     public int door = 5; // 3 = LeftDoor 5 = RightDoor
+    public bool doorOpen; // 3 = LeftDoor 5 = RightDoor
     public Vector3 position; // Second position
     public float speed = 2f; // Movement speed
 
     // Not visible variables
+    private bool inPosition = false; // Checks if it's in position
     private bool towardsPosition = false; // Moving towards the second position (point B)
 
     // START runs once before the first Update it's executed
     void Start()
     {
-        
+        if (doorOpen) // It starts with the door open
+        {
+            transform.GetChild(door).GetComponent<Collider>().enabled = false; 
+        }    
     }
 
     // UPDATE is executed once per frame
@@ -29,7 +34,6 @@ public class LevelEnterElevator : MonoBehaviour
                 transform.GetChild(door).GetComponent<Collider>().enabled = false;
             }
         } 
-
     }
 
     // Executed when a collision occurs
@@ -37,8 +41,12 @@ public class LevelEnterElevator : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
-            towardsPosition = true; // Starts moving towards B
+            if (transform.GetChild(4).GetComponent<Collider>().gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+            {
+                collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
+                towardsPosition = true; // Starts moving towards B
+                transform.GetChild(door).GetComponent<Collider>().enabled = true;
+            }
         }
     }
 

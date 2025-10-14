@@ -3,10 +3,10 @@ using UnityEngine;
 public class LevelExitElevator : MonoBehaviour
 {
     // Visible variables
+    public float speed = 2f; // Movement speed
+    public Vector3 position; // Second position
     public int door = 5; // 3 = LeftDoor 5 = RightDoor
     public bool doorOpen; // 3 = LeftDoor 5 = RightDoor
-    public Vector3 position; // Second position
-    public float speed = 2f; // Movement speed
 
     // Not visible variables
     private bool inPosition = false; // Checks if it's in position

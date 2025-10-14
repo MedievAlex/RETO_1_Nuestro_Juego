@@ -3,9 +3,9 @@ using UnityEngine;
 public class LevelEnterElevator : MonoBehaviour
 {
     // Visible variables
-    public int door = 5; // 3 = LeftDoor 5 = RightDoor
-    public Vector3 position; // Second position
     public float speed = 2f; // Movement speed
+    public Vector3 position; // Second position
+    public int door = 5; // 3 = LeftDoor 5 = RightDoor
 
     // Not visible variables
     private bool towardsPosition = false; // Moving towards the second position (point B)

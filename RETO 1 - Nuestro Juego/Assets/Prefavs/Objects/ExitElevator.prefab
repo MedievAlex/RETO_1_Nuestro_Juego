@@ -508,10 +508,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8100703d3f7dac64e9f2f580be2ee3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
+  position: {x: 0, y: 0, z: 0}
   door: 5
   doorOpen: 0
-  position: {x: 0, y: 0, z: 0}
-  speed: 2
 --- !u!1 &6087245917414280826
 GameObject:
   m_ObjectHideFlags: 0

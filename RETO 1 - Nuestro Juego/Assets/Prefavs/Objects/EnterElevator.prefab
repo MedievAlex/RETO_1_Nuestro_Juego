@@ -941,6 +941,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029132fd88b768842a3d49650535812b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: 5
+  speed: 3
   position: {x: 0, y: 0, z: 0}
-  speed: 2
+  door: 5

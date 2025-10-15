@@ -20,7 +20,7 @@ public class LevelEnd : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-        //collider.gameObject.CompareTag("Player").transform.parent.gameObject.CompareTag("Elevator")
+        
     }
 
     // Executed when a collision with a trigger occurs

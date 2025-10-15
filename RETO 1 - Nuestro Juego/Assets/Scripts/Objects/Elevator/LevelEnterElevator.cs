@@ -29,7 +29,6 @@ public class LevelEnterElevator : MonoBehaviour
                 transform.GetChild(door).GetComponent<Collider>().enabled = false;
             }
         } 
-
     }
 
     // Executed when a collision occurs

@@ -61,7 +61,7 @@ public class PlayerMovementControl2D_v6 : MonoBehaviour
         }  
     }
 
-    // Se ejecuta cuando ocurre una colision
+    // Executed when a collision occurs
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") && !jumpsReset) // Check that the collided object has the "Ground" or "Platform" label

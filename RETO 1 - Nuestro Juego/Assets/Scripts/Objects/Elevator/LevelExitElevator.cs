@@ -9,7 +9,8 @@ public class LevelExitElevator : MonoBehaviour
     public bool doorOpen;
 
     // Not visible variables
-    private bool towardsPosition = false; // Moving towards the second position (point B)
+    private bool elevatorActive = false; // If the lever had been activated or not
+    private bool towardsPosition = false; // Moving towards the position
 
     // START runs once before the first Update it's executed
     void Start()
@@ -27,6 +28,8 @@ public class LevelExitElevator : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
+        elevatorActive = transform.GetChild(transform.childCount - 1).GetComponent<Lever>().stateActive;
+
         if (towardsPosition) // Moving towards the position
         {
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
@@ -42,7 +45,7 @@ public class LevelExitElevator : MonoBehaviour
     // Executed when a collision occurs
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
+        if (collider.gameObject.CompareTag("Player") && elevatorActive) // Check that the collided object has the "Player" label
         {
             collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
             transform.GetChild(door).GetComponent<Collider>().enabled = true;
@@ -50,7 +53,7 @@ public class LevelExitElevator : MonoBehaviour
         }
     }
 
-    // Executed while a collision occurs
+    // Executed while a collision is happening
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player") && transform.position != destinationPosition) // Check that the collided object has the "Player" label

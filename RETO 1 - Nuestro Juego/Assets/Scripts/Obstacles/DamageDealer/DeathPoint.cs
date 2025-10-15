@@ -3,7 +3,7 @@ using UnityEngine;
 public class DeathPoint : MonoBehaviour
 {
     // Visible variables
-    public PlayerMovementControl2D targetPlayer;
+    public PlayerControl2D targetPlayer;
 
     // It runs once before the first Update it's executed
     void Start()

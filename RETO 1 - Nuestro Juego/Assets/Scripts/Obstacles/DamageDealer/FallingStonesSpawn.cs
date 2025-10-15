@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class FallingObjectSpawn : MonoBehaviour
+public class FallingStonesSpawn : MonoBehaviour
 {
-    public GameObject spawnedGameObject;
+    // Visible variables
+    public PlayerControl2D targetPlayer;
+    public FallingStone fallingStone;
     public float spawnTime = 2f;
+
+    // Not visible variables
+    private FallingStone createdStone;
     private float timePassed;
     private Vector3 spawnPoint;
 
     // It runs once before the first Update it's executed
     void Start()
     {
-        spawnPoint = transform.position;  
+        spawnPoint = transform.position;
     }
 
     // Update is executed once per frame
@@ -27,6 +32,7 @@ public class FallingObjectSpawn : MonoBehaviour
     // Generates more stones
     private void SpawnStone() // Spawns the object in the spawnpoint
     {
-        Instantiate(spawnedGameObject, spawnPoint, Quaternion.identity);
+        Instantiate(fallingStone, spawnPoint, Quaternion.identity, this.transform);
+        
     }
 }

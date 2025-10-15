@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class PlayerRespawn : MonoBehaviour
+public class PlayerCheckpoint : MonoBehaviour
 {
     // Visible variables
-    public PlayerMovementControl2D targetPlayer;
+    public PlayerControl2D targetPlayer;
     private Vector3 spawnPoint;
 
     // It runs once before the first Update it's executed

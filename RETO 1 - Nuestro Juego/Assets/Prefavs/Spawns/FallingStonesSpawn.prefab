@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598f2b2670cb593438c935d44c42dda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnedGameObject: {fileID: 2729757773403251552, guid: 2035871ef466b0845ac154eb46461246, type: 3}
+  spawnedGameObject: {fileID: 2102843078377285348, guid: 2035871ef466b0845ac154eb46461246, type: 3}
   spawnTime: 1.5

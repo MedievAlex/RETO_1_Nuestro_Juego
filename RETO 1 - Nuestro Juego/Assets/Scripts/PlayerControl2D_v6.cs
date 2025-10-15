@@ -9,7 +9,7 @@ using UnityEngine.UI;
 - Checkpoints: Stores the location of checkpoints to respawn there
 - Dash: Holding Left Shift will double movement speed
 */
-public class PlayerMovementControl2D : MonoBehaviour
+public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables
     public int extraJumps = 2; // Extra jumps

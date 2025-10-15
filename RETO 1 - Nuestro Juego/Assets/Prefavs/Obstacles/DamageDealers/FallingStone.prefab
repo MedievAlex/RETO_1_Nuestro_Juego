@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5110151980459059912}
   - component: {fileID: 9117034389179776735}
   - component: {fileID: 2102843078377285348}
+  - component: {fileID: -5031295449300415029}
   m_Layer: 0
   m_Name: FallingStone
   m_TagString: DamageDealer
@@ -149,3 +150,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30431d6cd9ccc73439b5798e556c72c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5031295449300415029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729757773403251552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0cb94d1e962ae4fa0d3cd48e13a630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPlayer: {fileID: 0}

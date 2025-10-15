@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 550046761049561896}
   - component: {fileID: 1815075047839650240}
   m_Layer: 0
-  m_Name: 2DPlayer
+  m_Name: Player2D
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,6 +287,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52663c0fe6c8be429e3d717a6e319bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  speedIncrease: 1.7
   extraJumps: 2

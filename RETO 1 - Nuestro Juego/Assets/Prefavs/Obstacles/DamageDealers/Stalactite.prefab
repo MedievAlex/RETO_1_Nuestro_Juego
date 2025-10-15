@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 7398754187417986846}
   - component: {fileID: 5775267158035536274}
   - component: {fileID: 2750542552041317228}
+  - component: {fileID: 526465135486793895}
   m_Layer: 0
-  m_Name: Stalactite (1)
+  m_Name: Stalactite
   m_TagString: DamageDealer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,6 +151,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2066fc41405202b488adebdd4de2004a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &526465135486793895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362009043717641866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0cb94d1e962ae4fa0d3cd48e13a630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPlayer: {fileID: 0}
 --- !u!1 &3794562080560455061
 GameObject:
   m_ObjectHideFlags: 0

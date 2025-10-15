@@ -1,9 +1,6 @@
 using UnityEngine;
 
-/** [ STONE OBJECT FALLS AND DISAPPEARS ]
-- Spawns and it falls. Once touching the floor dissapears.
-*/
-public class ObjectSpawn : MonoBehaviour
+public class FallingObjectSpawn : MonoBehaviour
 {
     public GameObject spawnedGameObject;
     public float spawnTime = 2f;

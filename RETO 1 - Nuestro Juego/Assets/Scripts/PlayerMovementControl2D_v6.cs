@@ -9,7 +9,7 @@ using UnityEngine.UI;
 - Checkpoints: Stores the location of checkpoints to respawn there
 - Dash: Holding Left Shift will double movement speed
 */
-public class PlayerMovementControl2D_v6 : MonoBehaviour
+public class PlayerMovementControl2D : MonoBehaviour
 {
     // Visible variables
     public int extraJumps = 2; // Extra jumps
@@ -72,7 +72,7 @@ public class PlayerMovementControl2D_v6 : MonoBehaviour
 
         if (collision.gameObject.CompareTag("DeathPoint") || collision.gameObject.CompareTag("DamageDealer")) // Check that the collided object has the "DeathPoint" label
         {
-            Respawn(); // Respawns in the saved point
+             // Respawns in the saved point
         }
     }
 
@@ -86,11 +86,17 @@ public class PlayerMovementControl2D_v6 : MonoBehaviour
         }
     }
 
-    // Respawn method
-    private void Respawn()
+    // Respawn methods
+    public void setRespawn(Vector3 newSpawnPoint)
     {
-        rb.linearVelocity = Vector3.zero; // Stop it from moving
-        rb.angularVelocity = Vector3.zero; // Reset the physical rotation
-        transform.position = spawnPoint; // Respawn at the saved point
+        spawnPoint = newSpawnPoint;
+    }
+    public Vector3 getRespawn()
+    {
+        return spawnPoint;
+    }
+    public Rigidbody getRigidbody()
+    {
+        return rb;
     }
 }

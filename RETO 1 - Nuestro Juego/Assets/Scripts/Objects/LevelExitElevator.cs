@@ -4,21 +4,24 @@ public class LevelExitElevator : MonoBehaviour
 {
     // Visible variables
     public float speed = 2f; // Movement speed
-    public Vector3 position; // Second position
-    public int door = 5; // 3 = LeftDoor 5 = RightDoor
-    public bool doorOpen; // 3 = LeftDoor 5 = RightDoor
+    public Vector3 destinationPosition; // Second position
+    public int door = 3; // 3 = LeftDoor 3 = RightDoor
+    public bool doorOpen;
 
     // Not visible variables
-    private bool inPosition = false; // Checks if it's in position
     private bool towardsPosition = false; // Moving towards the second position (point B)
 
     // START runs once before the first Update it's executed
     void Start()
     {
-        if (doorOpen) // It starts with the door open
+        if (doorOpen)
         {
-            transform.GetChild(door).GetComponent<Collider>().enabled = false; 
-        }    
+            transform.GetChild(door).GetComponent<Collider>().enabled = false;
+        }
+        else 
+        {
+            transform.GetChild(door).GetComponent<Collider>().enabled = true;
+        }
     }
 
     // UPDATE is executed once per frame
@@ -26,9 +29,9 @@ public class LevelExitElevator : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
-            transform.position = Vector3.MoveTowards(transform.position, position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
 
-            if (transform.position == position) 
+            if (transform.position == destinationPosition) 
             {
                 towardsPosition = false; // Stops moving             
                 transform.GetChild(door).GetComponent<Collider>().enabled = false;
@@ -41,19 +44,16 @@ public class LevelExitElevator : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            if (transform.GetChild(4).GetComponent<Collider>().gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
-            {
-                collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
-                towardsPosition = true; // Starts moving towards B
-                transform.GetChild(door).GetComponent<Collider>().enabled = true;
-            }
+            collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
+            transform.GetChild(door).GetComponent<Collider>().enabled = true;
+            towardsPosition = true; // Starts moving towards B
         }
     }
 
     // Executed while a collision occurs
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") && transform.position != position) // Check that the collided object has the "Player" label
+        if (collision.gameObject.CompareTag("Player") && transform.position != destinationPosition) // Check that the collided object has the "Player" label
         {
             collision.gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; // Stop it from moving
             collision.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset the physical rotation

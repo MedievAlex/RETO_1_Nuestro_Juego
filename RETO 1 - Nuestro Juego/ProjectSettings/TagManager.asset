@@ -12,6 +12,8 @@ TagManager:
   - CheckPoint
   - DamageDealer
   - Platform
+  - Floor
+  - Elevator
   layers:
   - Default
   - TransparentFX

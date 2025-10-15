@@ -4,8 +4,8 @@ public class LevelEnterElevator : MonoBehaviour
 {
     // Visible variables
     public float speed = 2f; // Movement speed
-    public Vector3 position; // Second position
-    public int door = 5; // 3 = LeftDoor 5 = RightDoor
+    public Vector3 destinationPosition; // Second position
+    public int door = 4; // 3 = LeftDoor 4 = RightDoor
 
     // Not visible variables
     private bool towardsPosition = false; // Moving towards the second position (point B)
@@ -21,9 +21,9 @@ public class LevelEnterElevator : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
-            transform.position = Vector3.MoveTowards(transform.position, position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
 
-            if (transform.position == position) 
+            if (transform.position == destinationPosition) 
             {
                 towardsPosition = false; // Stops moving             
                 transform.GetChild(door).GetComponent<Collider>().enabled = false;
@@ -45,7 +45,7 @@ public class LevelEnterElevator : MonoBehaviour
     // Executed while a collision occurs
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") && transform.position != position) // Check that the collided object has the "Player" label
+        if (collision.gameObject.CompareTag("Player") && transform.position != destinationPosition) // Check that the collided object has the "Player" label
         {
             collision.gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; // Stop it from moving
             collision.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset the physical rotation

@@ -29,12 +29,15 @@ public class ObjetoRompibleAutomatico : MonoBehaviour
         }
     }
 
-    // Se ejecuta cuando ocurre una colision
-    private void OnCollisionStay(Collision collision)
+    // Executed when a collision occurs
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player")) // Comprueba que lo que ha colisionado es el "Jugador"
         {
-            peso = true;          
+            peso = true;
+
+            collision.gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; // Stop it from moving
+            collision.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset the physical rotation
         }
     }
 }

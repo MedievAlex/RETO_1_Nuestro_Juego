@@ -1,19 +1,30 @@
 using UnityEngine;
 
-public class LevelEnterElevator : MonoBehaviour
+public class ElevatorControl : MonoBehaviour
 {
     // Visible variables
+    public bool activated; // If the elevator starts activated or not
     public float speed = 2f; // Movement speed
     public Vector3 destinationPosition; // Second position
-    public int door = 4; // 3 = LeftDoor 4 = RightDoor
+    public int door = 3; // 3 = LeftDoor 4 = RightDoor
+    public bool doorOpen; // If the choosed door it starts open
+    
 
     // Not visible variables
-    private bool towardsPosition = false; // Moving towards the second position (point B)
+    private bool towardsPosition = false; // Moving towards the position
+    private Lever lever;
 
     // START runs once before the first Update it's executed
     void Start()
     {
-        
+        if (doorOpen)
+        {
+            transform.GetChild(door).GetComponent<Collider>().enabled = false;
+        }
+        else 
+        {
+            transform.GetChild(door).GetComponent<Collider>().enabled = true;
+        }
     }
 
     // UPDATE is executed once per frame
@@ -31,17 +42,22 @@ public class LevelEnterElevator : MonoBehaviour
         } 
     }
 
-    // Executed when a collision occurs
-    private void OnTriggerEnter(Collider collider)
+    // Executed when a collision with a trigger is happening
+    private void OnTriggerStay(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
+        if(Input.GetKeyDown(KeyCode.E)){
+            activated = true;
+        }
+
+        if (collider.gameObject.CompareTag("Player") && activated) 
         {
             collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
+            transform.GetChild(door).GetComponent<Collider>().enabled = true;
             towardsPosition = true; // Starts moving towards B
         }
     }
 
-    // Executed while a collision occurs
+    // Executed while a collision is happening
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player") && transform.position != destinationPosition) // Check that the collided object has the "Player" label

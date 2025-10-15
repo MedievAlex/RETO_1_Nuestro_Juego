@@ -6,7 +6,7 @@ public class Lever : MonoBehaviour
     public bool stateActive; // If the ladder is active or not
 
     // Not visible variables
-    private bool stateActivable; // If the ladder is active or not
+    private bool stateActivable; // If the ladder is actibable or not
     
     // START runs once before the first Update it's executed
     void Start()
@@ -17,13 +17,13 @@ public class Lever : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-       if (stateActivable && Input.GetKey(KeyCode.E)) // If the lever is activated, it desactivates it
+       if (stateActivable && Input.GetKeyDown(KeyCode.E)) // Changes lever's state
        {
-           if (stateActive) // If the lever is activated, it desactivates it
+           if (stateActive) // If the lever was activated, it deactivates it
            {
-                stateActive = false;
+                stateActive = false; 
            } 
-           else
+           else // If the lever was deactivated, it activates it
            {
                stateActive = true;
            }

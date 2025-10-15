@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class LeverGestion : MonoBehaviour
 {
-    // Visible variables
-
     // Not visible variables
-    
+    private Lever lever1; // If the ladder is actibable or not
+    private Lever lever2; // If the ladder is actibable or not
+
     // START runs once before the first Update it's executed
     void Start()
     {
-        
+
     }
 
     // UPDATE is executed once per frame
     void Update()
     {
-       if(transform.GetChild(0).GetComponent<Lever>().stateActive)
+       if(this.transform.GetChild(0).GetComponent<bool>())
        {
-           transform.GetChild(1).GetComponent<Lever>().stateActive = false;
+              
        }
-       else if(transform.GetChild(1).GetComponent<Lever>().stateActive)
+       else if(this.transform.GetChild(0).GetComponent<bool>())
        {
-           transform.GetChild(0).GetComponent<Lever>().stateActive = false;
+           
        }
     }
 }

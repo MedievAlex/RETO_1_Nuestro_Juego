@@ -5,14 +5,13 @@ public class ElevatorControl : MonoBehaviour
     // Visible variables
     public bool activated; // If the elevator starts activated or not
     public float speed = 2f; // Movement speed
-    public Vector3 destinationPosition; // Second position
     public int door = 3; // 3 = LeftDoor 4 = RightDoor
     public bool doorOpen; // If the choosed door it starts open
-    
+
 
     // Not visible variables
+    private Vector3 destinationPosition; // Destination
     private bool towardsPosition = false; // Moving towards the position
-    private Lever lever;
 
     // START runs once before the first Update it's executed
     void Start()
@@ -32,12 +31,14 @@ public class ElevatorControl : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
+            transform.GetChild(door).GetComponent<Collider>().enabled = true; // Closes the door
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
-
+            
             if (transform.position == destinationPosition) 
             {
-                towardsPosition = false; // Stops moving             
-                transform.GetChild(door).GetComponent<Collider>().enabled = false;
+                towardsPosition = false; // Stops moving
+                activated = false;
+                transform.GetChild(door).GetComponent<Collider>().enabled = false; // Opens the door
             }
         } 
     }
@@ -52,7 +53,6 @@ public class ElevatorControl : MonoBehaviour
         if (collider.gameObject.CompareTag("Player") && activated) 
         {
             collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
-            transform.GetChild(door).GetComponent<Collider>().enabled = true;
             towardsPosition = true; // Starts moving towards B
         }
     }
@@ -74,5 +74,13 @@ public class ElevatorControl : MonoBehaviour
         {
             collision.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
+    }
+
+    // Method to call the elevator
+    public void moveOnCall(Vector3 destinationPosition, bool stateActive)
+    {
+        this.destinationPosition = destinationPosition;
+        activated = stateActive;
+        towardsPosition = stateActive;
     }
 }

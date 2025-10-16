@@ -6,6 +6,7 @@ using UnityEngine;
 public class FallingStone : MonoBehaviour
 {
     // Not visible variables
+    private PlayerControl2D targetPlayer;
     private bool broken = false; // Indicates whether the object has touched the ground
 
     // It runs once before the first Update it's executed
@@ -28,7 +29,16 @@ public class FallingStone : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Ground" or "Player" label
         {
+            if (collision.gameObject.CompareTag("Player")) // Check that the collided object has "Player" label
+            {
+                targetPlayer = collision.transform.GetComponent<PlayerControl2D>();
+            }
             broken = true;
         }
+    }
+
+    public void setTarget (PlayerControl2D target)
+    {
+        targetPlayer = target;
     }
 }

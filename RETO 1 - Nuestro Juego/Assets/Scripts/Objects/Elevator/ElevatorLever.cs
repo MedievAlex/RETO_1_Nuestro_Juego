@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class Lever : MonoBehaviour
+public class ElevatorLever : MonoBehaviour
 {
     // Visible variables
+    public ElevatorControl elevator; // Referenced elevator
+    public Vector3 destinationPosition; // Called destination
     public bool stateActive; // If the lever is active or not
 
     // Not visible variables
@@ -11,7 +13,7 @@ public class Lever : MonoBehaviour
     // START runs once before the first Update it's executed
     void Start()
     {
-        
+        elevator.moveOnCall(destinationPosition, stateActive);
     }
 
     // UPDATE is executed once per frame
@@ -21,7 +23,8 @@ public class Lever : MonoBehaviour
        {
            if (!stateActive) // If the lever was activated, it deactivates it
            {
-                stateActive = true;  
+                stateActive = true;
+                elevator.moveOnCall(destinationPosition, stateActive);
            } 
            else // If the lever was deactivated, it activates it
            {

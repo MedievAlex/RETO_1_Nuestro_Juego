@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: FallingStonesSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598f2b2670cb593438c935d44c42dda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnedGameObject: {fileID: 2102843078377285348, guid: 2035871ef466b0845ac154eb46461246, type: 3}
+  targetPlayer: {fileID: 0}
+  fallingStone: {fileID: 0}
+  stonesController: {fileID: 0}
   spawnTime: 1.5

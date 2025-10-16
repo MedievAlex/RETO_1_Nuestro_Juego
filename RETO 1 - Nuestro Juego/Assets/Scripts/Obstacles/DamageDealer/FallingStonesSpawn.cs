@@ -3,8 +3,9 @@ using UnityEngine;
 public class FallingStonesSpawn : MonoBehaviour
 {
     // Visible variables
-    public PlayerControl2D targetPlayer;
+    public PlayerControl2D targetPlayer;  
     public FallingStone fallingStone;
+    public StonesLever stonesController;
     public float spawnTime = 2f;
 
     // Not visible variables
@@ -21,18 +22,20 @@ public class FallingStonesSpawn : MonoBehaviour
     // Update is executed once per frame
     void Update()
     {
-        timePassed += Time.deltaTime; // Calculates the time
-        if (timePassed > spawnTime) // Creates a new object and restarts the counter
+        if(stonesController.getFall()) 
         {
-            SpawnStone();
-            timePassed = 0f;
+            timePassed += Time.deltaTime; // Calculates the time
+            if (timePassed > spawnTime) // Creates a new object and restarts the counter
+            {
+                SpawnStone();
+                timePassed = 0f;
+            }
         }
     }
 
     // Generates more stones
     private void SpawnStone() // Spawns the object in the spawnpoint
     {
-        Instantiate(fallingStone, spawnPoint, Quaternion.identity, this.transform);
-        
-    }
+        Instantiate(fallingStone, spawnPoint, Quaternion.identity, this.transform); 
+    } 
 }

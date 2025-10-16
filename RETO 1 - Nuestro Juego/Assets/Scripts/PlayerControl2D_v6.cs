@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables
-    public int extraJumps = 2; // Extra jumps
+    public int totalJumps = 2; // Extra jumps
 
     // Not visible variables
     private float baseSpeed = 5f; // Base movement speed
@@ -54,9 +54,16 @@ public class PlayerControl2D : MonoBehaviour
 
         // Jump
         if (jumpsLeft > 0 && Input.GetKeyDown(KeyCode.Space))
-        {
+        {     
+            if (jumpsLeft == totalJumps) // The first jump is 100% of the strength
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            else // Extra jumps are 70% of the strength
+            {
+                rb.AddForce(Vector3.up * (jumpForce * 0.7f ), ForceMode.Impulse);
+            }
             jumpsReset = false;
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpsLeft--;
         }  
     }
@@ -64,9 +71,9 @@ public class PlayerControl2D : MonoBehaviour
     // Executed when a collision occurs
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") && !jumpsReset) // Check that the collided object has the "Ground" or "Platform" label
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static") && !jumpsReset) // Check that the collided object will restart the jumps
         {
-            jumpsLeft = extraJumps; // Resets the jump counter
+            jumpsLeft = totalJumps; // Resets the jump counter
             jumpsReset = true;
         }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2750542552041317228}
   - component: {fileID: 526465135486793895}
   m_Layer: 0
-  m_Name: Stalactite
+  m_Name: FragileStalactite
   m_TagString: DamageDealer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

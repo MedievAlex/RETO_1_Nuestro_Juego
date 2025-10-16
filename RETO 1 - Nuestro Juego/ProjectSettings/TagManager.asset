@@ -7,12 +7,14 @@ TagManager:
   - Ground
   - Wall
   - Ceiling
-  - DeathPoint
   - CheckPoint
+  - DeathPoint
   - DamageDealer
   - Platform
-  - Floor
+  - Static
+  - Stalactite
   - Elevator
+  - Floor
   layers:
   - Default
   - TransparentFX

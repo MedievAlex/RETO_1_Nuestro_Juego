@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class BreakablePlatformAtWeight : MonoBehaviour
 {
+    // Visible variables
+    public float breakingTime = 2f; // In how many seconds it will break
+
     // Not visible variables  
-    private float speed = 5f; // Fall speed
+    private float speed = 6f; // Fall speed
     private Vector3 location; // Where it will fall
     private bool hasWeight = false; // If the platform has weight
-    private float breakingTime = 2f;
     private float timePassed;
     private bool breakPlatform = false; // If the platform brokes
 
@@ -15,7 +17,7 @@ public class BreakablePlatformAtWeight : MonoBehaviour
     void Start()
     {
         location = transform.position; // Guardamos la posición inicial
-        location.y = location.y - 4;
+        location.y = location.y - 6;
     }
 
     // Update is executed once per frame
@@ -38,7 +40,7 @@ public class BreakablePlatformAtWeight : MonoBehaviour
                 Destroy(gameObject); // El objeto se destruirá en 2 frames (segundos)
             }
         }
-}
+    }
 
     // Executed when a collision occurs
     private void OnCollisionEnter(Collision collision)

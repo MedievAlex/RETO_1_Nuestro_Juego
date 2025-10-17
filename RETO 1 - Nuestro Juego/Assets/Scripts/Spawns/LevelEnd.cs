@@ -7,10 +7,7 @@ public class LevelEnd : MonoBehaviour
     public string thisScene; // Next level name
     public string nextScene; // Next level name
     public Vector3 nextSpawn; // Next scene's spawn
-
-    // Not visible variables
     
-
     // START runs once before the first Update it's executed
     void Start()
     {

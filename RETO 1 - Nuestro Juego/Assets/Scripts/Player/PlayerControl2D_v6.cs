@@ -12,18 +12,23 @@ using UnityEngine.UI;
 public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables
-    public int totalJumps = 2; // Extra jumps
+    public static PlayerControl2D Instance { get; private set; }
+    public int lifeCount = 3; // Life points
+    public bool activeDash = false; // Active or desactive the dash ability
+    public bool activeJump = false; // Active or desactive the dash ability
+    public bool activeExtraJumps = false; // Active or desactive the dash ability
 
     // Not visible variables
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
     private float jumpForce = 5f; // Jump force
+    private int extraJumps = 2; // Extra jumps
     private int jumpsLeft; // Remaining extra jumps
     private bool jumpsReset = false; // To check if the counter had been reset
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private Rigidbody rb; // Referencia al Rigidbody
 
-    // START runs once before the first Update it's executed
+    // START runs once before the first UPDATE it's executed
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
@@ -32,8 +37,7 @@ public class PlayerControl2D : MonoBehaviour
 
     // UPDATE is executed once per frame
     void Update()
-    { 
-
+    {
         // Movement
         if (Input.GetAxis("Horizontal") != 0)
         {
@@ -42,7 +46,7 @@ public class PlayerControl2D : MonoBehaviour
             transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
 
             // Dash
-            if (Input.GetKey(KeyCode.LeftShift)) 
+            if (Input.GetKey(KeyCode.LeftShift) && activeDash) 
             {
                 speed = baseSpeed * 1.7f;
             }
@@ -53,19 +57,26 @@ public class PlayerControl2D : MonoBehaviour
         }
 
         // Jump
-        if (jumpsLeft > 0 && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
         {     
-            if (jumpsLeft == totalJumps) // The first jump is 100% of the strength
+            if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
-            else // Extra jumps are 70% of the strength
+            else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
             {
                 rb.AddForce(Vector3.up * (jumpForce * 0.7f ), ForceMode.Impulse);
             }
             jumpsReset = false;
             jumpsLeft--;
         }  
+
+        // Game Over
+        if (lifeCount == 0)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
+        }
     }
 
     // Executed when a collision occurs
@@ -73,13 +84,8 @@ public class PlayerControl2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static") && !jumpsReset) // Check that the collided object will restart the jumps
         {
-            jumpsLeft = totalJumps; // Resets the jump counter
+            jumpsLeft = extraJumps; // Resets the jump counter
             jumpsReset = true;
-        }
-
-        if (collision.gameObject.CompareTag("DeathPoint") || collision.gameObject.CompareTag("DamageDealer")) // Check that the collided object has the "DeathPoint" label
-        {
-             // Respawns in the saved point
         }
     }
 
@@ -94,6 +100,10 @@ public class PlayerControl2D : MonoBehaviour
     }
 
     // Respawn methods
+    public void applyDamage() // Deals damage
+    {
+        lifeCount--;
+    }
     public void setRespawn(Vector3 newSpawnPoint)
     {
         spawnPoint = newSpawnPoint;
@@ -105,5 +115,26 @@ public class PlayerControl2D : MonoBehaviour
     public Rigidbody getRigidbody()
     {
         return rb;
+    }
+
+    // Ability methods
+    public void setActiveDash(bool active) // Activates or deactivates the dash
+    {
+        activeDash = active;
+    }
+
+    public void setActiveJump(bool active) // Activates or deactivates the jump
+    {
+        activeJump = active;  
+    }
+
+    public void setActiveExtraJumps(bool active) // Activates or deactivates the extra jumps
+    {
+        activeExtraJumps = active;      
+    }
+
+    public void addExtraJumps() // Ads a extra jump
+    {
+        extraJumps++;
     }
 }

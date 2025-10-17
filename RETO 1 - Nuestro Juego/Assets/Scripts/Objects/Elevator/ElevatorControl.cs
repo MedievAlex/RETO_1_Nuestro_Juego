@@ -3,7 +3,7 @@ using UnityEngine;
 public class ElevatorControl : MonoBehaviour
 {
     // Visible variables  
-    public int door = 3; // 3 = LeftDoor 4 = RightDoor
+    public int door; // 3 = LeftDoor 4 = RightDoor
     public bool doorOpen; // If the choosed door it starts open
 
     // Not visible variables

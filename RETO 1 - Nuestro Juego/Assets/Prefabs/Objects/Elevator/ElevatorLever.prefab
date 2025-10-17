@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevator: {fileID: 0}
-  destinationPosition: {x: 43, y: 20, z: 0}
+  destinationPosition: {x: 0, y: 0, z: 0}
   stateActive: 0
 --- !u!1 &5265113164703715457
 GameObject:

@@ -34,9 +34,9 @@ public class ElevatorControl : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
             
             if (transform.position == destinationPosition) 
-            {
+            { 
+                transform.GetChild(door).GetComponent<Collider>().enabled = false; // Opens the door               
                 towardsPosition = false; // Stops moving
-                transform.GetChild(door).GetComponent<Collider>().enabled = false; // Opens the door
             }
         } 
     }
@@ -69,12 +69,12 @@ public class ElevatorControl : MonoBehaviour
             collider.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }
-
-    // Method to call the elevator
+    
+    // Methods to call the elevator
     public void moveOnCall(Vector3 destinationPosition, bool stateActive)
     {
         this.destinationPosition = destinationPosition;
         activated = stateActive;
         towardsPosition = stateActive;
-    }
+    }  
 }

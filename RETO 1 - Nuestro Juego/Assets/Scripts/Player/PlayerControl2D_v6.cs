@@ -11,8 +11,7 @@ using UnityEngine.UI;
 */
 public class PlayerControl2D : MonoBehaviour
 {
-    // Visible variables
-    public static PlayerControl2D Instance { get; private set; }
+    // Visible variables 
     public int lifeCount = 3; // Life points
     public bool activeDash = false; // Active or desactive the dash ability
     public bool activeJump = false; // Active or desactive the dash ability

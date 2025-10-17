@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ElevatorLever : MonoBehaviour
+public class ElevatorCallLever : MonoBehaviour
 {
     // Visible variables
     public ElevatorControl elevator; // Referenced elevator
@@ -19,18 +19,23 @@ public class ElevatorLever : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-       if (stateActivable && Input.GetKeyDown(KeyCode.E)) // Changes lever's state
-       {
-           if (!stateActive) // If the lever was activated, it deactivates it
-           {
+        if (stateActivable && Input.GetKeyDown(KeyCode.E)) // Changes lever's state
+        {
+            if (!stateActive) // If the lever was deactivated, it activates it
+            {
                 stateActive = true;
                 elevator.moveOnCall(destinationPosition, stateActive);
-           } 
-           else // If the lever was deactivated, it activates it
-           {
-               stateActive = false;
-           }
-       }
+            }
+            else // If the lever was activated, it deactivates it
+            {
+                stateActive = false;
+            }
+        }
+
+        if (elevator.transform.position == destinationPosition) 
+        {
+            stateActive = false;
+        }
     }
 
     // Executed when a collision with a trigger occurs
@@ -49,5 +54,11 @@ public class ElevatorLever : MonoBehaviour
         {
             stateActivable = false;
         }
+    }
+
+    // Getter to gestion more than one
+    public bool getStateActivable()
+    {
+        return stateActivable;
     }
 }

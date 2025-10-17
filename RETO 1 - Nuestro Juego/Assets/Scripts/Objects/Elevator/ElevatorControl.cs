@@ -34,11 +34,14 @@ public class ElevatorControl : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
             
             if (transform.position == destinationPosition) 
-            { 
-                transform.GetChild(door).GetComponent<Collider>().enabled = false; // Opens the door               
+            {               
                 towardsPosition = false; // Stops moving
             }
-        } 
+        }
+        else
+        {
+            transform.GetChild(door).GetComponent<Collider>().enabled = false; // Opens the door
+        }
     }
 
     // Executed while a collision is happening

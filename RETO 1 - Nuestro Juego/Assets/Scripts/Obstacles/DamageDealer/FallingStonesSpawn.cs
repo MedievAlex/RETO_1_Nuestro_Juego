@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class FallingStonesSpawn : MonoBehaviour
 {
-    // Visible variables
-    public PlayerControl2D targetPlayer;  
+    // Visible variables 
     public FallingStone fallingStone;
     public StonesLever stonesController;
     public float spawnTime = 2f;

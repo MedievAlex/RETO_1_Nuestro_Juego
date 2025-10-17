@@ -3,16 +3,17 @@ using UnityEngine;
 public class ElevatorLever : MonoBehaviour
 {
     // Visible variables
-    public ElevatorControl elevator; // Referenced elevator
     public Vector3 destinationPosition; // Called destination
     public bool stateActive; // If the lever is active or not
 
     // Not visible variables
+    private ElevatorControl elevator; // Referenced elevator
     private bool stateActivable; // If the ladder is actibable or not
 
     // START runs once before the first Update it's executed
     void Start()
     {
+        elevator = transform.parent.gameObject.GetComponent<ElevatorControl>(); // Finds the GameObject of the class PlayerControl2D
         elevator.moveOnCall(destinationPosition, stateActive);
     }
 
@@ -30,6 +31,11 @@ public class ElevatorLever : MonoBehaviour
            {
                stateActive = false;
            }
+       }
+
+       if (elevator.transform.position == destinationPosition) // When the elevator finishes moving it goes back to desactivated mode
+       {
+           stateActive = false;
        }
     }
 

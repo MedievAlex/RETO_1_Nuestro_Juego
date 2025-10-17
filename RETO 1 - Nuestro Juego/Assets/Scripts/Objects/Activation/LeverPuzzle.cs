@@ -4,7 +4,6 @@ using UnityEngine;
 public class LeverPuzzle : MonoBehaviour
 {
     // Visible variables
-    public PlayerControl2D targetPlayer;
     public Lever lever1; // Referenced lever
     public Lever lever2; // Referenced lever
     public Lever lever3; // Referenced lever
@@ -13,12 +12,14 @@ public class LeverPuzzle : MonoBehaviour
     public int attempts; // Attempts to complete the puzzle
 
     // Not visible variables  
+    private PlayerControl2D targetPlayer;
     private int remainingAttempts; // Remaining extra attempts
 
     // START runs once before the first Update it's executed
     void Start()
     {
         resetPuzzle();
+        targetPlayer = GameObject.Find("Player2D").GetComponent<PlayerControl2D>(); // Finds the GameObject of the class PlayerControl2D
     }
 
     // UPDATE is executed once per frame
@@ -36,7 +37,7 @@ public class LeverPuzzle : MonoBehaviour
                 resetPuzzle();
                 if (remainingAttempts == 0)
                 {
-                    dealDamage();
+                    targetPlayer.applyDamage();
                 }
             }
         }  
@@ -64,13 +65,5 @@ public class LeverPuzzle : MonoBehaviour
         {
             return true;
         }
-    }
-
-    // Deals damage to the player
-    private void dealDamage()
-    {
-        targetPlayer.getRigidbody().linearVelocity = Vector3.zero; // Stop it from moving
-        targetPlayer.getRigidbody().angularVelocity = Vector3.zero; // Reset the physical rotation
-        targetPlayer.transform.position = targetPlayer.getRespawn(); // Respawn at the saved point
     }
 }

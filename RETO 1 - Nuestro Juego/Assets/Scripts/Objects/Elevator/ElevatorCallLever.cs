@@ -32,7 +32,7 @@ public class ElevatorCallLever : MonoBehaviour
             }
         }
 
-        if (elevator.transform.position == destinationPosition) 
+        if (elevator.transform.position == destinationPosition)  // When the elevator finishes moving it goes back to desactivated mode
         {
             stateActive = false;
         }

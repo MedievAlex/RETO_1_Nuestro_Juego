@@ -3,13 +3,15 @@ using UnityEngine;
 public class PlayerCheckpoint : MonoBehaviour
 {
     // Visible variables
-    public PlayerControl2D targetPlayer;
     private Vector3 spawnPoint;
+
+    // Not visible variables
+    private PlayerControl2D targetPlayer;
 
     // It runs once before the first Update it's executed
     void Start()
     {
-          
+        targetPlayer = GameObject.Find("Player2D").GetComponent<PlayerControl2D>(); // Finds the GameObject of the class PlayerControl2D
     }
 
     // Update is executed once per frame

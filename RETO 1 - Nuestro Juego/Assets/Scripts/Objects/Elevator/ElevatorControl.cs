@@ -4,7 +4,7 @@ public class ElevatorControl : MonoBehaviour
 {
     // Visible variables  
     public int door; // 3 = LeftDoor 4 = RightDoor
-    public bool doorOpen; // If the choosed door it starts open
+    public bool doorStartOpen; // If the choosed door it starts open
 
     // Not visible variables
     private bool activated; // If the elevator starts activated or not
@@ -15,14 +15,7 @@ public class ElevatorControl : MonoBehaviour
     // START runs once before the first Update it's executed
     void Start()
     {
-        if (doorOpen)
-        {
-            transform.GetChild(door).GetComponent<Collider>().enabled = false;
-        }
-        else 
-        {
-            transform.GetChild(door).GetComponent<Collider>().enabled = true;
-        }
+        openDoor(doorStartOpen);
     }
 
     // UPDATE is executed once per frame
@@ -30,17 +23,14 @@ public class ElevatorControl : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
-            transform.GetChild(door).GetComponent<Collider>().enabled = true; // Closes the door
+            openDoor(false); // Closes the door
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
             
             if (transform.position == destinationPosition) 
             {               
                 towardsPosition = false; // Stops moving
+                openDoor(true); // Opens the door
             }
-        }
-        else
-        {
-            transform.GetChild(door).GetComponent<Collider>().enabled = false; // Opens the door
         }
     }
 
@@ -72,8 +62,20 @@ public class ElevatorControl : MonoBehaviour
             collider.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }
-    
-    // Methods to call the elevator
+
+    // Methods to call and move the elevator
+    public void openDoor(bool doorOpen)
+    {
+        if (doorOpen)
+        {
+            transform.GetChild(door).GetComponent<Collider>().enabled = false; // Disables de collinder opening the door
+        }
+        else
+        {
+            transform.GetChild(door).GetComponent<Collider>().enabled = true; // Enables de collinder closing the door
+        }
+    }
+
     public void moveOnCall(Vector3 destinationPosition, bool stateActive)
     {
         this.destinationPosition = destinationPosition;

@@ -134,6 +134,9 @@ public class PlayerControl2D : MonoBehaviour
             case "ADDEXTRAJUMP":
                 extraJumps++;
                 break;
+            case "ADDLIFE":
+                lifeCount++;
+                break;
         }
     }
 }

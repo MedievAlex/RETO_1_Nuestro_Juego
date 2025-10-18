@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class PlayerCheckpoint : MonoBehaviour
 {
-    // Visible variables
-    private Vector3 spawnPoint;
-
     // Not visible variables
     private PlayerControl2D targetPlayer;
+    private Vector3 spawnPoint;
 
     // It runs once before the first Update it's executed
     void Start()

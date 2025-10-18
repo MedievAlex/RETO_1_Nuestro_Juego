@@ -3,22 +3,24 @@ using UnityEngine;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 /** [ AUTOMATIC MOBILE PLATFORM TO A-B-C ]
-- The object moves by activation from the entered points A, B, and C
+- The object moves by activation or time from the entered points A, B, and C
+- Goes back automatically to point C after some time
 */
-public class MobileAutomaticPlatformTo3 : MonoBehaviour
+public class MobileByActivationPlatformOf3 : MonoBehaviour
 {
     // Visible variables
     public Vector3 pointA; // First position
     public Vector3 pointB; // Second position
     public Vector3 pointC; // Third position
-    public float speed = 0.05f; // Movement speed
+    public float speed = 3f; // Movement speed
 
     // Not visible variables 
+    private bool plyerOnTop = false; // If the platform is in movement
+    private bool inMovement = false; // If the platform is in movement
     private bool towardsA = false; // Moving towards the first position (point A)
-    private bool towardsB = true; // Moving towards the second position (point B)
+    private bool towardsB = false; // Moving towards the second position (point B)
     private bool towardsC = false; // Moving towards the third position (point C)
     private bool backToB = false; // Moving towards the fourth position (point D)
-    private bool inMovement; // If the platform is in movement
     private float resetTime = 5f;
     private float timePassed;
 
@@ -49,7 +51,6 @@ public class MobileAutomaticPlatformTo3 : MonoBehaviour
             {
                 towardsB = false; // Stops moving towards B
                 towardsC = true; // Starts moving towards C
-
             }
             else if (transform.position == pointB && backToB) // Changes direction towards the first position (point A)
             {
@@ -68,19 +69,13 @@ public class MobileAutomaticPlatformTo3 : MonoBehaviour
             }
         }
 
-        if (transform.position != pointA ^ transform.position != pointC) // ^ = XOR
+        if (transform.position == pointC && !plyerOnTop)
         {
             timePassed += Time.deltaTime; // Calculates the time
-            if (timePassed > resetTime) // Sctarts moving again
+            if (timePassed > resetTime) 
             {
-                if (transform.position == pointA)
-                {
-                    towardsB = true; // Starts moving towards B
-                }
-                else if (transform.position == pointC)
-                {
-                    backToB = true; // Starts moving back to B
-                }
+                backToB = true; // Starts moving back to B
+                inMovement = true;
                 timePassed = 0f;
             }  
         }
@@ -91,16 +86,20 @@ public class MobileAutomaticPlatformTo3 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
+            plyerOnTop = true;
             collision.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
+
             if (!inMovement)
             {
                 if (transform.position == pointA)
                 {
                     towardsB = true; // Starts moving towards B
+                    inMovement = true;
                 }
                 else if (transform.position == pointC)
                 {
                     backToB = true; // Starts moving back to B
+                    inMovement = true;
                 }
             }
         }
@@ -111,6 +110,7 @@ public class MobileAutomaticPlatformTo3 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
+            plyerOnTop = false;
             collision.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }

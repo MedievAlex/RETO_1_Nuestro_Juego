@@ -5,7 +5,7 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 - The object moves constantly from the entered points A, B, C and D
 - The order is sequential in a loop
 */
-public class MobileAutomaticPlatformABCD : MonoBehaviour
+public class MobileAutomaticPlatformLoopOf4 : MonoBehaviour
 {
     // Visible variables
     public Vector3 pointA; // First position

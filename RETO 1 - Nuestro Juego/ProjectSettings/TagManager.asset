@@ -15,6 +15,7 @@ TagManager:
   - Stalactite
   - Elevator
   - Floor
+  - Climbable
   layers:
   - Default
   - TransparentFX

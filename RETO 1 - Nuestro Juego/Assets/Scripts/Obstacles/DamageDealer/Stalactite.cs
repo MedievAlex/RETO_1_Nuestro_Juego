@@ -37,7 +37,7 @@ public class Stalactite : MonoBehaviour
     // Executed when a collision occurs
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Ground" or "Player" label
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Platform")) // Check that the collided object has the "Ground" or "Player" label
         {
             broken = true;
         }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,14 +19,14 @@ public class PlayerControl2D : MonoBehaviour
     public bool activeExtraJumps = false; // Active or desactive the dash ability
 
     // Not visible variables
+    private Rigidbody rb; // Referencia al Rigidbody
+    private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
-    private float jumpForce = 5f; // Jump force
+    private float jumpForce = 6f; // Jump force
     private int extraJumps = 2; // Extra jumps
     private int jumpsLeft; // Remaining extra jumps
-    private bool jumpsReset = false; // To check if the counter had been reset
-    private Vector3 spawnPoint; // Referencia al punto de reaparición
-    private Rigidbody rb; // Referencia al Rigidbody
+    private bool jumpsReset = false; // To check if the counter had been reset   
 
     // START runs once before the first UPDATE it's executed
     void Start()
@@ -117,23 +118,22 @@ public class PlayerControl2D : MonoBehaviour
     }
 
     // Ability methods
-    public void setActiveDash(bool active) // Activates or deactivates the dash
+    public void abilityGestion(string abilityName, bool active)
     {
-        activeDash = active;
-    }
-
-    public void setActiveJump(bool active) // Activates or deactivates the jump
-    {
-        activeJump = active;  
-    }
-
-    public void setActiveExtraJumps(bool active) // Activates or deactivates the extra jumps
-    {
-        activeExtraJumps = active;      
-    }
-
-    public void addExtraJumps() // Ads a extra jump
-    {
-        extraJumps++;
+        switch (abilityName.ToUpper())
+        {
+            case "DASH":
+                activeDash = active;
+                break;
+            case "JUMP":
+                activeJump = active;
+                break;
+            case "EXTRAJUMPS":
+                activeExtraJumps = active;
+                break;
+            case "ADDEXTRAJUMP":
+                extraJumps++;
+                break;
+        }
     }
 }

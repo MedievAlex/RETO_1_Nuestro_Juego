@@ -25,29 +25,30 @@ public class StonesLever : MonoBehaviour
        {
            if (!stateActive) // If the lever was activated, it deactivates it
            {
-                stateActive = true; 
-           } 
+                stateActive = true;
+                fall = false;
+            } 
            else // If the lever was deactivated, it activates it
            {
                 stateActive = false;
+                fall = true;
            }
        }
 
-       if (!stateActive) // If the lever was activated, it deactivates it
-       {
-            fall = true; 
-       } 
-       else // If the lever was deactivated, it activates it
-       {
+        if (stateActive)
+        {
+            timePassed += Time.deltaTime; // Calculates the time
+            if (timePassed > stopTime) // Creates a new object and restarts the counter
+            {
+                stateActive = false;
+                fall = true;
+                timePassed = 0f;
+            }
+        }
+        else
+        {
             fall = true;
-       }
-
-       timePassed += Time.deltaTime; // Calculates the time
-       if (timePassed > stopTime) // Creates a new object and restarts the counter
-       {
-            stateActive = false;
-            timePassed = 0f;
-       }
+        }
     }
 
     // Executed when a collision with a trigger occurs

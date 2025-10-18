@@ -3426,7 +3426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 362009043717641866, guid: 122fff34fcd907e4eb11c930c8ba1363, type: 3}
       propertyPath: m_TagString
-      value: Stalactite
+      value: DamageDealer
       objectReference: {fileID: 0}
     - target: {fileID: 526465135486793895, guid: 122fff34fcd907e4eb11c930c8ba1363, type: 3}
       propertyPath: targetPlayer
@@ -3496,7 +3496,7 @@ GameObject:
   - component: {fileID: 798609693}
   m_Layer: 0
   m_Name: StaticStalactites
-  m_TagString: Untagged
+  m_TagString: DamageDealer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4165,7 +4165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 362009043717641866, guid: 122fff34fcd907e4eb11c930c8ba1363, type: 3}
       propertyPath: m_TagString
-      value: Stalactite
+      value: DamageDealer
       objectReference: {fileID: 0}
     - target: {fileID: 526465135486793895, guid: 122fff34fcd907e4eb11c930c8ba1363, type: 3}
       propertyPath: targetPlayer
@@ -4266,11 +4266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1888521550023101705, guid: 9eb4adcdf818cfb488be673c29622ff5, type: 3}
       propertyPath: nextScene
-      value: 1
+      value: Level-2
       objectReference: {fileID: 0}
     - target: {fileID: 1888521550023101705, guid: 9eb4adcdf818cfb488be673c29622ff5, type: 3}
       propertyPath: thisScene
-      value: 0
+      value: Level-1
       objectReference: {fileID: 0}
     - target: {fileID: 1888521550023101705, guid: 9eb4adcdf818cfb488be673c29622ff5, type: 3}
       propertyPath: nextSpawn.x
@@ -4982,7 +4982,7 @@ GameObject:
   - component: {fileID: 1197257205}
   m_Layer: 0
   m_Name: Stalactites
-  m_TagString: Stalactite
+  m_TagString: DamageDealer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6175,7 +6175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 362009043717641866, guid: 122fff34fcd907e4eb11c930c8ba1363, type: 3}
       propertyPath: m_TagString
-      value: Stalactite
+      value: DamageDealer
       objectReference: {fileID: 0}
     - target: {fileID: 526465135486793895, guid: 122fff34fcd907e4eb11c930c8ba1363, type: 3}
       propertyPath: targetPlayer
@@ -9862,7 +9862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 362009043717641866, guid: 122fff34fcd907e4eb11c930c8ba1363, type: 3}
       propertyPath: m_TagString
-      value: Stalactite
+      value: DamageDealer
       objectReference: {fileID: 0}
     - target: {fileID: 526465135486793895, guid: 122fff34fcd907e4eb11c930c8ba1363, type: 3}
       propertyPath: targetPlayer

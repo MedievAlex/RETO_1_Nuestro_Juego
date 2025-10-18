@@ -12,7 +12,6 @@ TagManager:
   - DamageDealer
   - Platform
   - Static
-  - Stalactite
   - Elevator
   - Floor
   - Climbable

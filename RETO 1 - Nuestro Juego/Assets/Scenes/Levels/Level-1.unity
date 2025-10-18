@@ -4266,11 +4266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1888521550023101705, guid: 9eb4adcdf818cfb488be673c29622ff5, type: 3}
       propertyPath: nextScene
-      value: Level-2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1888521550023101705, guid: 9eb4adcdf818cfb488be673c29622ff5, type: 3}
       propertyPath: thisScene
-      value: Level-1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1888521550023101705, guid: 9eb4adcdf818cfb488be673c29622ff5, type: 3}
       propertyPath: nextSpawn.x

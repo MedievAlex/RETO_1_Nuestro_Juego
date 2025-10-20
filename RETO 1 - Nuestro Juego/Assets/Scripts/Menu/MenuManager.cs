@@ -1,6 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,14 +9,24 @@ public class MenuManager : MonoBehaviour
     public Button optionsButton;
     public Button exitButton;
 
+    [Header("Referencias")]
+    public string levelScene = "Level-1";
+    public string optionsMenuScene = "OptionsMenu";
+
     void Start()
     {
-        exitButton.onClick.AddListener(ExitGame);
-    }
+        playButton.onClick.AddListener(() => {
+            SceneManager.LoadScene(levelScene, LoadSceneMode.Single);
+        });
 
-    void ExitGame()
-    {
-        Debug.Log("Saliendo del juego...");
-        Application.Quit();
+        optionsButton.onClick.AddListener(() => {
+            SceneManager.LoadScene(optionsMenuScene, LoadSceneMode.Single);
+        });
+
+        exitButton.onClick.AddListener(() => {
+            Debug.Log("Saliendo del juego...");
+            Application.Quit();
+        });
+
     }
 }

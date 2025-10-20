@@ -31,7 +31,7 @@ public class LeverPuzzle : MonoBehaviour
         if (testLever.stateActive)
         {
             if (verifyPuzzle()) // Correct combination
-            {
+            { 
                 timePassed += Time.deltaTime; // Calculates the time
                 if (timePassed > checkTime) // Creates a new object and restarts the counter
                 {

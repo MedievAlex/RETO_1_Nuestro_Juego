@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5278081109546970742, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d6461f78a78f7bd4faf210706373b393, type: 2}
     - target: {fileID: 5635086805023430378, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
       propertyPath: elevator
       value: 
@@ -2980,6 +2984,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5278081109546970742, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d6461f78a78f7bd4faf210706373b393, type: 2}
     - target: {fileID: 5635086805023430378, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
       propertyPath: elevator
       value: 
@@ -9632,6 +9640,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4082146427230163296, guid: a4c015f0a5a82544f9e32c31ac63c519, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 12c28eac5b041274bb998d10f2046ce0, type: 2}
     - target: {fileID: 5019729454458056127, guid: a4c015f0a5a82544f9e32c31ac63c519, type: 3}
       propertyPath: m_Name
       value: PushableStone
@@ -9819,10 +9831,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExitElevator
       objectReference: {fileID: 0}
+    - target: {fileID: 2628013534041548481, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d6461f78a78f7bd4faf210706373b393, type: 2}
     - target: {fileID: 3364212560485983542, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: m_TagString
       value: Elevator
       objectReference: {fileID: 0}
+    - target: {fileID: 4577980905665270914, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0ff3f0c74a0a4fc4eae7131ff436682f, type: 2}
+    - target: {fileID: 4770988341626615202, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1c3704a2ecbd1e348a5d979efd503cd7, type: 2}
+    - target: {fileID: 4833940704633864632, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0ff3f0c74a0a4fc4eae7131ff436682f, type: 2}
+    - target: {fileID: 6428047064012572286, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d6246c454e7b2e4da0c77bc5fc34ada, type: 2}
     - target: {fileID: 6436285282699159405, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: destinationPosition.x
       value: 43

@@ -9322,15 +9322,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815075047839650240, guid: d93d1449fd0c41941a2cf091701d2a67, type: 3}
       propertyPath: activeDash
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1815075047839650240, guid: d93d1449fd0c41941a2cf091701d2a67, type: 3}
       propertyPath: activeJump
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1815075047839650240, guid: d93d1449fd0c41941a2cf091701d2a67, type: 3}
       propertyPath: activeExtraJumps
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2148101582980958762, guid: d93d1449fd0c41941a2cf091701d2a67, type: 3}
       propertyPath: m_LocalPosition.x

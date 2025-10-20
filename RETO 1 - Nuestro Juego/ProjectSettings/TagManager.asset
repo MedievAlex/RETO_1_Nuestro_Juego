@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Decoration
   - Ground
   - Wall
   - Ceiling
@@ -13,7 +14,6 @@ TagManager:
   - Platform
   - Static
   - Elevator
-  - Floor
   - Climbable
   layers:
   - Default

@@ -11,3 +11,5 @@
 [ X ] Add the static stalactites.
 
 [  ] Find how to move the same player from scene to another saving the data.
+
+[  ] Find how change scenes correctly. Opening the new scene and deleting the previous one.

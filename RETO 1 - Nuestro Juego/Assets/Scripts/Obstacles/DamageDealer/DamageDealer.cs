@@ -22,6 +22,7 @@ public class DamageDealer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
+            Debug.LogWarning("Knockback missing");
             targetPlayer.applyDamage(); // Deals damage
             targetPlayer.getRigidbody().linearVelocity = Vector3.zero; // Stop it from moving
             targetPlayer.getRigidbody().angularVelocity = Vector3.zero; // Reset the physical rotation

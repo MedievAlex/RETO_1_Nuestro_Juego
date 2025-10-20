@@ -1,7 +1,7 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class FallingWall : MonoBehaviour
+public class ClosingDoor : MonoBehaviour
 {
     // Visible variables
     public Vector3 location; // Where it will fall

@@ -35,20 +35,20 @@ public class StonesLever : MonoBehaviour
            }
        }
 
-        if (stateActive)
-        {
-            timePassed += Time.deltaTime; // Calculates the time
-            if (timePassed > stopTime) // Creates a new object and restarts the counter
-            {
-                stateActive = false;
-                fall = true;
-                timePassed = 0f;
-            }
-        }
-        else
-        {
-            fall = true;
-        }
+       if (stateActive)
+       {
+           timePassed += Time.deltaTime; // Calculates the time
+           if (timePassed > stopTime) // Creates a new object and restarts the counter
+           {
+               stateActive = false;
+               fall = true;
+               timePassed = 0f;
+           }
+       }
+       else
+       {
+           fall = true;
+       }
     }
 
     // Executed when a collision with a trigger occurs

@@ -1,26 +1,27 @@
+using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ElevatorControl : MonoBehaviour
 {
     // Visible variables  
     public int door; // 3 = LeftDoor 4 = RightDoor
     public bool doorStartOpen; // If the choosed door it starts open 
-    public AudioClip audioClip;
+    public AudioClip startAudioClip;
+    public AudioClip endAudioClip;
 
     // Not visible variables
     private bool activated; // If the elevator starts activated or not
     private Vector3 destinationPosition; // Destination
     private bool towardsPosition = false; // Moving towards the position
     private float speed = 3f; // Movement speed   
-    private AudioSource audioSource;
+    private AudioController audioController;
   
     // START runs once before the first Update it's executed
     void Start()
     {
         openDoor(doorStartOpen);
-        audioSource = transform.GetChild(transform.childCount - 1).GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
-        audioSource.loop = true;
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
     }
 
     // UPDATE is executed once per frame
@@ -28,14 +29,16 @@ public class ElevatorControl : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
+            audioController.verifyedOShotAudio(startAudioClip, 1f, true);
             openDoor(false); // Closes the door
-            playAudio(true);
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
-            
+
             if (transform.position == destinationPosition) 
-            {               
-                playAudio(false);    
+            {
+                audioController.oneShotAudio(startAudioClip, 1f, false);
+                audioController.oneShotAudio(endAudioClip, 1f, true);
                 towardsPosition = false; // Stops moving
+                activated = false;
                 openDoor(true); // Opens the door
             }
         }
@@ -83,25 +86,11 @@ public class ElevatorControl : MonoBehaviour
         }
     }
 
+    // Calls and starts moving the elevator
     public void moveOnCall(Vector3 destinationPosition, bool stateActive)
     {
         this.destinationPosition = destinationPosition;
         activated = stateActive;
         towardsPosition = stateActive;
-    } 
-    
-    public void playAudio(bool play)
-    {
-        if(play)
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play(); // The audio plays
-            } 
-        }
-        else{
-            //audioSource.mute = true;
-            audioSource.Stop(); // The audio stops
-        }         
     }
 }

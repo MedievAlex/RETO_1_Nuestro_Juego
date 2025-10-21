@@ -124,3 +124,4 @@ MonoBehaviour:
   openLocation: {x: 0, y: 0, z: 0}
   closeLocation: {x: 0, y: 0, z: 0}
   startStateOpen: 0
+  audioClip: {fileID: 8300000, guid: ab942887199b73946aaef062f12cb06b, type: 3}

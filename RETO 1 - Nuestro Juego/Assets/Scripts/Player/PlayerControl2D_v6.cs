@@ -82,7 +82,7 @@ public class PlayerControl2D : MonoBehaviour
     // Executed when a collision occurs
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static") && !jumpsReset) // Check that the collided object will restart the jumps
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static") && !jumpsReset) // Check that the collided object will restart the jumps
         {
             jumpsLeft = extraJumps; // Resets the jump counter
             jumpsReset = true;

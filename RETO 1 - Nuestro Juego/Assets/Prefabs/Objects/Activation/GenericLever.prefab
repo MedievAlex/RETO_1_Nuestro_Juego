@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateActive: 0
+  audioClip: {fileID: 8300000, guid: d7433852810f3eb4285b62a44915a491, type: 3}

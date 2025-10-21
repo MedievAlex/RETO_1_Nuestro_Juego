@@ -5,15 +5,20 @@ using UnityEngine;
 */
 public class Stalactite : MonoBehaviour
 {
+    // Visible variables
+    public AudioClip audioClip;
+
     // Not visible variables
     private bool broken = false; // Indicates whether the object has touched the ground
     private Rigidbody rb; // Referencia al Rigidbody
+    private AudioController audioController;
 
     // It runs once before the first Update it's executed
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         rb.useGravity = false;
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
     }
 
     // Update is executed once per frame
@@ -30,6 +35,7 @@ public class Stalactite : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
+            audioController.oneShotAudio(audioClip, 1f, true);
             rb.useGravity = true;
         }
     }

@@ -13,20 +13,14 @@ public class ElevatorControl : MonoBehaviour
     private bool towardsPosition = false; // Moving towards the position
     private float speed = 3f; // Movement speed   
     private AudioSource audioSource;
-
-    void Awake()
-    {
-        audioSource = transform.GetChild(transform.childCount - 1).GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
-        audioSource.loop = true;
-        audioSource.Play(); // The audio plays
-        playAudio(false);
-    }
-    
+  
     // START runs once before the first Update it's executed
     void Start()
     {
         openDoor(doorStartOpen);
+        audioSource = transform.GetChild(transform.childCount - 1).GetComponent<AudioSource>();
+        audioSource.clip = audioClip;
+        audioSource.loop = true;
     }
 
     // UPDATE is executed once per frame
@@ -100,12 +94,14 @@ public class ElevatorControl : MonoBehaviour
     {
         if(play)
         {
-            audioSource.mute = false;
-            // audioSource.Play(); // The audio plays
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play(); // The audio plays
+            } 
         }
         else{
-            audioSource.mute = true;
-            // audioSource.Stop(); // The audio stops
+            //audioSource.mute = true;
+            audioSource.Stop(); // The audio stops
         }         
     }
 }

@@ -18,7 +18,7 @@ public class ElevatorControl : MonoBehaviour
     void Start()
     {
         openDoor(doorStartOpen);
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = transform.GetChild(transform.childCount - 1).GetComponent<AudioSource>();
         audioSource.clip = audioClip;
     }
 
@@ -28,14 +28,13 @@ public class ElevatorControl : MonoBehaviour
         if (towardsPosition) // Moving towards the position
         {
             openDoor(false); // Closes the door
-            // PLAY THE AUDIO
-            audioSource.play();
-            // PLAY THE AUDIO
+            audioSource.Play(); // The audio plays
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
             
             if (transform.position == destinationPosition) 
             {               
                 towardsPosition = false; // Stops moving
+                audioSource.Pause(); // The audio stops
                 openDoor(true); // Opens the door
             }
         }

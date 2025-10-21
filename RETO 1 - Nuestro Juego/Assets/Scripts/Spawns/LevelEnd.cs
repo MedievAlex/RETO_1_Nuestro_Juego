@@ -32,8 +32,7 @@ public class LevelEnd : MonoBehaviour
                 collider.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset the physical rotation
                 collider.gameObject.transform.position = nextSpawn;
   
-                SceneManager.LoadSceneAsync(nextScene);
-                SceneManager.UnloadSceneAsync(thisScene);
+                SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             }
         }
     }

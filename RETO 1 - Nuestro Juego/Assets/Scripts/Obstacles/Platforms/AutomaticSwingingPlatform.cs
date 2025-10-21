@@ -16,7 +16,7 @@ public class AutomaticSwingingPlatform : MonoBehaviour
     private Vector3 pointB; // Second position
     private Vector3 pointC; // Third position
     private bool towardsA = false; // Moving towards the first position (point A)
-    private bool towardsB = true; // Moving towards the second position (point B)
+    private bool towardsB = false; // Moving towards the second position (point B)
     private bool towardsC = false; // Moving towards the third position (point C)
     private bool backToB = false; // Moving towards the fourth position (point D)
 
@@ -94,6 +94,7 @@ public class AutomaticSwingingPlatform : MonoBehaviour
             pointA.x = pointB.x + 0.1f;
             pointC.y = pointB.y + 0.1f;
             pointC.x = pointB.x - 0.1f;
+            towardsC = true;
         }
         else // Goes to left first
         {
@@ -101,7 +102,7 @@ public class AutomaticSwingingPlatform : MonoBehaviour
             pointA.x = pointB.x - 0.1f;
             pointC.y = pointB.y + 0.1f;
             pointC.x = pointB.x + 0.1f;
+            towardsA = true;
         }
-
     }
 }

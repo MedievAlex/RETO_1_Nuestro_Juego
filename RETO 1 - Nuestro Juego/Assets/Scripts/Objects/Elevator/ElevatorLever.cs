@@ -13,7 +13,7 @@ public class ElevatorLever : MonoBehaviour
     // START runs once before the first Update it's executed
     void Start()
     {
-        elevator = transform.parent.gameObject.GetComponent<ElevatorControl>(); // Finds the GameObject of the class PlayerControl2D
+        elevator = transform.parent.gameObject.GetComponent<ElevatorControl>(); // Gets the parent object
         elevator.moveOnCall(destinationPosition, stateActive);
     }
 

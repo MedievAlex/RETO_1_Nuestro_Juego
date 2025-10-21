@@ -5,13 +5,10 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 - The object moves constantly from the entered points A, B and C
 - The order is sequential. From the first point to the last one and backwards
 */
-public class AutomaticSwingingPlatform : MonoBehaviour
-{
-    // Visible variables   
-    public float speed = 0.05f; // Movement speed
-    public bool firstSwingToRight = true; // Movement speed
-
+public class Levitation : MonoBehaviour
+{     
     // Not visible variables
+    private float speed = 0.02f; // Movement speed
     private Vector3 pointA; // First position
     private Vector3 pointB; // Second position
     private Vector3 pointC; // Third position
@@ -24,7 +21,7 @@ public class AutomaticSwingingPlatform : MonoBehaviour
     void Start()
     {
         pointB = transform.position;
-        SetPoints(pointB, firstSwingToRight);
+        SetPoints(pointB);
     }
 
     // Update is executed once per frame
@@ -86,23 +83,13 @@ public class AutomaticSwingingPlatform : MonoBehaviour
         }
     }
 
-    private void SetPoints(Vector3 pointB, bool rightLeftDirection)
+    private void SetPoints(Vector3 pointB)
     {
-        if (rightLeftDirection) // Goes to right first
-        {
-            pointA.y = pointB.y + 0.1f;
-            pointA.x = pointB.x + 0.1f;
-            pointC.y = pointB.y + 0.1f;
-            pointC.x = pointB.x - 0.1f;
-            towardsC = true;
-        }
-        else // Goes to left first
-        {
-            pointA.y = pointB.y + 0.1f;
-            pointA.x = pointB.x - 0.1f;
-            pointC.y = pointB.y + 0.1f;
-            pointC.x = pointB.x + 0.1f;
-            towardsA = true;
-        }
+        pointA.y = pointB.y + 0.05f;
+        pointA.x = pointB.x;
+        pointC.y = pointB.y - 0.05f;
+        pointC.x = pointB.x;
+                 
+        towardsA = true;
     }
 }

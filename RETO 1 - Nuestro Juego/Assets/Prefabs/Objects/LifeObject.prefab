@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8160053993007484408}
   - component: {fileID: 3463699011422573585}
   - component: {fileID: 4874550066242872116}
+  - component: {fileID: 4822134435298530786}
   m_Layer: 0
   m_Name: LifeObject
   m_TagString: Untagged
@@ -121,3 +122,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd247f403ce38b46a7ea819c3782074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4822134435298530786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758368249972763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e20702d6c07e340bde51854dc4f0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.05
+  firstSwingToRight: 1

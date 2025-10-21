@@ -9975,6 +9975,10 @@ PrefabInstance:
       propertyPath: destinationPosition.y
       value: 4.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7811761337908931186, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8431235672480291897, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: elevator
       value: 

@@ -14,12 +14,19 @@ public class ElevatorControl : MonoBehaviour
     private float speed = 3f; // Movement speed   
     private AudioSource audioSource;
 
+    void Awake()
+    {
+        audioSource = transform.GetChild(transform.childCount - 1).GetComponent<AudioSource>();
+        audioSource.clip = audioClip;
+        audioSource.loop = true;
+        audioSource.Play(); // The audio plays
+        playAudio(false);
+    }
+    
     // START runs once before the first Update it's executed
     void Start()
     {
         openDoor(doorStartOpen);
-        audioSource = transform.GetChild(transform.childCount - 1).GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
     }
 
     // UPDATE is executed once per frame
@@ -28,13 +35,13 @@ public class ElevatorControl : MonoBehaviour
         if (towardsPosition) // Moving towards the position
         {
             openDoor(false); // Closes the door
-            audioSource.Play(); // The audio plays
+            playAudio(true);
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
             
             if (transform.position == destinationPosition) 
             {               
+                playAudio(false);    
                 towardsPosition = false; // Stops moving
-                audioSource.Pause(); // The audio stops
                 openDoor(true); // Opens the door
             }
         }
@@ -87,5 +94,18 @@ public class ElevatorControl : MonoBehaviour
         this.destinationPosition = destinationPosition;
         activated = stateActive;
         towardsPosition = stateActive;
-    }  
+    } 
+    
+    public void playAudio(bool play)
+    {
+        if(play)
+        {
+            audioSource.mute = false;
+            // audioSource.Play(); // The audio plays
+        }
+        else{
+            audioSource.mute = true;
+            // audioSource.Stop(); // The audio stops
+        }         
+    }
 }

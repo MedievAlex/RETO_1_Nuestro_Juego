@@ -4,6 +4,7 @@ using UnityEngine;
 public class LeverPuzzle : MonoBehaviour
 {
     // Visible variables
+    public Door door; // Referenced door
     public Lever lever1; // Referenced lever
     public Lever lever2; // Referenced lever
     public Lever lever3; // Referenced lever
@@ -36,6 +37,7 @@ public class LeverPuzzle : MonoBehaviour
                 if (timePassed > checkTime) // Creates a new object and restarts the counter
                 {
                     Debug.Log("Correct convination.");
+                    door.changeState();
                     testLever.stateActive = false;
                     timePassed = 0f;
                 }

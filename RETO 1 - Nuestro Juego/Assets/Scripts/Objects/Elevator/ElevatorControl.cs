@@ -4,18 +4,22 @@ public class ElevatorControl : MonoBehaviour
 {
     // Visible variables  
     public int door; // 3 = LeftDoor 4 = RightDoor
-    public bool doorStartOpen; // If the choosed door it starts open
+    public bool doorStartOpen; // If the choosed door it starts open 
+    public AudioClip audioClip;
 
     // Not visible variables
     private bool activated; // If the elevator starts activated or not
     private Vector3 destinationPosition; // Destination
     private bool towardsPosition = false; // Moving towards the position
-    private float speed = 3f; // Movement speed
+    private float speed = 3f; // Movement speed   
+    private AudioSource audioSource;
 
     // START runs once before the first Update it's executed
     void Start()
     {
         openDoor(doorStartOpen);
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = audioClip;
     }
 
     // UPDATE is executed once per frame
@@ -24,6 +28,9 @@ public class ElevatorControl : MonoBehaviour
         if (towardsPosition) // Moving towards the position
         {
             openDoor(false); // Closes the door
+            // PLAY THE AUDIO
+            audioSource.play();
+            // PLAY THE AUDIO
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
             
             if (transform.position == destinationPosition) 

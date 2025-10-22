@@ -22,6 +22,16 @@ public class AudioController : MonoBehaviour
         
     }
 
+    public void onLoopAudio(AudioClip audioClip, float volume, bool play)
+    {
+        audioSource.clip = audioClip;
+
+        if (!play)
+        {
+            audioSource.PlayOneShot(audioClip, volume); // The audio plays
+        }
+    }
+    
     public void backgroundMusic(AudioClip audioClip, float volume, bool play)
     {
         audioSource.clip = audioClip;

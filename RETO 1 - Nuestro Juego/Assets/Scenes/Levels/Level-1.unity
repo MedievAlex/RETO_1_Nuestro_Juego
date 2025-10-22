@@ -2910,6 +2910,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 2923910163631831635, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 361988d479314f74d8ca312e3839ff6d, type: 2}
     - target: {fileID: 7367041857666691975, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.63
@@ -7162,6 +7166,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 2923910163631831635, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 393da2349259d8c4f8c335289c894432, type: 2}
     - target: {fileID: 7367041857666691975, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.66
@@ -8226,6 +8234,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 2923910163631831635, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4840ec3b005751741bab303e57287d88, type: 2}
     - target: {fileID: 7367041857666691975, guid: 0a27268a316701f48ad8b166ecb10098, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.5
@@ -9808,7 +9820,7 @@ PrefabInstance:
     - target: {fileID: 4082146427230163296, guid: a4c015f0a5a82544f9e32c31ac63c519, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 12c28eac5b041274bb998d10f2046ce0, type: 2}
+      objectReference: {fileID: 2100000, guid: 9a76c3b1933dde14abdf1de97cea6b13, type: 2}
     - target: {fileID: 5019729454458056127, guid: a4c015f0a5a82544f9e32c31ac63c519, type: 3}
       propertyPath: m_Name
       value: PushableStone
@@ -10015,7 +10027,7 @@ PrefabInstance:
     - target: {fileID: 4577980905665270914, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 0ff3f0c74a0a4fc4eae7131ff436682f, type: 2}
+      objectReference: {fileID: 2100000, guid: 9b92ce58323a59940b67ef16fbae450a, type: 2}
     - target: {fileID: 4770988341626615202, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -10023,7 +10035,7 @@ PrefabInstance:
     - target: {fileID: 4833940704633864632, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 0ff3f0c74a0a4fc4eae7131ff436682f, type: 2}
+      objectReference: {fileID: 2100000, guid: 11153afac0f8626408e399bef9aec10d, type: 2}
     - target: {fileID: 5801335755113261170, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: clip
       value: 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4750681652707280861}
   - component: {fileID: 5120795876353512976}
   m_Layer: 0
-  m_Name: PlayerCamera
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,5 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9794ac9fcfbe89649b1d909111053846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPlayer: {fileID: 0}
   cameraPosition: {x: 0, y: 1, z: -4}

@@ -4,16 +4,35 @@ using UnityEngine.Audio;
 public class AudioController : MonoBehaviour
 {
     // Visible variables
-    public AudioClip backgroundMusuc;
+    public AudioClip backgroundMusic;
     public AudioClip backgroundEfects;
 
     // No visible variables
+    private static AudioController Instance;
     private AudioSource audioSource;   
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            audioSource = transform.GetComponent<AudioSource>();
+            
+            audioSource.volume = 0.5f;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        audioSource = transform.GetComponent<AudioSource>();
+        audioSource.clip = backgroundMusic;
+        audioSource.Play();
     }
 
     // Update is called once per frame

@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 /** [ 2D MOVEMENT CONTROLS V.6 ]
 - Movement: Left and right
@@ -70,13 +72,6 @@ public class PlayerControl2D : MonoBehaviour
             jumpsReset = false;
             jumpsLeft--;
         }  
-
-        // Game Over
-        if (lifeCount == 0)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
-        }
     }
 
     // Executed when a collision occurs
@@ -103,6 +98,12 @@ public class PlayerControl2D : MonoBehaviour
     public void applyDamage() // Deals damage
     {
         lifeCount--;
+
+        // Game Over
+        if (lifeCount == 0)
+        {
+            SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
+        }
     }
     public void setRespawn(Vector3 newSpawnPoint)
     {

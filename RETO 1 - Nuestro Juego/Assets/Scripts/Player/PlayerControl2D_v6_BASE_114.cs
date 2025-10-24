@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
 
 /** [ 2D MOVEMENT CONTROLS V.6 ]
 - Movement: Left and right
@@ -22,7 +20,7 @@ public class PlayerControl2D : MonoBehaviour
 
     // Not visible variables
     private Rigidbody rb; // Referencia al Rigidbody
-    private Vector3 spawnPoint; // Referencia al punto de reapariciÃ³n
+    private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
     private float jumpForce = 6f; // Jump force
@@ -48,7 +46,7 @@ public class PlayerControl2D : MonoBehaviour
             transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
 
             // Dash
-            if (Input.GetKey(KeyCode.LeftShift) && activeDash)
+            if (Input.GetKey(KeyCode.LeftShift) && activeDash) 
             {
                 speed = baseSpeed * 1.7f;
             }
@@ -60,17 +58,24 @@ public class PlayerControl2D : MonoBehaviour
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
-        {
+        {     
             if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
             else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
             {
-                rb.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+                rb.AddForce(Vector3.up * (jumpForce * 0.7f ), ForceMode.Impulse);
             }
             jumpsReset = false;
             jumpsLeft--;
+        }  
+
+        // Game Over
+        if (lifeCount == 0)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
     }
 
@@ -98,12 +103,6 @@ public class PlayerControl2D : MonoBehaviour
     public void applyDamage() // Deals damage
     {
         lifeCount--;
-
-        // Game Over
-        if (lifeCount == 0)
-        {
-            SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
-        }
     }
     public void setRespawn(Vector3 newSpawnPoint)
     {

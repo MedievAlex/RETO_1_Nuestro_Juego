@@ -22,13 +22,15 @@ public class PlayerControl2D : MonoBehaviour
 
     // Not visible variables
     private Rigidbody rb; // Referencia al Rigidbody
-    private Vector3 spawnPoint; // Referencia al punto de reaparición
+    private Vector3 spawnPoint; // Referencia al punto de reaparici�n
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
     private float jumpForce = 6f; // Jump force
     private int extraJumps = 2; // Extra jumps
     private int jumpsLeft; // Remaining extra jumps
     private bool jumpsReset = false; // To check if the counter had been reset   
+    [HideInInspector]
+    public bool freeze = false; // Cuando true el jugador no puede moverse ni saltar
 
     // START runs once before the first UPDATE it's executed
     void Start()
@@ -40,38 +42,66 @@ public class PlayerControl2D : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-        // Movement
-        if (Input.GetAxis("Horizontal") != 0)
+        // Si está aturdido, no procesamos movimiento ni salto
+        if (!freeze)
         {
-            // Sideways movement
-            float moveLeftRight = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
+            // Movement
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                // Sideways movement
+                float moveLeftRight = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+                transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
 
-            // Dash
-            if (Input.GetKey(KeyCode.LeftShift) && activeDash)
-            {
-                speed = baseSpeed * 1.7f;
+                // Dash
+                if (Input.GetKey(KeyCode.LeftShift) && activeDash) 
+                {
+                    speed = baseSpeed * 1.7f;
+                }
+                else
+                {
+                    speed = baseSpeed;
+                }
             }
-            else
-            {
-                speed = baseSpeed;
+
+            // Jump
+            if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
+            {     
+                if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
+                {
+                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                }
+                else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
+                {
+                    rb.AddForce(Vector3.up * (jumpForce * 0.7f ), ForceMode.Impulse);
+                }
+                jumpsReset = false;
+                jumpsLeft--;
             }
         }
 
+<<<<<<< HEAD
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
-        {
+        {     
             if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
             else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
             {
-                rb.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+                rb.AddForce(Vector3.up * (jumpForce * 0.7f ), ForceMode.Impulse);
             }
             jumpsReset = false;
             jumpsLeft--;
+        }  
+=======
+        // Game Over
+        if (lifeCount == 0)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
+>>>>>>> 008b0b1 (Almost working knockback)
     }
 
     // Executed when a collision occurs

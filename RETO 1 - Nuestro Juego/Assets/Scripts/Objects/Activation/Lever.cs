@@ -4,14 +4,16 @@ public class Lever : MonoBehaviour
 {
     // Visible variables
     public bool stateActive; // If the lever is active or not
+    public AudioClip audioClip;
 
     // Not visible variables
     private bool stateActivable; // If the ladder is actibable or not
-    
+    private AudioController audioController;
+
     // START runs once before the first Update it's executed
     void Start()
     {
-        
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
     }
 
     // UPDATE is executed once per frame
@@ -19,7 +21,9 @@ public class Lever : MonoBehaviour
     {
        if (stateActivable && Input.GetKeyDown(KeyCode.E)) // Changes lever's state
        {
-           if (!stateActive) // If the lever was activated, it deactivates it
+            audioController.oneShotAudio(audioClip, 1f, true);
+
+            if (!stateActive) // If the lever was activated, it deactivates it
            {
                 stateActive = true;  
            } 

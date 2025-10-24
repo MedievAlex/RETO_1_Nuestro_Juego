@@ -48,7 +48,7 @@ public class LeverPuzzle : MonoBehaviour
                 if (timePassed > checkTime) // Creates a new object and restarts the counter
                 {
                     remainingAttempts--;
-                    Debug.LogError(remainingAttempts + " attemps left.");
+                    Debug.LogWarning(remainingAttempts + " attemps left.");
                     testLever.stateActive = false;
                     resetPuzzle();
                     if (remainingAttempts == 0)

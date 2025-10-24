@@ -76,6 +76,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: 3
   doorStartOpen: 0
+  startAudioClip: {fileID: 0}
+  endAudioClip: {fileID: 8300000, guid: 67ee9e1ad9cb29a4d8bb5403d6adafe4, type: 3}
 --- !u!1 &1442251965292604437
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 2010012857040475546}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.009, y: -1.182, z: 0.7}
+  m_LocalPosition: {x: 0.009, y: -1.172, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -307,6 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationPosition: {x: 0, y: 0, z: 0}
   stateActive: 0
+  audioClip: {fileID: 8300000, guid: d7433852810f3eb4285b62a44915a491, type: 3}
 --- !u!1 &2068589002017675856
 GameObject:
   m_ObjectHideFlags: 0

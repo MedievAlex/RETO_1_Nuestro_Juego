@@ -51,7 +51,7 @@ public class AudioController : MonoBehaviour
         }
     }
     
-    public void backgroundMusic(AudioClip audioClip, float volume, bool play)
+    public void playBackgroundMusic(AudioClip audioClip, float volume, bool play)
     {
         audioSource.clip = audioClip;
 

@@ -4,12 +4,12 @@ using UnityEngine.EventSystems;
 
 public class PauseManager : MonoBehaviour
 {
+    // Not visible variables
     [SerializeField] private GameObject Canvas;
     private bool gameStopped = false;
 
-    [Header("Referencias")]
-    public string menuScene = "MainMenu";
-    public string optionsMenuScene = "OptionsMenu";
+    private string menuScene = "MainMenu";
+    private string optionsMenuScene = "OptionsMenu";
 
     void Start()
     {

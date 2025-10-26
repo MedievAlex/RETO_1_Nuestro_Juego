@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour
 {
-    [Header("Elementos de Volumen")]
-    public Slider volumeSlider;
-    public TextMeshProUGUI volumePercentText;
+    [Header("Buttons")] // Makes a header on the public variables
     public Button backButton;
 
-    [Header("Referencias")]
-    public string mainMenuScene = "MainMenu";
+    [Header("Volume")] // Makes a header on the public variables
+    public Slider volumeSlider;
+    public TextMeshProUGUI volumePercentText;
+
+    [Header("References")] // Makes a header on the public variables
+    public string backMenu;
 
     void Start()
     {
@@ -25,7 +27,7 @@ public class OptionsManager : MonoBehaviour
         {
             PlayerPrefs.Save();
 
-            SceneManager.LoadScene(mainMenuScene, LoadSceneMode.Single);
+            SceneManager.LoadScene(backMenu, LoadSceneMode.Single);
         });
 
         AudioListener.volume = savedVolume;
@@ -54,5 +56,10 @@ public class OptionsManager : MonoBehaviour
     void OnDestroy()
     {
         PlayerPrefs.Save();
+    }
+
+    public void setBack(string menu)
+    {
+        backMenu = menu;
     }
 }

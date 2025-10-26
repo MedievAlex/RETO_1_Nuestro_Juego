@@ -4,6 +4,7 @@ using UnityEngine.Audio;
 public class AudioController : MonoBehaviour
 {
     // Visible variables
+    [Header("Audio Clips")] // Makes a header on the public variables
     public AudioClip backgroundMusic;
     public AudioClip backgroundEfects;
 
@@ -41,6 +42,7 @@ public class AudioController : MonoBehaviour
         
     }
 
+    // Methods to plat the audios
     public void onLoopAudio(AudioClip audioClip, float volume, bool play)
     {
         audioSource.clip = audioClip;

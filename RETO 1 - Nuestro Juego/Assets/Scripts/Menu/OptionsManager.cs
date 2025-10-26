@@ -15,6 +15,7 @@ public class OptionsManager : MonoBehaviour
     [Header("References")] // Makes a header on the public variables
     public string backMenu;
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
@@ -56,10 +57,5 @@ public class OptionsManager : MonoBehaviour
     void OnDestroy()
     {
         PlayerPrefs.Save();
-    }
-
-    public void setBack(string menu)
-    {
-        backMenu = menu;
     }
 }

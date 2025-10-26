@@ -1,6 +1,7 @@
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PauseManager : MonoBehaviour
     private string menuScene = "MainMenu";
     private string optionsMenuScene = "OptionsMenu";
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         EnsureEventSystem();
@@ -18,6 +20,15 @@ public class PauseManager : MonoBehaviour
         if (Canvas != null)
         {
             Canvas.SetActive(false);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
         }
     }
 
@@ -37,14 +48,6 @@ public class PauseManager : MonoBehaviour
             {
                 Destroy(eventSystems[i].gameObject);
             }
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePause();
         }
     }
 
@@ -94,4 +97,5 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(menuScene);
     }
+
 }

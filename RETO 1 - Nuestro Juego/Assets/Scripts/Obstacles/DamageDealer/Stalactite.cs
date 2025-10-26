@@ -13,11 +13,15 @@ public class Stalactite : MonoBehaviour
     private Rigidbody rb; // Referencia al Rigidbody
     private AudioController audioController;
 
-    // It runs once before the first Update it's executed
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         rb.useGravity = false;
+    }
+
+    // It runs once before the first Update it's executed
+    void Start()
+    {
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
     }
 

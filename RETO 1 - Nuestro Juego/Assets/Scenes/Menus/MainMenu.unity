@@ -502,6 +502,10 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5477991489919363135, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
+      propertyPath: m_Name
+      value: Options
+      objectReference: {fileID: 0}
     - target: {fileID: 5493005422297559305, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

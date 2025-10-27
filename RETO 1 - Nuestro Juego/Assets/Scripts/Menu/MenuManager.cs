@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        optionsMenu = GameObject.Find("OptionsMenu").GetComponent<OptionsManager>();
+        optionsMenu = GameObject.Find("Options").GetComponent<OptionsManager>();
 
         playButton.onClick.AddListener(() => { // When clicking Play button starts the game
             SceneManager.LoadScene(levelScene, LoadSceneMode.Single);

@@ -32383,7 +32383,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 309baf9cf1f4d73469e8153bc2263427, type: 3}
     - target: {fileID: 5477991489919363135, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
       propertyPath: m_Name
-      value: OptionsMenu
+      value: Options
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

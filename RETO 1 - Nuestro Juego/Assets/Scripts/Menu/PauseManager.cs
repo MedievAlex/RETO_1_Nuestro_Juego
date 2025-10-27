@@ -20,7 +20,7 @@ public class PauseManager : MonoBehaviour
     {
         EnsureEventSystem();
 
-        optionsMenu = GameObject.Find("OptionsMenu").GetComponent<OptionsManager>();
+        optionsMenu = GameObject.Find("Options").GetComponent<OptionsManager>();
 
         if (Canvas != null)
         {

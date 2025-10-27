@@ -1,42 +1,101 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using TMPro;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField] private GameObject Canvas;
-    private bool gameStopped = false;
+    [Header("Paneles UI")]
+    public GameObject backgroundPanel;
+    public GameObject pausePanel;
+    public GameObject optionsPanel;
+
+    [Header("Elementos de Volumen")]
+    public Slider volumeSlider;
+    public TextMeshProUGUI volumePercentText;
 
     [Header("Referencias")]
     public string menuScene = "MainMenu";
-    public string optionsMenuScene = "OptionsMenu";
+
+    private bool gameStopped = false;
 
     void Start()
     {
-        EnsureEventSystem();
+        backgroundPanel.SetActive(false);
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(false);
 
-        if (Canvas != null)
+        SetupButtonsManually();
+        SetupVolumeSystem();
+    }
+
+    void SetupButtonsManually()
+    {
+        Button[] allButtons = GetComponentsInChildren<Button>(true);
+
+        foreach (Button button in allButtons)
         {
-            Canvas.SetActive(false);
+            if (button.name.Contains("Resume"))
+            {
+                button.onClick.AddListener(ResumeGame);
+            }
+            else if (button.name.Contains("Options"))
+            {
+                button.onClick.AddListener(ShowOptions);
+            }
+            else if (button.name.Contains("Menu"))
+            {
+                button.onClick.AddListener(GoToMenu);
+            }
+            else if (button.name.Contains("Back"))
+            {
+                button.onClick.AddListener(BackFromOptions);
+            }
+
+            button.interactable = true;
+            Image btnImage = button.GetComponent<Image>();
+            if (btnImage != null) btnImage.raycastTarget = true;
         }
     }
 
-    void EnsureEventSystem()
+    void SetupVolumeSystem()
     {
-        EventSystem[] eventSystems = FindObjectsByType<EventSystem>(FindObjectsSortMode.None);
+        if (volumeSlider != null)
+        {
+            float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+            volumeSlider.value = savedVolume;
 
-        if (eventSystems.Length == 0)
-        {
-            GameObject eventSystem = new("EventSystem");
-            eventSystem.AddComponent<EventSystem>();
-            eventSystem.AddComponent<StandaloneInputModule>();
+            UpdateVolumeText(savedVolume);
+            ApplyVolumeImmediately(savedVolume);
+
+            volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
         }
-        else if (eventSystems.Length > 1)
+    }
+
+    void OnVolumeChanged(float volume)
+    {
+        ApplyVolumeImmediately(volume);
+        UpdateVolumeText(volume);
+        PlayerPrefs.SetFloat("MasterVolume", volume);
+        PlayerPrefs.Save();
+    }
+
+    void UpdateVolumeText(float volume)
+    {
+        if (volumePercentText != null)
         {
-            for (int i = 1; i < eventSystems.Length; i++)
-            {
-                Destroy(eventSystems[i].gameObject);
-            }
+            int percent = Mathf.RoundToInt(volume * 100);
+            volumePercentText.text = percent + "%";
+        }
+    }
+
+    void ApplyVolumeImmediately(float volume)
+    {
+        AudioListener.volume = volume;
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetVolume(volume);
         }
     }
 
@@ -48,50 +107,52 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void TogglePause()
+    void TogglePause()
     {
         gameStopped = !gameStopped;
-
-        if (gameStopped)
-        {
-            PauseGame();
-        }
-        else
-        {
-            ResumeGame();
-        }
+        if (gameStopped) PauseGame();
+        else ResumeGame();
     }
 
-    private void PauseGame()
+    void PauseGame()
     {
         Time.timeScale = 0f;
-        Canvas.SetActive(true);
+        backgroundPanel.SetActive(true);
+        pausePanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    private void ResumeGame()
+    void ResumeGame()
     {
         Time.timeScale = 1f;
-        Canvas.SetActive(false);
+        backgroundPanel.SetActive(false);
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    public void ResumeButton()
+    void ShowOptions()
     {
-        ResumeGame();
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(true);
     }
 
-    public void OptionsButton()
+    void BackFromOptions()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(optionsMenuScene);
+        optionsPanel.SetActive(false);
+        pausePanel.SetActive(true);
     }
 
-    public void MenuButton()
+    void GoToMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(menuScene);
+    }
+
+    void OnDestroy()
+    {
+        PlayerPrefs.Save();
     }
 }

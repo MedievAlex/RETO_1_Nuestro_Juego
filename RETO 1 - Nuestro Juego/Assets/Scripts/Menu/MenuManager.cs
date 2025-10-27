@@ -15,6 +15,8 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+        ApplyVolumeOnStart();
+
         playButton.onClick.AddListener(() => {
             SceneManager.LoadScene(levelScene, LoadSceneMode.Single);
         });
@@ -24,8 +26,18 @@ public class MenuManager : MonoBehaviour
         });
 
         exitButton.onClick.AddListener(() => {
-            Debug.Log("Saliendo del juego...");
             Application.Quit();
         });
+    }
+
+    void ApplyVolumeOnStart()
+    {
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        AudioListener.volume = savedVolume;
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetVolume(savedVolume);
+        }
     }
 }

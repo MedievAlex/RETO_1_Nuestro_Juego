@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 4
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1525,10 +1525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bd20ad923e9444aba111c3b4b8bb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backButton: {fileID: 1185408982}
   volumeSlider: {fileID: 987260239}
   volumePercentText: {fileID: 714072931}
-  backButton: {fileID: 1185408982}
-  mainMenuScene: MainMenu
+  backMenu: 
 --- !u!1 &1979871032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3d98d014bb86b8945a2beba8ff559eeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ef272c4d32f5d342bc6242c92088846, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -6,7 +6,7 @@ public class LifeObject : MonoBehaviour
     public AudioClip audioClip;
 
     // Not visible variables  
-    private PlayerControl2D targetPlayer;
+    private PlayerControl2D targetPlayer; 
     private AudioController audioController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

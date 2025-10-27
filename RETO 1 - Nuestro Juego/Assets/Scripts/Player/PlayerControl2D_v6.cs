@@ -15,13 +15,14 @@ using UnityEngine.SceneManagement;
 public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables 
-    public int lifeCount = 3; // Life points
     public bool activeDash = false; // Active or desactive the dash ability
     public bool activeJump = false; // Active or desactive the dash ability
     public bool activeExtraJumps = false; // Active or desactive the dash ability
 
     // Not visible variables
+    private UIController uiController;
     private Rigidbody rb; // Referencia al Rigidbody
+    private int lifeCount = 3; // Life points
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
@@ -35,6 +36,9 @@ public class PlayerControl2D : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         spawnPoint = transform.position; // Save the initial position
+
+        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the UI Controller
+        uiController.setLife(lifeCount);
     }
 
     // UPDATE is executed once per frame
@@ -98,6 +102,7 @@ public class PlayerControl2D : MonoBehaviour
     public void applyDamage() // Deals damage
     {
         lifeCount--;
+        uiController.setLife(lifeCount);
 
         // Game Over
         if (lifeCount == 0)
@@ -137,6 +142,7 @@ public class PlayerControl2D : MonoBehaviour
                 break;
             case "ADDLIFE":
                 lifeCount++;
+                uiController.setLife(lifeCount);
                 break;
         }
     }

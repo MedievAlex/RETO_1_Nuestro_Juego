@@ -474,6 +474,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2083871946562911355, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083871946562911355, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433735997067065596, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433735997067065596, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433735997067065596, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385521639125900545, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ef272c4d32f5d342bc6242c92088846, type: 3}
+    - target: {fileID: 5385521639125900545, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5493005422297559305, guid: 2d56abf29c917bf40ab98651f69e8c20, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

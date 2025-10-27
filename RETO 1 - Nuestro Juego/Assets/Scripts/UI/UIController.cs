@@ -1,11 +1,86 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
-	public TextMeshProUGUI lifeText;
+    // Visible variables
+    public Sprite heartSprite;
+    public Sprite nullHeartSprite;
 
-	public void setLife(int life)
+    // Not visible variables
+    private static UIController Instance;
+    private int hearts;
+    private int maxHearts;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        setDefault();
+    }
+
+    void Update()
+    {
+        
+    }
+
+    public void setLife(int life)
 	{
-		lifeText.text = "Lives: " + life;
-	}
+        hearts = life;
+
+        if (hearts > maxHearts)
+        {
+            maxHearts = hearts;
+            activateHearts(maxHearts);
+        }
+
+        // Sets null hearts
+        for (int i = 0; i < maxHearts; i++)
+        {
+            transform.GetChild(i).GetComponent<Image>().sprite = nullHeartSprite;
+        }
+
+        // Sets hearts
+        for (int i = 0; i < hearts; i++)
+        {
+            transform.GetChild(i).GetComponent<Image>().sprite = heartSprite;
+        }
+    }
+
+    private void activateHearts(int maxHearts)
+    {
+        if (maxHearts == 4)
+        {
+            transform.GetChild(3).GetComponent<Image>().enabled = true;
+        }
+        else if (maxHearts == 5)
+        {
+            transform.GetChild(4).GetComponent<Image>().enabled = true;
+        } 
+    }
+
+    private void setDefault()
+    {
+        transform.GetChild(0).GetComponent<Image>().sprite = heartSprite;
+        transform.GetChild(1).GetComponent<Image>().sprite = heartSprite;
+        transform.GetChild(2).GetComponent<Image>().sprite = heartSprite;
+
+        transform.GetChild(3).GetComponent<Image>().enabled = false;
+        transform.GetChild(3).GetComponent<Image>().sprite = heartSprite;
+
+        transform.GetChild(4).GetComponent<Image>().enabled = false;
+        transform.GetChild(4).GetComponent<Image>().sprite = heartSprite;
+    }
 }

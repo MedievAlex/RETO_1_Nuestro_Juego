@@ -1,8 +1,9 @@
 using System;
-using UnityEngine;
-using UnityEngine.UI;
 using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /** [ 2D MOVEMENT CONTROLS V.6 ]
 - Movement: Left and right
@@ -20,6 +21,7 @@ public class PlayerControl2D : MonoBehaviour
     public bool activeExtraJumps = false; // Active or desactive the dash ability
 
     // Not visible variables
+    private static PlayerControl2D Instance;
     private UIController uiController;
     private Rigidbody rb; // Referencia al Rigidbody
     private int lifeCount = 3; // Life points
@@ -30,6 +32,19 @@ public class PlayerControl2D : MonoBehaviour
     private int extraJumps = 2; // Extra jumps
     private int jumpsLeft; // Remaining extra jumps
     private bool jumpsReset = false; // To check if the counter had been reset   
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // START runs once before the first UPDATE it's executed
     void Start()

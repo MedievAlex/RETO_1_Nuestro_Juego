@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance;
+    
 
     [Header("Música")]
     public AudioClip backgroundMusic;
 
+    private static AudioManager Instance;
     private AudioSource audioSource;
 
     void Awake()

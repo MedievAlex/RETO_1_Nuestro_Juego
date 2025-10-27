@@ -9,7 +9,7 @@ public class AudioController : MonoBehaviour
     public AudioClip backgroundEfects;
 
     // No visible variables
-    private static AudioController Instance;
+    public static AudioController Instance;
     private AudioSource audioSource;   
 
     void Awake()
@@ -40,6 +40,10 @@ public class AudioController : MonoBehaviour
     void Update()
     {
         
+    }
+    public void SetVolume(float volume)
+    {
+        audioSource.volume = volume;
     }
 
     // Methods to plat the audios
@@ -93,5 +97,10 @@ public class AudioController : MonoBehaviour
         {
             audioSource.Stop(); // The audio stops
         }
+    }
+
+    public AudioController getAudioController()
+    {
+        return Instance;
     }
 }

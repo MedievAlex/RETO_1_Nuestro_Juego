@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,9 +16,13 @@ public class OptionsManager : MonoBehaviour
     [Header("References")] // Makes a header on the public variables
     public string backMenu;
 
+    private AudioController audioController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
+
         float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         volumeSlider.value = savedVolume;
         UpdateVolumeText(savedVolume);
@@ -38,9 +43,9 @@ public class OptionsManager : MonoBehaviour
     {
         AudioListener.volume = volume;
 
-        if (AudioManager.Instance != null)
+        if (audioController.getAudioController() != null)
         {
-            AudioManager.Instance.SetVolume(volume);
+            audioController.getAudioController().SetVolume(volume);
         }
 
         UpdateVolumeText(volume);

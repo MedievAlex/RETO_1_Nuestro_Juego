@@ -16,11 +16,14 @@ public class OptionsManager : MonoBehaviour
     [Header("References")] // Makes a header on the public variables
     public string backMenu;
 
+    [SerializeField] private GameObject Canvas;
     private AudioController audioController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        setActive(false);
+
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 
         float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
@@ -33,7 +36,7 @@ public class OptionsManager : MonoBehaviour
         {
             PlayerPrefs.Save();
 
-            SceneManager.LoadScene(backMenu, LoadSceneMode.Single);
+            setActive(false);
         });
 
         AudioListener.volume = savedVolume;
@@ -57,6 +60,14 @@ public class OptionsManager : MonoBehaviour
     {
         int percent = Mathf.RoundToInt(volume * 100);
         volumePercentText.text = percent + "%";
+    }
+
+    public void setActive(bool active)
+    {
+        if (Canvas != null)
+        {
+            Canvas.SetActive(active);
+        }
     }
 
     void OnDestroy()

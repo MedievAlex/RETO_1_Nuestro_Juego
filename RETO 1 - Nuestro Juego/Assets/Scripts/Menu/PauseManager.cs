@@ -1,24 +1,56 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField] private GameObject Canvas;
+    [Header("Buttons")] // Makes a header on the public variables
+    public Button backButton;
+
     // Visible variables
     private bool gameStopped = false;
 
     // Not visible variables
+    [SerializeField] private GameObject Canvas;
+    private OptionsManager optionsMenu;
     private string menuScene = "MainMenu";
-    private string optionsMenuScene = "OptionsMenu";
 
     void Start()
     {
         EnsureEventSystem();
 
+        optionsMenu = GameObject.Find("OptionsMenu").GetComponent<OptionsManager>();
+
         if (Canvas != null)
         {
             Canvas.SetActive(false);
+        }
+        SetupButtonsManually();
+    }
+
+    void SetupButtonsManually()
+    {
+        Button[] allButtons = GetComponentsInChildren<Button>(true);
+
+        foreach (Button button in allButtons)
+        {
+            if (button.name.Contains("Resume"))
+            {
+                button.onClick.AddListener(ResumeGame);
+            }
+            else if (button.name.Contains("Options"))
+            {
+                button.onClick.AddListener(OptionsButton);
+            }
+            else if (button.name.Contains("Menu"))
+            {
+                button.onClick.AddListener(MenuButton);
+            }
+
+            button.interactable = true;
+            Image btnImage = button.GetComponent<Image>();
+            if (btnImage != null) btnImage.raycastTarget = true;
         }
     }
 
@@ -87,7 +119,7 @@ public class PauseManager : MonoBehaviour
     public void OptionsButton()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(optionsMenuScene);
+        optionsMenu.setActive(true);
     }
 
     public void MenuButton()

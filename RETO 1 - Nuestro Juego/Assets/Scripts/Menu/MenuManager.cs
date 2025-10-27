@@ -11,19 +11,21 @@ public class MenuManager : MonoBehaviour
     public Button exitButton;
 
     // Not visible variables
+    private OptionsManager optionsMenu;
     private string levelScene = "Level-1";
-    private string optionsMenuScene = "OptionsMenu";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        optionsMenu = GameObject.Find("OptionsMenu").GetComponent<OptionsManager>();
+
         playButton.onClick.AddListener(() => { // When clicking Play button starts the game
             SceneManager.LoadScene(levelScene, LoadSceneMode.Single);
             Destroy(GameObject.Find("MainCamera").GetComponent<MainCameraController>()); // Destroys the main camera
         });
 
         optionsButton.onClick.AddListener(() => { // When clicking Options button opens the options menu
-            SceneManager.LoadScene(optionsMenuScene, LoadSceneMode.Single);
+            optionsMenu.setActive(true);
         });
 
         exitButton.onClick.AddListener(() => { // When clicking Exit button closes the game
@@ -31,4 +33,5 @@ public class MenuManager : MonoBehaviour
             Application.Quit();
         });
     }
+
 }

@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
     private static UIController Instance;
     private int hearts;
     private int maxHearts;
-    private int actualHearts = 3;
+    private int defaultHearts = 3;
 
     void Awake()
     {
@@ -79,24 +79,26 @@ public class UIController : MonoBehaviour
     // Gets the heart count
     public int getLife()
     {
-        return actualHearts;
+        return defaultHearts;
     }
 
     // Saves the heart count
     public void saveLife(int saveHearts)
     {
-        actualHearts = saveHearts;
+        defaultHearts = saveHearts;
     }
 
     public void gameOver()
     {
         SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
-        actualHearts = 3;
+        setDefault();
     }
 
     // Default settings
     private void setDefault()
     {
+        defaultHearts = 3;
+
         transform.GetChild(0).GetComponent<Image>().sprite = heartSprite;
         transform.GetChild(1).GetComponent<Image>().sprite = heartSprite;
         transform.GetChild(2).GetComponent<Image>().sprite = heartSprite;

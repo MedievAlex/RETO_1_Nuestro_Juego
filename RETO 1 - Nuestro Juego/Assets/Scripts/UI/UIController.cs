@@ -37,6 +37,7 @@ public class UIController : MonoBehaviour
         
     }
 
+    // Updates life
     public void setLife(int life)
 	{
         hearts = life;
@@ -60,6 +61,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    // Extra hearts activation
     private void activateHearts(int maxHearts)
     {
         if (maxHearts == 4)
@@ -72,6 +74,7 @@ public class UIController : MonoBehaviour
         } 
     }
 
+    // Default settings
     private void setDefault()
     {
         transform.GetChild(0).GetComponent<Image>().sprite = heartSprite;

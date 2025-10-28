@@ -3693,6 +3693,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1815075047839650240, guid: d93d1449fd0c41941a2cf091701d2a67, type: 3}
+      propertyPath: lifeCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815075047839650240, guid: d93d1449fd0c41941a2cf091701d2a67, type: 3}
       propertyPath: activeDash
       value: 1
       objectReference: {fileID: 0}

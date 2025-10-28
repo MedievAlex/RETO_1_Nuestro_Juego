@@ -15,14 +15,13 @@ using UnityEngine.UI;
 public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables 
-    public int lifeCount = 3; // Life points
+    public int lifeCount; // Life points
     public bool activeDash = false; // Active or desactive the dash ability
     public bool activeJump = false; // Active or desactive the dash ability
     public bool activeExtraJumps = false; // Active or desactive the dash ability
 
     // Not visible variables
     private UIController uiController;
-    private static PlayerControl2D Instance;
     private Rigidbody rb; // Referencia al Rigidbody
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
@@ -32,23 +31,11 @@ public class PlayerControl2D : MonoBehaviour
     private int jumpsLeft; // Remaining extra jumps
     private bool jumpsReset = false; // To check if the counter had been reset   
 
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     // START runs once before the first UPDATE it's executed
     void Start()
     {
         uiController = GameObject.Find("UI").GetComponent<UIController>();
+        lifeCount = uiController.getLife();
         uiController.setLife(lifeCount);
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         spawnPoint = transform.position; // Save the initial position
@@ -93,7 +80,7 @@ public class PlayerControl2D : MonoBehaviour
         // Game Over
         if (lifeCount == 0)
         {
-            SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
+            uiController.gameOver();
         }
     }
 
@@ -114,6 +101,11 @@ public class PlayerControl2D : MonoBehaviour
         {
             spawnPoint = transform.position; // Saves the checkpoint position
             Destroy(collider.gameObject); // Destroys the checkpoint
+        }
+
+        if (collider.gameObject.CompareTag("LevelEnd")) // Check that the collided object has the "CheckPoint" label
+        {
+            uiController.saveLife(lifeCount);
         }
     }
 

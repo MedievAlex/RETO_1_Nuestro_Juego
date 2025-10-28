@@ -32625,6 +32625,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1815075047839650240, guid: d93d1449fd0c41941a2cf091701d2a67, type: 3}
+      propertyPath: lifeCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815075047839650240, guid: d93d1449fd0c41941a2cf091701d2a67, type: 3}
       propertyPath: activeDash
       value: 0
       objectReference: {fileID: 0}

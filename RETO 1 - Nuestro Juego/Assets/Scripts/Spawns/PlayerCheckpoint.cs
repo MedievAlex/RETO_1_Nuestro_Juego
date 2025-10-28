@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerCheckpoint : MonoBehaviour
 {
     // Not visible variables
-    private PlayerControl2D targetPlayer;
+    private PlayerControl2D targetPlayer = null;
     private Vector3 spawnPoint;
 
     // It runs once before the first Update it's executed
@@ -15,7 +15,7 @@ public class PlayerCheckpoint : MonoBehaviour
     // Update is executed once per frame
     void Update()
     {
-        
+
     }
 
     // Executed when a collision with a trigger occurs

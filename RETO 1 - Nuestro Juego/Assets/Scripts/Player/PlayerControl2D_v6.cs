@@ -18,6 +18,7 @@ public class PlayerControl2D : MonoBehaviour
     public bool activeDash = false; // Active or desactive the dash ability
     public bool activeJump = false; // Active or desactive the dash ability
     public bool activeExtraJumps = false; // Active or desactive the dash ability
+    public static PlayerControl2D Instance;
 
     // Not visible variables
     private UIController uiController;

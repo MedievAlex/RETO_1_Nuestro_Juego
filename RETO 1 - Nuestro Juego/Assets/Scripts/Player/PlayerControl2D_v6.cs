@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /** [ 2D MOVEMENT CONTROLS V.6 ]
 - Movement: Left and right
@@ -77,8 +78,7 @@ public class PlayerControl2D : MonoBehaviour
         // Game Over
         if (lifeCount == 0)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
+            SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
         }
     }
 

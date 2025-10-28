@@ -17,4 +17,4 @@
 
 [ X ] Find how change scenes correctly. Opening the new scene and deleting the previous one. ( Alex: Check MenuManager.cs from CreandoMenu branch.)
 
-[  ] Check why after opening options from pause the character moves (The game unfreezees). ( Alex )
+[ X ] Check why after opening options from pause the character moves (The game unfreezees). ( Alex )

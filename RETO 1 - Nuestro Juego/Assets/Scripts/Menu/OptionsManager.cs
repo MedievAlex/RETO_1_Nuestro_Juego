@@ -13,9 +13,6 @@ public class OptionsManager : MonoBehaviour
     public Slider volumeSlider;
     public TextMeshProUGUI volumePercentText;
 
-    [Header("References")] // Makes a header on the public variables
-    public string backMenu;
-
     [SerializeField] private GameObject Canvas;
     private AudioController audioController;
 

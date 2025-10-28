@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
-    [Header("Buttons")] // Makes a header on the public variables
-    public Button backButton;
-
     // Visible variables
     private bool gameStopped = false;
 
@@ -118,7 +115,6 @@ public class PauseManager : MonoBehaviour
 
     public void OptionsButton()
     {
-        Time.timeScale = 1f;
         optionsMenu.setActive(true);
     }
 

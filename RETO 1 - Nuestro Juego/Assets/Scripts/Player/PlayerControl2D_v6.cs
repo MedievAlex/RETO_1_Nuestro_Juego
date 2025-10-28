@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /** [ 2D MOVEMENT CONTROLS V.6 ]
@@ -13,7 +15,7 @@ using UnityEngine.UI;
 public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables 
-    public int lifeCount = 3; // Life points
+    public int lifeCount; // Life points
     public bool activeDash = false; // Active or desactive the dash ability
     public bool activeJump = false; // Active or desactive the dash ability
     public bool activeExtraJumps = false; // Active or desactive the dash ability
@@ -33,6 +35,7 @@ public class PlayerControl2D : MonoBehaviour
     void Start()
     {
         uiController = GameObject.Find("UI").GetComponent<UIController>();
+        lifeCount = uiController.getLife();
         uiController.setLife(lifeCount);
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         spawnPoint = transform.position; // Save the initial position
@@ -77,8 +80,7 @@ public class PlayerControl2D : MonoBehaviour
         // Game Over
         if (lifeCount == 0)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
+            uiController.gameOver();
         }
     }
 
@@ -99,6 +101,11 @@ public class PlayerControl2D : MonoBehaviour
         {
             spawnPoint = transform.position; // Saves the checkpoint position
             Destroy(collider.gameObject); // Destroys the checkpoint
+        }
+
+        if (collider.gameObject.CompareTag("LevelEnd")) // Check that the collided object has the "CheckPoint" label
+        {
+            uiController.saveLife(lifeCount);
         }
     }
 

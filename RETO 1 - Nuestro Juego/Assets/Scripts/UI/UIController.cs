@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class UIController : MonoBehaviour
     private static UIController Instance;
     private int hearts;
     private int maxHearts;
+    private int defaultHearts = 3;
 
     void Awake()
     {
@@ -36,6 +39,7 @@ public class UIController : MonoBehaviour
         
     }
 
+    // Updates life
     public void setLife(int life)
 	{
         hearts = life;
@@ -57,8 +61,9 @@ public class UIController : MonoBehaviour
         {
             transform.GetChild(i).GetComponent<Image>().sprite = heartSprite;
         }
-    }
+    }  
 
+    // Extra hearts activation
     private void activateHearts(int maxHearts)
     {
         if (maxHearts == 4)
@@ -71,8 +76,29 @@ public class UIController : MonoBehaviour
         } 
     }
 
+    // Gets the heart count
+    public int getLife()
+    {
+        return defaultHearts;
+    }
+
+    // Saves the heart count
+    public void saveLife(int saveHearts)
+    {
+        defaultHearts = saveHearts;
+    }
+
+    public void gameOver()
+    {
+        SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
+        setDefault();
+    }
+
+    // Default settings
     private void setDefault()
     {
+        defaultHearts = 3;
+
         transform.GetChild(0).GetComponent<Image>().sprite = heartSprite;
         transform.GetChild(1).GetComponent<Image>().sprite = heartSprite;
         transform.GetChild(2).GetComponent<Image>().sprite = heartSprite;

@@ -8,9 +8,8 @@ public class GameOverManager : MonoBehaviour
     public Button retryButton;
     public Button menuButton;
 
-    [Header("Referencias")]
-    public string levelScene = "Level-1";
-    public string MainMenuScene = "MainMenu";
+    private string levelScene = "Level-1";
+    private string MainMenuScene = "MainMenu";
 
     void Start()
     {

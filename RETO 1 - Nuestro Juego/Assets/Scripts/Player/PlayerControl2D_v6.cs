@@ -19,6 +19,7 @@ public class PlayerControl2D : MonoBehaviour
     public bool activeExtraJumps = false; // Active or desactive the dash ability
 
     // Not visible variables
+    private UIController uiController;
     private Rigidbody rb; // Referencia al Rigidbody
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
@@ -31,6 +32,8 @@ public class PlayerControl2D : MonoBehaviour
     // START runs once before the first UPDATE it's executed
     void Start()
     {
+        uiController = GameObject.Find("UI").GetComponent<UIController>();
+        uiController.setLife(lifeCount);
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         spawnPoint = transform.position; // Save the initial position
     }
@@ -103,6 +106,7 @@ public class PlayerControl2D : MonoBehaviour
     public void applyDamage() // Deals damage
     {
         lifeCount--;
+        uiController.setLife(lifeCount);
     }
     public void setRespawn(Vector3 newSpawnPoint)
     {
@@ -136,6 +140,7 @@ public class PlayerControl2D : MonoBehaviour
                 break;
             case "ADDLIFE":
                 lifeCount++;
+                uiController.setLife(lifeCount);
                 break;
         }
     }

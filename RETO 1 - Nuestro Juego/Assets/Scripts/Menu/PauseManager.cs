@@ -1,0 +1,130 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class PauseManager : MonoBehaviour
+{
+    [Header("Buttons")] // Makes a header on the public variables
+    public Button backButton;
+
+    // Visible variables
+    private bool gameStopped = false;
+
+    // Not visible variables
+    [SerializeField] private GameObject Canvas;
+    private OptionsManager optionsMenu;
+    private string menuScene = "MainMenu";
+
+    void Start()
+    {
+        EnsureEventSystem();
+
+        optionsMenu = GameObject.Find("Options").GetComponent<OptionsManager>();
+
+        if (Canvas != null)
+        {
+            Canvas.SetActive(false);
+        }
+        SetupButtonsManually();
+    }
+
+    void SetupButtonsManually()
+    {
+        Button[] allButtons = GetComponentsInChildren<Button>(true);
+
+        foreach (Button button in allButtons)
+        {
+            if (button.name.Contains("Resume"))
+            {
+                button.onClick.AddListener(ResumeGame);
+            }
+            else if (button.name.Contains("Options"))
+            {
+                button.onClick.AddListener(OptionsButton);
+            }
+            else if (button.name.Contains("Menu"))
+            {
+                button.onClick.AddListener(MenuButton);
+            }
+
+            button.interactable = true;
+            Image btnImage = button.GetComponent<Image>();
+            if (btnImage != null) btnImage.raycastTarget = true;
+        }
+    }
+
+    void EnsureEventSystem()
+    {
+        EventSystem[] eventSystems = FindObjectsByType<EventSystem>(FindObjectsSortMode.None);
+
+        if (eventSystems.Length == 0)
+        {
+            GameObject eventSystem = new("EventSystem");
+            eventSystem.AddComponent<EventSystem>();
+            eventSystem.AddComponent<StandaloneInputModule>();
+        }
+        else if (eventSystems.Length > 1)
+        {
+            for (int i = 1; i < eventSystems.Length; i++)
+            {
+                Destroy(eventSystems[i].gameObject);
+            }
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+    }
+
+    public void TogglePause()
+    {
+        gameStopped = !gameStopped;
+
+        if (gameStopped)
+        {
+            PauseGame();
+        }
+        else
+        {
+            ResumeGame();
+        }
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0f;
+        Canvas.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        Canvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void ResumeButton()
+    {
+        ResumeGame();
+    }
+
+    public void OptionsButton()
+    {
+        Time.timeScale = 1f;
+        optionsMenu.setActive(true);
+    }
+
+    public void MenuButton()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(menuScene);
+    }
+}

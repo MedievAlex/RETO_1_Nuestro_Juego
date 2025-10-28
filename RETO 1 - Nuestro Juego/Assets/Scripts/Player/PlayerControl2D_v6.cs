@@ -1,8 +1,5 @@
 using System;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /** [ 2D MOVEMENT CONTROLS V.6 ]
@@ -16,15 +13,13 @@ using UnityEngine.UI;
 public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables 
+    public int lifeCount = 3; // Life points
     public bool activeDash = false; // Active or desactive the dash ability
     public bool activeJump = false; // Active or desactive the dash ability
     public bool activeExtraJumps = false; // Active or desactive the dash ability
 
     // Not visible variables
-    private static PlayerControl2D Instance;
-    private UIController uiController;
     private Rigidbody rb; // Referencia al Rigidbody
-    private int lifeCount = 3; // Life points
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
@@ -33,27 +28,11 @@ public class PlayerControl2D : MonoBehaviour
     private int jumpsLeft; // Remaining extra jumps
     private bool jumpsReset = false; // To check if the counter had been reset   
 
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     // START runs once before the first UPDATE it's executed
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         spawnPoint = transform.position; // Save the initial position
-
-        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the UI Controller
-        uiController.setLife(lifeCount);
     }
 
     // UPDATE is executed once per frame
@@ -67,7 +46,7 @@ public class PlayerControl2D : MonoBehaviour
             transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
 
             // Dash
-            if (Input.GetKey(KeyCode.LeftShift) && activeDash)
+            if (Input.GetKey(KeyCode.LeftShift) && activeDash) 
             {
                 speed = baseSpeed * 1.7f;
             }
@@ -79,17 +58,24 @@ public class PlayerControl2D : MonoBehaviour
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
-        {
+        {     
             if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
             else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
             {
-                rb.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+                rb.AddForce(Vector3.up * (jumpForce * 0.7f ), ForceMode.Impulse);
             }
             jumpsReset = false;
             jumpsLeft--;
+        }  
+
+        // Game Over
+        if (lifeCount == 0)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
     }
 
@@ -117,13 +103,6 @@ public class PlayerControl2D : MonoBehaviour
     public void applyDamage() // Deals damage
     {
         lifeCount--;
-        uiController.setLife(lifeCount);
-
-        // Game Over
-        if (lifeCount == 0)
-        {
-            SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
-        }
     }
     public void setRespawn(Vector3 newSpawnPoint)
     {
@@ -157,7 +136,6 @@ public class PlayerControl2D : MonoBehaviour
                 break;
             case "ADDLIFE":
                 lifeCount++;
-                uiController.setLife(lifeCount);
                 break;
         }
     }

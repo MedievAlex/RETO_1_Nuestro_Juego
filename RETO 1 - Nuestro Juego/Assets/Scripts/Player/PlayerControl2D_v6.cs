@@ -67,6 +67,15 @@ public class PlayerControl2D : MonoBehaviour
                 animator.SetBool("walking", true); // ANIMATION: Start walking
                 speed = baseSpeed;
             }
+
+            if(Input.GetAxis("Horizontal") < 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
         else
         {
@@ -76,9 +85,9 @@ public class PlayerControl2D : MonoBehaviour
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
         {
+            animator.SetBool("jumping", true); // ANIMATION: Start jumping
             animator.SetBool("walking", false); // ANIMATION: Stop walking
             animator.SetBool("running", false); // ANIMATION: Stop running
-            animator.SetBool("jumping", true); // ANIMATION: Start jumping
 
             if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
             {

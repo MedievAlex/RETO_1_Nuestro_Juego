@@ -33605,7 +33605,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6709330959660798559, guid: 599a61c2fcdbd4941bfe981063d64d60, type: 3}
   m_PrefabInstance: {fileID: 6221835557271072497}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &4802121588940826998
+--- !u!95 &4802121588940827004
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -33615,7 +33615,7 @@ Animator:
   m_GameObject: {fileID: 4802121588940826997}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 64d00ead0c08aaa4dba43d38f959750a, type: 2}
+  m_Controller: {fileID: 9100000, guid: a54fbe3d43c2a1846b4c46dd211a8004, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -33835,7 +33835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6709330959660798559, guid: 599a61c2fcdbd4941bfe981063d64d60, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player2D
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33843,7 +33843,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6709330959660798559, guid: 599a61c2fcdbd4941bfe981063d64d60, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4802121588940826998}
+      addedObject: {fileID: 4802121588940827004}
   m_SourcePrefab: {fileID: 100100000, guid: 599a61c2fcdbd4941bfe981063d64d60, type: 3}
 --- !u!1001 &7268727989257401012
 PrefabInstance:

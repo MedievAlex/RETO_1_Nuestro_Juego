@@ -647,13 +647,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_jump_10
+      name: player_idle_1
       rect:
         serializedVersion: 2
-        x: 1180
-        y: 8
-        width: 66
-        height: 114
+        x: 38
+        y: 133
+        width: 55
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -662,20 +662,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cf321b13d3a5a641a3dc45983deebae
-      internalID: -1016100566
+      spriteID: bd7b2c880632e984bbcb68d71a5bfb7f
+      internalID: -1206179683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_jump_11
+      name: player_idle_2
       rect:
         serializedVersion: 2
-        x: 1306
-        y: 9
-        width: 70
-        height: 113
+        x: 165
+        y: 133
+        width: 56
+        height: 115
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -684,20 +684,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e77888ada0784d642bf4f2a1ad997ac5
-      internalID: 253599660
+      spriteID: 71d26e9e786db0c448abdc1603cb7323
+      internalID: -1515872482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_jump_12
+      name: player_idle_3
       rect:
         serializedVersion: 2
-        x: 1435
-        y: 11
-        width: 70
-        height: 113
+        x: 293
+        y: 133
+        width: 56
+        height: 115
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -706,8 +706,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1324bf9eff98364382689ce06542e33
-      internalID: 329151670
+      spriteID: 4dc19371de1cc0743bfd29f78177eb4f
+      internalID: -1018297287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_4
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 133
+        width: 56
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d84193b81f23d429171a006eb9b7de
+      internalID: 1691135273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_5
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 133
+        width: 56
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86fddb7a1c1a0734eb0d00471033455e
+      internalID: 1817176255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_6
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 133
+        width: 56
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca30ddcdf2f452e47afac9336eb7f062
+      internalID: -1954962939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_7
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 133
+        width: 55
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da99f632f8d5eb043b139c9f50936ba1
+      internalID: 1542249339
       vertices: []
       indices: 
       edges: []
@@ -726,6 +814,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      player_idle_1: -1206179683
+      player_idle_2: -1515872482
+      player_idle_3: -1018297287
+      player_idle_4: 1691135273
+      player_idle_5: 1817176255
+      player_idle_6: -1954962939
+      player_idle_7: 1542249339
       player_jump_1: 1786075389
       player_jump_10: -1016100566
       player_jump_11: 253599660
@@ -746,6 +841,7 @@ TextureImporter:
       player_run_6: -832810945
       player_run_7: -965414795
       player_sprites_0: -1687561703
+      player_sprites_1: -1088719973
       player_sprites_10: -507552236
       player_sprites_100: 706005306
       player_sprites_101: 1981291403
@@ -778,6 +874,7 @@ TextureImporter:
       player_sprites_17: -1183306160
       player_sprites_18: 1521884570
       player_sprites_19: -1513871571
+      player_sprites_2: 1849556575
       player_sprites_20: 1195418404
       player_sprites_21: 870463749
       player_sprites_22: -1412140025
@@ -788,6 +885,7 @@ TextureImporter:
       player_sprites_27: 626990843
       player_sprites_28: -1985339959
       player_sprites_29: 2090436207
+      player_sprites_3: -725001458
       player_sprites_30: 1066125822
       player_sprites_31: -1315119486
       player_sprites_32: 1366643312
@@ -798,6 +896,7 @@ TextureImporter:
       player_sprites_37: -1457214333
       player_sprites_38: -1882190308
       player_sprites_39: -647242161
+      player_sprites_4: -1640418168
       player_sprites_40: 652249584
       player_sprites_41: 1505771280
       player_sprites_42: 1630292608
@@ -808,9 +907,18 @@ TextureImporter:
       player_sprites_47: 73164747
       player_sprites_48: 1781166914
       player_sprites_49: 896953150
+      player_sprites_5: -850610507
       player_sprites_50: 1906397075
       player_sprites_51: 19662090
       player_sprites_52: -1995881468
+      player_sprites_53: 349308849
+      player_sprites_54: -1816616008
+      player_sprites_55: 739352701
+      player_sprites_56: 360701098
+      player_sprites_57: -1841143238
+      player_sprites_58: -435953765
+      player_sprites_59: -528455244
+      player_sprites_6: 1158407168
       player_sprites_60: -1943784959
       player_sprites_61: 722809819
       player_sprites_62: -2033284310
@@ -821,6 +929,7 @@ TextureImporter:
       player_sprites_67: 2052003542
       player_sprites_68: -1403548633
       player_sprites_69: -2097842557
+      player_sprites_7: 574517175
       player_sprites_70: 2088205126
       player_sprites_71: 201156067
       player_sprites_72: -321849203
@@ -831,6 +940,7 @@ TextureImporter:
       player_sprites_77: 537424257
       player_sprites_78: -207379744
       player_sprites_79: 865689817
+      player_sprites_8: 1754264311
       player_sprites_80: -1464187445
       player_sprites_81: 705731960
       player_sprites_82: 756255662
@@ -838,14 +948,7 @@ TextureImporter:
       player_sprites_84: -132582633
       player_sprites_85: -638452485
       player_sprites_86: -997143917
-      player_sprites_87: -1206179683
-      player_sprites_88: -1515872482
-      player_sprites_89: -1018297287
       player_sprites_9: 948163752
-      player_sprites_90: 1691135273
-      player_sprites_91: 1817176255
-      player_sprites_92: -1954962939
-      player_sprites_93: 1542249339
       player_sprites_94: 1579271566
       player_sprites_95: 1752923667
       player_sprites_96: -1940260070

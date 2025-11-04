@@ -23,6 +23,7 @@ public class PlayerControl2D : MonoBehaviour
     // Not visible variables
     private UIController uiController;
     private Rigidbody rb; // Referencia al Rigidbody
+    private Animator animator; // Reference to the animator
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
@@ -35,6 +36,7 @@ public class PlayerControl2D : MonoBehaviour
     void Start()
     {
         uiController = GameObject.Find("UI").GetComponent<UIController>();
+        animator = gameObject.GetComponent<Animator>();
         lifeCount = uiController.getLife();
         uiController.setLife(lifeCount);
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
@@ -48,30 +50,39 @@ public class PlayerControl2D : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0)
         {
             // Sideways movement
+            abilityAnimation("WALK");
             float moveLeftRight = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
             transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
 
             // Dash
             if (Input.GetKey(KeyCode.LeftShift) && activeDash) 
             {
+                abilityAnimation("DASH");
                 speed = baseSpeed * 1.7f;
             }
             else
             {
+                abilityAnimation("WALK");
                 speed = baseSpeed;
             }
+        }
+        else
+        {
+            abilityAnimation("IDLE");
         }
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
-        {     
+        {
             if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
             {
+                abilityAnimation("JUMP");
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
             else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
             {
-                rb.AddForce(Vector3.up * (jumpForce * 0.7f ), ForceMode.Impulse);
+                abilityAnimation("JUMP");
+                rb.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
             }
             jumpsReset = false;
             jumpsLeft--;
@@ -148,6 +159,33 @@ public class PlayerControl2D : MonoBehaviour
             case "ADDLIFE":
                 lifeCount++;
                 uiController.setLife(lifeCount);
+                break;
+        }
+    }
+
+    public void abilityAnimation(string abilityName)
+    {
+        switch (abilityName.ToUpper())
+        {
+            case "WALK":
+                animator.SetBool("running", false);
+                animator.SetBool("jumping", false);
+                animator.SetBool("walking", true);
+                break;
+            case "DASH":
+                animator.SetBool("walking", false);
+                animator.SetBool("jumping", false);
+                animator.SetBool("running", true);
+                break;
+            case "JUMP":
+                animator.SetBool("walking", false);
+                animator.SetBool("running", false);
+                animator.SetBool("jumping", true);
+                break;
+            case "IDLE":
+                animator.SetBool("walking", false);
+                animator.SetBool("running", false);
+                animator.SetBool("jumping", false);
                 break;
         }
     }

@@ -746,6 +746,8 @@ MonoBehaviour:
   destinationPosition: {x: 0, y: 0, z: 0}
   stateActive: 0
   audioClip: {fileID: 8300000, guid: d7433852810f3eb4285b62a44915a491, type: 3}
+  activeSprite: {fileID: 2100000, guid: 449e6b7d94efefd4a94867dff979afe1, type: 2}
+  inactiveSprite: {fileID: 2100000, guid: c10f92968a705e34fb8fe33f700a2af8, type: 2}
 --- !u!1 &2577645481329668233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,7 +1878,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f41a44b59693acf4ea12e42b1be46381, type: 2}
+  - {fileID: 2100000, guid: ce73ccbb91813cc45b4aa27971cdbc36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

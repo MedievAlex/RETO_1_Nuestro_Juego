@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7849860198667187074}
   - component: {fileID: 5995800882143138414}
   m_Layer: 5
-  m_Name: Heart 1 (1)
+  m_Name: Health Bar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 64.20001, y: -67}
+  m_AnchoredPosition: {x: 82.599976, y: -49.299988}
   m_SizeDelta: {x: 1603.7069, y: 726.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7849860198667187074
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f0b27d96d37af249a46fb3ad2c2a0d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bec964116de2be34bb7fbca0c79ab935, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -194,8 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d72a8c9baaa2b14ba0fbf5d85cfe143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartSprite: {fileID: 21300000, guid: 3f0b27d96d37af249a46fb3ad2c2a0d8, type: 3}
-  nullHeartSprite: {fileID: 21300000, guid: 8523382d5f0c85444a275905b7161f32, type: 3}
+  heatlhBarS: {fileID: 21300000, guid: bec964116de2be34bb7fbca0c79ab935, type: 3}
+  nullHeatlhBarS: {fileID: 21300000, guid: be6cfbaf60781f44eb82b8622a240614, type: 3}
+  heatlhBarM: {fileID: 21300000, guid: f0833969e11251743a3a61f1451eafa6, type: 3}
+  nullHeatlhBarM: {fileID: 21300000, guid: 23fae1317ac12344b8865702e80a68ba, type: 3}
+  heatlhBarE: {fileID: 21300000, guid: 4e88c6e7ffb35424590a7fd04e5e7c49, type: 3}
+  nullHeatlhBarE: {fileID: 21300000, guid: 8c331acbe5307374d97d7c133fce517a, type: 3}
 --- !u!1 &6506281487179585870
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +212,7 @@ GameObject:
   - component: {fileID: 5138386037225789230}
   - component: {fileID: 7986061791958241295}
   m_Layer: 5
-  m_Name: Heart 1 (4)
+  m_Name: Health Bar (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 288.5, y: -67}
+  m_AnchoredPosition: {x: 237.29996, y: -49.299988}
   m_SizeDelta: {x: 1603.7069, y: 726.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5138386037225789230
@@ -261,7 +265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f0b27d96d37af249a46fb3ad2c2a0d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0833969e11251743a3a61f1451eafa6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -283,7 +287,7 @@ GameObject:
   - component: {fileID: 7077844861628019755}
   - component: {fileID: 4022240859832101293}
   m_Layer: 5
-  m_Name: Heart 1 (2)
+  m_Name: Health Bar (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,7 +309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.79993, y: -67}
+  m_AnchoredPosition: {x: 134.19995, y: -49.299988}
   m_SizeDelta: {x: 1603.7069, y: 726.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7077844861628019755
@@ -336,7 +340,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f0b27d96d37af249a46fb3ad2c2a0d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0833969e11251743a3a61f1451eafa6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -358,7 +362,7 @@ GameObject:
   - component: {fileID: 105187101082271510}
   - component: {fileID: 3268929838795841537}
   m_Layer: 5
-  m_Name: Heart 1 (5)
+  m_Name: Health Bar (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,7 +384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 363.19995, y: -67}
+  m_AnchoredPosition: {x: 289.09998, y: -49.299988}
   m_SizeDelta: {x: 1603.7069, y: 726.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &105187101082271510
@@ -411,7 +415,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f0b27d96d37af249a46fb3ad2c2a0d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e88c6e7ffb35424590a7fd04e5e7c49, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -433,7 +437,7 @@ GameObject:
   - component: {fileID: 6209336278374064133}
   - component: {fileID: 1753556309939800293}
   m_Layer: 5
-  m_Name: Heart 1 (3)
+  m_Name: Health Bar (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,7 +459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 213.59998, y: -67}
+  m_AnchoredPosition: {x: 185.69995, y: -49.299988}
   m_SizeDelta: {x: 1603.7069, y: 726.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6209336278374064133
@@ -486,7 +490,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f0b27d96d37af249a46fb3ad2c2a0d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0833969e11251743a3a61f1451eafa6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

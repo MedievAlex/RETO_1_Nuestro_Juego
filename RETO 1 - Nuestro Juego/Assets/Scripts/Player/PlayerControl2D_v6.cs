@@ -50,38 +50,42 @@ public class PlayerControl2D : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0)
         {
             // Sideways movement
-            abilityAnimation("WALK");
+            animator.SetBool("walking", true); // ANIMATION: Start walking
             float moveLeftRight = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
             transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
 
             // Dash
             if (Input.GetKey(KeyCode.LeftShift) && activeDash) 
             {
-                abilityAnimation("DASH");
+                animator.SetBool("walking", false); // ANIMATION: Stop walking
+                animator.SetBool("running", true); // ANIMATION: Start running
                 speed = baseSpeed * 1.7f;
             }
             else
             {
-                abilityAnimation("WALK");
+                animator.SetBool("running", false); // ANIMATION: Stop running
+                animator.SetBool("walking", true); // ANIMATION: Start walking
                 speed = baseSpeed;
             }
         }
         else
         {
-            abilityAnimation("IDLE");
+            animator.SetBool("walking", false); // ANIMATION: Stop walking
         }
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
         {
+            animator.SetBool("walking", false); // ANIMATION: Stop walking
+            animator.SetBool("running", false); // ANIMATION: Stop running
+            animator.SetBool("jumping", true); // ANIMATION: Start jumping
+
             if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
             {
-                abilityAnimation("JUMP");
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
             else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
             {
-                abilityAnimation("JUMP");
                 rb.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
             }
             jumpsReset = false;
@@ -100,6 +104,7 @@ public class PlayerControl2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static") && !jumpsReset) // Check that the collided object will restart the jumps
         {
+            animator.SetBool("jumping", false); // ANIMATION: Stop jumping
             jumpsLeft = extraJumps; // Resets the jump counter
             jumpsReset = true;
         }
@@ -159,33 +164,6 @@ public class PlayerControl2D : MonoBehaviour
             case "ADDLIFE":
                 lifeCount++;
                 uiController.setLife(lifeCount);
-                break;
-        }
-    }
-
-    public void abilityAnimation(string abilityName)
-    {
-        switch (abilityName.ToUpper())
-        {
-            case "WALK":
-                animator.SetBool("running", false);
-                animator.SetBool("jumping", false);
-                animator.SetBool("walking", true);
-                break;
-            case "DASH":
-                animator.SetBool("walking", false);
-                animator.SetBool("jumping", false);
-                animator.SetBool("running", true);
-                break;
-            case "JUMP":
-                animator.SetBool("walking", false);
-                animator.SetBool("running", false);
-                animator.SetBool("jumping", true);
-                break;
-            case "IDLE":
-                animator.SetBool("walking", false);
-                animator.SetBool("running", false);
-                animator.SetBool("jumping", false);
                 break;
         }
     }

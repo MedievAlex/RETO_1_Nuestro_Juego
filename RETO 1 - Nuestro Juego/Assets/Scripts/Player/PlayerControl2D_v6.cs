@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,7 @@ public class PlayerControl2D : MonoBehaviour
 
     // Not visible variables
     private UIController uiController;
+    private AudioController audioController;
     private Rigidbody rb; // Referencia al Rigidbody
     private Animator animator; // Reference to the animator
     private Vector3 spawnPoint; // Referencia al punto de reaparición
@@ -37,7 +39,8 @@ public class PlayerControl2D : MonoBehaviour
     // START runs once before the first UPDATE it's executed
     void Start()
     {
-        uiController = GameObject.Find("UI").GetComponent<UIController>();
+        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the AudioController of the Scene
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
         animator = gameObject.GetComponent<Animator>();
         lifeCount = uiController.getLife();
         uiController.setLife(lifeCount);

@@ -1,16 +1,24 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.Rendering;
 
 public class AudioController : MonoBehaviour
 {
     // Visible variables
-    [Header("Audio Clips")] // Makes a header on the public variables
+    [Header("Background Clips")] // Makes a header on the public variables
     public AudioClip backgroundMusic;
     public AudioClip backgroundEfects;
 
+    [Header("Player Clips")] // Makes a header on the public variables
+    public AudioClip walk;
+    public AudioClip run;
+    public AudioClip jump;
+    public AudioClip damage;
+
     // No visible variables
     public static AudioController Instance;
-    private AudioSource audioSource;   
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -20,7 +28,7 @@ public class AudioController : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             audioSource = transform.GetComponent<AudioSource>();
-            
+
             audioSource.volume = 0.5f;
         }
         else
@@ -39,11 +47,59 @@ public class AudioController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
     public void SetVolume(float volume)
     {
         audioSource.volume = volume;
+    }
+
+    public void abilityAudio(string abilityName, bool play)
+    {
+        switch (abilityName.ToUpper())
+        {
+            case "WALK":
+                if (play)
+                {
+                    audioSource.PlayOneShot(walk); 
+                }
+                else
+                {
+                    audioSource.Stop(); 
+                }
+                break;
+            case "DASH":
+                if (play)
+                {
+                    audioSource.PlayOneShot(run); 
+                }
+                else
+                {
+                    audioSource.Stop(); 
+                }
+                break;
+            case "JUMP":
+                if (play)
+                {
+                    audioSource.PlayOneShot(jump);
+                }
+                else
+                {
+                    audioSource.Stop(); 
+                }
+                break;
+            case "DAMAGE":
+                if (play)
+                {
+                    audioSource.PlayOneShot(damage);
+                }
+                else
+                {
+                    audioSource.Stop(); 
+                }
+                break;
+        }
     }
 
     // Methods to plat the audios
@@ -56,7 +112,7 @@ public class AudioController : MonoBehaviour
             audioSource.PlayOneShot(audioClip, volume); // The audio plays
         }
     }
-    
+
     public void playBackgroundMusic(AudioClip audioClip, float volume, bool play)
     {
         audioSource.clip = audioClip;

@@ -7,12 +7,8 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     // Visible variables
-    public Sprite heatlhBarS;
-    public Sprite nullHeatlhBarS;
-    public Sprite heatlhBarM;
-    public Sprite nullHeatlhBarM;
-    public Sprite heatlhBarE;
-    public Sprite nullHeatlhBarE;
+    public Sprite heartSprite;
+    public Sprite nullHeartSprite;
 
     // Not visible variables
     private static UIController Instance;
@@ -57,35 +53,13 @@ public class UIController : MonoBehaviour
         // Sets null hearts
         for (int i = 0; i < maxHearts; i++)
         {
-            if (i == 0)
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarS;
-            }
-            else if (i == maxHearts-1)
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarE;
-            }
-            else
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarM;
-            }
+            transform.GetChild(i).GetComponent<Image>().sprite = nullHeartSprite;
         }
 
         // Sets hearts
         for (int i = 0; i < hearts; i++)
         {
-            if (i == 0)
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarS;
-            }
-            else if (i == maxHearts-1)
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarE;
-            }
-            else
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarM;
-            }
+            transform.GetChild(i).GetComponent<Image>().sprite = heartSprite;
         }
     }  
 
@@ -94,14 +68,10 @@ public class UIController : MonoBehaviour
     {
         if (maxHearts == 4)
         {
-            transform.GetChild(2).GetComponent<Image>().sprite = heatlhBarM;
-            transform.GetChild(3).GetComponent<Image>().sprite = heatlhBarE;
             transform.GetChild(3).GetComponent<Image>().enabled = true;
         }
         else if (maxHearts == 5)
         {
-            transform.GetChild(3).GetComponent<Image>().sprite = heatlhBarM;
-            transform.GetChild(3).GetComponent<Image>().sprite = heatlhBarE;
             transform.GetChild(4).GetComponent<Image>().enabled = true;
         } 
     }
@@ -129,12 +99,14 @@ public class UIController : MonoBehaviour
     {
         defaultHearts = 3;
 
-        transform.GetChild(0).GetComponent<Image>().sprite = heatlhBarS;
-        transform.GetChild(1).GetComponent<Image>().sprite = heatlhBarM;
-        transform.GetChild(2).GetComponent<Image>().sprite = heatlhBarE;
+        transform.GetChild(0).GetComponent<Image>().sprite = heartSprite;
+        transform.GetChild(1).GetComponent<Image>().sprite = heartSprite;
+        transform.GetChild(2).GetComponent<Image>().sprite = heartSprite;
 
         transform.GetChild(3).GetComponent<Image>().enabled = false;
+        transform.GetChild(3).GetComponent<Image>().sprite = heartSprite;
 
         transform.GetChild(4).GetComponent<Image>().enabled = false;
+        transform.GetChild(4).GetComponent<Image>().sprite = heartSprite;
     }
 }

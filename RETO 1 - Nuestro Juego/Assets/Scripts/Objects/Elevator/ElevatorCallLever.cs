@@ -8,8 +8,6 @@ public class ElevatorCallLever : MonoBehaviour
     public Vector3 destinationPosition; // Called destination
     public bool stateActive; // If the lever is active or not
     public AudioClip audioClip;
-    public Material activeSprite;
-    public Material inactiveSprite;
 
     // Not visible variables
     private bool stateActivable; // If the ladder is actibable or not
@@ -43,20 +41,6 @@ public class ElevatorCallLever : MonoBehaviour
         if (elevator.transform.position == destinationPosition)  // When the elevator finishes moving it goes back to desactivated mode
         {
             stateActive = false;
-        }
-    
-       changeSprite(); 
-    }
-
-    private void changeSprite()
-    {
-        if (stateActive) // Changes the sprite
-       {
-            transform.GetComponent<Renderer>().material = activeSprite;
-        } 
-        else 
-        {
-            transform.GetComponent<Renderer>().material = inactiveSprite;
         }
     }
 

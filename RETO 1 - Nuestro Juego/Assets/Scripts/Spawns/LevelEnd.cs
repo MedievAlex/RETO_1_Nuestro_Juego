@@ -30,7 +30,7 @@ public class LevelEnd : MonoBehaviour
             {
                 collider.gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; // Stop it from moving
                 collider.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset the physical rotation
-                // collider.gameObject.transform.position = nextSpawn;
+                collider.gameObject.transform.position = nextSpawn;
   
                 SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             }

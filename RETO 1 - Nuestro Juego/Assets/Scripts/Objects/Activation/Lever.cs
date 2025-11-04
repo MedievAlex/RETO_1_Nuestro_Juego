@@ -5,8 +5,6 @@ public class Lever : MonoBehaviour
     // Visible variables
     public bool stateActive; // If the lever is active or not
     public AudioClip audioClip;
-    public Material activeSprite;
-    public Material inactiveSprite;
 
     // Not visible variables
     private bool stateActivable; // If the ladder is actibable or not
@@ -34,20 +32,6 @@ public class Lever : MonoBehaviour
                stateActive = false;
            }
        }
-
-       changeSprite(); 
-    }
-
-    private void changeSprite()
-    {
-        if (stateActive) // Changes the sprite
-       {
-            transform.GetComponent<Renderer>().material = activeSprite;
-        } 
-        else 
-        {
-            transform.GetComponent<Renderer>().material = inactiveSprite;
-        }
     }
 
     // Executed when a collision with a trigger occurs
@@ -55,7 +39,7 @@ public class Lever : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            stateActivable = true; 
+            stateActivable = true;
         }
     }
 

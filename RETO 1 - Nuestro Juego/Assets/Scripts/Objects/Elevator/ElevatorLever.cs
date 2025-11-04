@@ -6,8 +6,6 @@ public class ElevatorLever : MonoBehaviour
     public Vector3 destinationPosition; // Called destination
     public bool stateActive; // If the lever is active or not
     public AudioClip audioClip;
-    public Material activeSprite;
-    public Material inactiveSprite;
 
     // Not visible variables
     private ElevatorControl elevator; // Referenced elevator
@@ -44,20 +42,6 @@ public class ElevatorLever : MonoBehaviour
        {
            stateActive = false;
        }
-    
-       changeSprite(); 
-    }
-
-    private void changeSprite()
-    {
-        if (stateActive) // Changes the sprite
-       {
-            transform.GetComponent<Renderer>().material = activeSprite;
-        } 
-        else 
-        {
-            transform.GetComponent<Renderer>().material = inactiveSprite;
-        }
     }
 
     // Executed when a collision with a trigger occurs

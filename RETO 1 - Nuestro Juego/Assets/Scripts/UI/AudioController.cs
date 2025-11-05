@@ -179,17 +179,6 @@ public class AudioController : MonoBehaviour
         {
             source.Pause();
         }
-        /*if (play)
-        {
-            if (!source.isPlaying)
-            {
-                source.Play();
-            }
-        }
-        else
-        {
-            source.Pause();
-        }*/
     }
 
     // Lever audio control

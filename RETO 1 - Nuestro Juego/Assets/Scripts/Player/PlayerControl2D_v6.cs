@@ -64,6 +64,7 @@ public class PlayerControl2D : MonoBehaviour
     void Update()
     {
         animationControl();
+        audioControl();
 
         if (!isFrozen)
         {
@@ -99,7 +100,7 @@ public class PlayerControl2D : MonoBehaviour
                     GetComponent<SpriteRenderer>().flipX = false;
                 }
 
-                if (walking)
+                /*if (walking)
                 { 
                     if (running)
                     {
@@ -109,18 +110,14 @@ public class PlayerControl2D : MonoBehaviour
                     {
                         audioController.playerAudio(GetComponent<AudioSource>(), "WALK", true);
                     }
-                }
-                else
-                {
-                    
-                }
+                }*/
             }
             else
             {
                 walking = false;
-                audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
+                //audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
                 running = false;
-                audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);
+                //audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);
             }
 
             // Jump
@@ -248,5 +245,25 @@ public class PlayerControl2D : MonoBehaviour
 
         // Jumping
         animator.SetBool("jumping", jumping);
+    }
+
+    private void audioControl()
+    {
+        if (walking)
+        {
+            if (running)
+            {
+                audioController.playerAudio(GetComponent<AudioSource>(), "RUN", true);
+            }
+            else
+            {
+                audioController.playerAudio(GetComponent<AudioSource>(), "WALK", true);
+            }
+        }
+        else if (!walking || jumping)
+        {
+            audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
+            audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);
+        }
     }
 }

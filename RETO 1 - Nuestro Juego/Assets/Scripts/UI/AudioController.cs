@@ -10,12 +10,6 @@ public class AudioController : MonoBehaviour
     public AudioClip backgroundMusic;
     public AudioClip backgroundEfects;
 
-    [Header("Player Clips")] // Makes a header on the public variables
-    public AudioClip walk;
-    public AudioClip run;
-    public AudioClip jump;
-    public AudioClip damage;
-
     // No visible variables
     public static AudioController Instance;
     private AudioSource audioSource;
@@ -50,69 +44,19 @@ public class AudioController : MonoBehaviour
 
     }
 
+    // Sets the general volume
     public void SetVolume(float volume)
     {
         audioSource.volume = volume;
     }
 
-    public void abilityAudio(string abilityName, bool play)
+    // Instance
+    public AudioController getAudioController()
     {
-        switch (abilityName.ToUpper())
-        {
-            case "WALK":
-                if (play)
-                {
-                    audioSource.PlayOneShot(walk); 
-                }
-                else
-                {
-                    audioSource.Stop(); 
-                }
-                break;
-            case "DASH":
-                if (play)
-                {
-                    audioSource.PlayOneShot(run); 
-                }
-                else
-                {
-                    audioSource.Stop(); 
-                }
-                break;
-            case "JUMP":
-                if (play)
-                {
-                    audioSource.PlayOneShot(jump);
-                }
-                else
-                {
-                    audioSource.Stop(); 
-                }
-                break;
-            case "DAMAGE":
-                if (play)
-                {
-                    audioSource.PlayOneShot(damage);
-                }
-                else
-                {
-                    audioSource.Stop(); 
-                }
-                break;
-        }
+        return Instance;
     }
 
-    // Methods to plat the audios
-    public void onLoopAudio(AudioClip audioClip, float volume, bool play)
-    {
-        audioSource.clip = audioClip;
-
-        if (!play)
-        {
-            audioSource.PlayOneShot(audioClip, volume); // The audio plays
-        }
-    }
-
+    // Background music
     public void playBackgroundMusic(AudioClip audioClip, float volume, bool play)
     {
         audioSource.clip = audioClip;
@@ -127,6 +71,7 @@ public class AudioController : MonoBehaviour
         }
     }
 
+    // Audio that needs to be playing while its true
     public void verifyedOShotAudio(AudioClip audioClip, float volume, bool play)
     {
         if (play)
@@ -142,6 +87,23 @@ public class AudioController : MonoBehaviour
         }
     }
 
+
+
+    // Methods to play the audios
+    public void onLoopAudio(AudioClip audioClip, float volume, bool play)
+    {
+        audioSource.clip = audioClip;
+
+        if (!play)
+        {
+            audioSource.PlayOneShot(audioClip, volume); // The audio plays
+        }
+    }
+
+    
+
+    
+
     public void oneShotAudio(AudioClip audioClip, float volume, bool play)
     {
 
@@ -155,8 +117,5 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public AudioController getAudioController()
-    {
-        return Instance;
-    }
+    
 }

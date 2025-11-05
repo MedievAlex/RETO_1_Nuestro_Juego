@@ -24,20 +24,10 @@ public class DamageDealer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            if (!targetPlayer.isFrozen)
+            if(!targetPlayer.isFrozen)
             {
                 targetPlayer.isFrozen = true;
                 targetPlayer.applyDamage(); // Deals damage
-
-                Vector3 rawDir = targetPlayer.transform.position - transform.position;
-                Vector3 dir = new Vector3(rawDir.x, rawDir.y, 0f).normalized;
-
-                playerRB.linearVelocity = Vector3.zero;
-                playerRB.angularVelocity = Vector3.zero;
-
-                Vector3 knock = (dir + new Vector3(1f, 1f, 0f) * 1000f);
-                playerRB.AddForce(knock, ForceMode.Impulse);
-
             }
         }
     }

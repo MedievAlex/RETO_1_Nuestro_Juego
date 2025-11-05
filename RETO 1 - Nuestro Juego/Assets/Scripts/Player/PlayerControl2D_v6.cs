@@ -16,16 +16,27 @@ using UnityEngine.UI;
 public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables 
+    [Header("Abilities")] // Makes a header on the public variables
     public int lifeCount; // Life points
     public bool activeDash = false; // Active or desactive the dash ability
     public bool activeJump = false; // Active or desactive the dash ability
     public bool activeExtraJumps = false; // Active or desactive the dash ability
+    
+    [Header("Player Clips")] // Makes a header on the public variables
+    public AudioClip walk;
+    public AudioClip run;
+    public AudioClip jump;
+    public AudioClip damage;
+
+    public bool isFrozen = false;
 
     // Not visible variables
     private UIController uiController;
     private AudioController audioController;
+
     private Rigidbody rb; // Referencia al Rigidbody
     private Animator animator; // Reference to the animator
+
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
@@ -34,45 +45,52 @@ public class PlayerControl2D : MonoBehaviour
     private int jumpsLeft; // Remaining extra jumps
     private bool jumpsReset = false; // To check if the counter had been reset   
 
-    public bool isFrozen = false;
+    private bool walking = false;   
+    private bool running = false;
+    private bool jumping = false;   
 
     // START runs once before the first UPDATE it's executed
     void Start()
     {
-        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the AudioController of the Scene
+        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the UIController of the Scene
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
-        animator = gameObject.GetComponent<Animator>();
-        lifeCount = uiController.getLife();
-        uiController.setLife(lifeCount);
+
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
+        animator = gameObject.GetComponent<Animator>(); // Get the Animator component
+
+        lifeCount = uiController.getLife(); // Get the life points
+        uiController.setLife(lifeCount); // Sets the life points in the UI
+        
         spawnPoint = transform.position; // Save the initial position
     }
 
     // UPDATE is executed once per frame
     void Update()
     {
+        animationAndSound();
+
         if (!isFrozen)
         {
-
             // Movement
             if (Input.GetAxis("Horizontal") != 0)
             {
+                walking = true;
+
                 // Sideways movement
-                animator.SetBool("walking", true); // ANIMATION: Start walking
                 float moveLeftRight = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
                 transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
 
                 // Dash
                 if (Input.GetKey(KeyCode.LeftShift) && activeDash)
                 {
-                    animator.SetBool("walking", false); // ANIMATION: Stop walking
-                    animator.SetBool("running", true); // ANIMATION: Start running
+                    running = true;
+
                     speed = baseSpeed * 1.7f;
                 }
                 else
                 {
-                    animator.SetBool("running", false); // ANIMATION: Stop running
-                    animator.SetBool("walking", true); // ANIMATION: Start walking
+                    running = false;
+
                     speed = baseSpeed;
                 }
 
@@ -87,15 +105,14 @@ public class PlayerControl2D : MonoBehaviour
             }
             else
             {
-                animator.SetBool("walking", false); // ANIMATION: Stop walking
+                walking = false; 
+                running = false;
             }
 
             // Jump
             if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
-                animator.SetBool("jumping", true); // ANIMATION: Start jumping
-                animator.SetBool("walking", false); // ANIMATION: Stop walking
-                animator.SetBool("running", false); // ANIMATION: Stop running
+                jumping = true;    
 
                 if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
                 {
@@ -114,7 +131,6 @@ public class PlayerControl2D : MonoBehaviour
             {
                 uiController.gameOver();
             }
-
         }
     }
 
@@ -123,7 +139,7 @@ public class PlayerControl2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
         {
-            animator.SetBool("jumping", false); // ANIMATION: Stop jumping
+            jumping = false;      
 
             if (!jumpsReset)
             {
@@ -131,7 +147,7 @@ public class PlayerControl2D : MonoBehaviour
                 jumpsReset = true;
             }
 
-            if (isFrozen)
+            if(isFrozen)
             {
                 isFrozen = false;
             }
@@ -156,7 +172,8 @@ public class PlayerControl2D : MonoBehaviour
     // Respawn methods
     public void applyDamage() // Deals damage
     {
-        animator.SetBool("jumping", true); // ANIMATION: Start jumping
+        jumping = false;
+
         lifeCount--;
         uiController.setLife(lifeCount);
     }
@@ -195,5 +212,56 @@ public class PlayerControl2D : MonoBehaviour
                 uiController.setLife(lifeCount);
                 break;
         }
+    }
+
+    // Animation and sound controller
+    private void animationAndSound()
+    {
+        // Walking
+        animator.SetBool("walking", walking);
+
+        if(walking) 
+        { 
+            
+        }
+        else
+        {
+
+        }
+
+        // Running
+        animator.SetBool("running", running);
+
+        if(running) 
+        { 
+              
+        }
+        else
+        {
+
+        }
+
+        // Jumping
+        animator.SetBool("jumping", jumping);
+
+        if(jumping) 
+        { 
+              
+        }
+        else
+        {
+
+        }
+
+        /*
+        // Walking
+        animator.SetBool("walking", walking);
+            
+        // Running
+        animator.SetBool("running", running); 
+
+        // Jumping
+        animator.SetBool("jumping", jumping); 
+        */
     }
 }

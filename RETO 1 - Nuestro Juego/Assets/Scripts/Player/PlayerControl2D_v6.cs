@@ -64,7 +64,6 @@ public class PlayerControl2D : MonoBehaviour
     void Update()
     {
         animationControl();
-        audioControl();
 
         if (!isFrozen)
         {
@@ -110,6 +109,7 @@ public class PlayerControl2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
                 jumping = true;
+                audioController.playerAudio(GetComponent<AudioSource>(), "JUMP", true);
 
                 if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
                 {
@@ -171,6 +171,7 @@ public class PlayerControl2D : MonoBehaviour
     {
         jumping = false;
 
+        audioController.playerAudio(GetComponent<AudioSource>(), "DAMAGE", true);
         lifeCount--;
         uiController.setLife(lifeCount);
     }
@@ -229,34 +230,5 @@ public class PlayerControl2D : MonoBehaviour
 
         // Jumping
         animator.SetBool("jumping", jumping);
-        
-    }
-
-    private void audioControl()
-    {
-        if (walking)
-        {
-            audioController.runAudio(GetComponent<AudioSource>(), false);
-            audioController.walkAudio(GetComponent<AudioSource>(), true);
-        }
-        else
-        {
-            audioController.walkAudio(GetComponent<AudioSource>(), false);
-        }
-        
-        if (running)
-        {
-            audioController.walkAudio(GetComponent<AudioSource>(), false);
-            audioController.runAudio(GetComponent<AudioSource>(), true);
-        }
-        else
-        {
-            audioController.runAudio(GetComponent<AudioSource>(), false);
-        }
-
-        if (jumping)
-        {
-            audioController.jumpAudio(GetComponent<AudioSource>(), true);
-        }
     }
 }

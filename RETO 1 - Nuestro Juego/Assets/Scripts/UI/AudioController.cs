@@ -81,7 +81,7 @@ public class AudioController : MonoBehaviour
     }
 
     // Player audio control
-    public void walkAudio(AudioSource source, bool play)
+    /*public void walkAudio(AudioSource source, bool play)
     {
         source.volume = generalVolume;
         source.clip = walk;
@@ -115,14 +115,49 @@ public class AudioController : MonoBehaviour
         {
             source.Stop();
         }
-    }
+    }*/
 
-    public void jumpAudio(AudioSource source, bool play)
+    public void jumpAudio(AudioSource source)
     {
         source.volume = generalVolume;
 
         source.PlayOneShot(jump);
+    }
 
+    public void playerAudio(AudioSource source, string clip, bool play)
+    {
+        source.volume = generalVolume;
+
+        switch (clip.ToUpper())
+        {
+            case "WALK":
+                source.clip = walk;
+                break;
+
+            case "RUN":
+                source.clip = run;
+                break;
+
+            case "JUMP":
+                source.PlayOneShot(jump);
+                break;
+
+            case "DAMAGE":
+                source.PlayOneShot(damage);
+                break;
+        }
+
+        /*if (play)
+        {
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
+        }
+        else
+        {
+            source.Pause();
+        }*/
     }
 
     // Lever audio control

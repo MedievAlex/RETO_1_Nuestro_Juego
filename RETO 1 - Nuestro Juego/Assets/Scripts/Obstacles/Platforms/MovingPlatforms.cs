@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class MovingPlatforms : MonoBehaviour
 {
-    // Visible variables
-    public AudioClip audioClip;
-
     // Not visible variables  
     private AudioController audioController;
 
@@ -17,6 +14,6 @@ public class MovingPlatforms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioController.verifyedOShotAudio(audioClip, 1f, true);
+        audioController.movingPlatformAudio(GetComponent<AudioSource>(), true);
     }
 }

@@ -7,13 +7,12 @@ public class ElevatorCallLever : MonoBehaviour
     public ElevatorControl elevator; // Referenced elevator
     public Vector3 destinationPosition; // Called destination
     public bool stateActive; // If the lever is active or not
-    public AudioClip audioClip;
     public Material activeSprite;
     public Material inactiveSprite;
 
     // Not visible variables
-    private bool stateActivable; // If the ladder is actibable or not
     private AudioController audioController;
+    private bool stateActivable; // If the ladder is actibable or not 
 
     // START runs once before the first Update it's executed
     void Start()
@@ -27,7 +26,7 @@ public class ElevatorCallLever : MonoBehaviour
     {
         if (stateActivable && Input.GetKeyDown(KeyCode.E)) // Changes lever's state
         {
-            audioController.oneShotAudio(audioClip, 1f, true);
+            audioController.leverAudio(GetComponent<AudioSource>());
 
             if (!stateActive) // If the lever was deactivated, it activates it
             {

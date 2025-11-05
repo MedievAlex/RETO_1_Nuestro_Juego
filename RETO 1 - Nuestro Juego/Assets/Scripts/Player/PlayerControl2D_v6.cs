@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 
 /** [ 2D MOVEMENT CONTROLS V.6 ]
 - Movement: Left and right
@@ -21,13 +22,8 @@ public class PlayerControl2D : MonoBehaviour
     public bool activeDash = false; // Active or desactive the dash ability
     public bool activeJump = false; // Active or desactive the dash ability
     public bool activeExtraJumps = false; // Active or desactive the dash ability
-    
-    [Header("Player Clips")] // Makes a header on the public variables
-    public AudioClip walk;
-    public AudioClip run;
-    public AudioClip jump;
-    public AudioClip damage;
 
+    [Header("States")] // Makes a header on the public variables
     public bool isFrozen = false;
 
     // Not visible variables
@@ -67,7 +63,8 @@ public class PlayerControl2D : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-        animationAndSound();
+        animationControl();
+        audioControl();
 
         if (!isFrozen)
         {
@@ -105,14 +102,14 @@ public class PlayerControl2D : MonoBehaviour
             }
             else
             {
-                walking = false; 
+                walking = false;
                 running = false;
             }
 
             // Jump
             if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
-                jumping = true;    
+                jumping = true;
 
                 if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
                 {
@@ -177,20 +174,23 @@ public class PlayerControl2D : MonoBehaviour
         lifeCount--;
         uiController.setLife(lifeCount);
     }
+    
     public void setRespawn(Vector3 newSpawnPoint)
     {
         spawnPoint = newSpawnPoint;
     }
+    
     public Vector3 getRespawn()
     {
         return spawnPoint;
     }
+    
     public Rigidbody getRigidbody()
     {
         return rb;
     }
 
-    // Ability methods
+    // Ability gestion
     public void abilityGestion(string abilityName, bool active)
     {
         switch (abilityName.ToUpper())
@@ -198,15 +198,19 @@ public class PlayerControl2D : MonoBehaviour
             case "DASH":
                 activeDash = active;
                 break;
+
             case "JUMP":
                 activeJump = active;
                 break;
+
             case "EXTRAJUMPS":
                 activeExtraJumps = active;
                 break;
+
             case "ADDEXTRAJUMP":
                 extraJumps++;
                 break;
+
             case "ADDLIFE":
                 lifeCount++;
                 uiController.setLife(lifeCount);
@@ -215,53 +219,44 @@ public class PlayerControl2D : MonoBehaviour
     }
 
     // Animation and sound controller
-    private void animationAndSound()
+    private void animationControl()
     {
         // Walking
         animator.SetBool("walking", walking);
 
-        if(walking) 
-        { 
-            
-        }
-        else
-        {
-
-        }
-
         // Running
         animator.SetBool("running", running);
 
-        if(running) 
-        { 
-              
-        }
-        else
-        {
-
-        }
-
         // Jumping
         animator.SetBool("jumping", jumping);
+        
+    }
 
-        if(jumping) 
-        { 
-              
+    private void audioControl()
+    {
+        if (walking)
+        {
+            audioController.runAudio(GetComponent<AudioSource>(), false);
+            audioController.walkAudio(GetComponent<AudioSource>(), true);
         }
         else
         {
-
+            audioController.walkAudio(GetComponent<AudioSource>(), false);
+        }
+        
+        if (running)
+        {
+            audioController.walkAudio(GetComponent<AudioSource>(), false);
+            audioController.runAudio(GetComponent<AudioSource>(), true);
+        }
+        else
+        {
+            audioController.runAudio(GetComponent<AudioSource>(), false);
         }
 
-        /*
-        // Walking
-        animator.SetBool("walking", walking);
-            
-        // Running
-        animator.SetBool("running", running); 
-
-        // Jumping
-        animator.SetBool("jumping", jumping); 
-        */
+        if (jumping)
+        {
+            audioController.jumpAudio(GetComponent<AudioSource>(), true);
+        }
     }
 }

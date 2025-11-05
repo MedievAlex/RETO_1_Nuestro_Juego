@@ -6,12 +6,9 @@ using UnityEngine.Audio;
 */
 public class FallingStone : MonoBehaviour
 {
-    // Visible variables
-    public AudioClip audioClip;
-
     // Not visible variables
-    private bool broken = false; // Indicates whether the object has touched the ground
     private AudioController audioController;
+    private bool broken = false; // Indicates whether the object has touched the ground  
 
     // It runs once before the first Update it's executed
     void Start()
@@ -33,7 +30,7 @@ public class FallingStone : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Ground" or "Player" label
         {
-            audioController.oneShotAudio(audioClip, 0.2f, true);
+            audioController.rockBreakAudio(GetComponent<AudioSource>());
             broken = true;
         }
     }

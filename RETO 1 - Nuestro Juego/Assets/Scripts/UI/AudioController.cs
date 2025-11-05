@@ -6,13 +6,37 @@ using UnityEngine.Rendering;
 public class AudioController : MonoBehaviour
 {
     // Visible variables
+    [Header("Volume")] // Makes a header on the public variables
+    public float generalVolume;
+
+    [Header("Menu Clips")] // Makes a header on the public variables
+    public AudioClip gameStart;
+    public AudioClip gameOver;
+
+    [Header("Player Clips")] // Makes a header on the public variables
+    public AudioClip walk;
+    public AudioClip run;
+    public AudioClip jump;
+    public AudioClip damage;
+
     [Header("Background Clips")] // Makes a header on the public variables
-    public AudioClip backgroundMusic;
-    public AudioClip backgroundEfects;
+    public AudioClip forestBackgroundMusic;
+    public AudioClip caveBackgroundMusic;
+
+    [Header("Activation Clips")] // Makes a header on the public variables
+    public AudioClip lever;
+    public AudioClip elevator;
+    public AudioClip elevatorEnd;
+    public AudioClip movingPlatform;
+    public AudioClip closingDoor;
+
+    [Header("Object Clips")] // Makes a header on the public variables
+    public AudioClip lifeObject;
+    public AudioClip rockBreak;
 
     // No visible variables
     public static AudioController Instance;
-    private AudioSource audioSource;
+    private AudioSource mainSource;
 
     void Awake()
     {
@@ -21,9 +45,9 @@ public class AudioController : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            audioSource = transform.GetComponent<AudioSource>();
+            mainSource = transform.GetComponent<AudioSource>();
 
-            audioSource.volume = 0.5f;
+            mainSource.volume = 0.5f;
         }
         else
         {
@@ -31,14 +55,13 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // START runs once before the first UPDATE it's executed
     void Start()
     {
-        audioSource.clip = backgroundMusic;
-        audioSource.Play();
+        generalVolume = mainSource.volume;
     }
 
-    // Update is called once per frame
+    // UPDATE is executed once per frame
     void Update()
     {
 
@@ -47,7 +70,8 @@ public class AudioController : MonoBehaviour
     // Sets the general volume
     public void SetVolume(float volume)
     {
-        audioSource.volume = volume;
+        generalVolume = volume;
+        mainSource.volume = generalVolume;
     }
 
     // Instance
@@ -56,66 +80,123 @@ public class AudioController : MonoBehaviour
         return Instance;
     }
 
-    // Background music
-    public void playBackgroundMusic(AudioClip audioClip, float volume, bool play)
+    // Player audio control
+    public void walkAudio(AudioSource source, bool play)
     {
-        audioSource.clip = audioClip;
+        source.volume = generalVolume;
+        source.clip = walk;
 
         if (play)
         {
-            audioSource.PlayOneShot(audioClip, volume); // The audio plays
-        }
-        else
-        {
-            audioSource.Stop(); // The audio stops
-        }
-    }
-
-    // Audio that needs to be playing while its true
-    public void verifyedOShotAudio(AudioClip audioClip, float volume, bool play)
-    {
-        if (play)
-        {
-            if (!audioSource.isPlaying)
+            if (!source.isPlaying)
             {
-                audioSource.PlayOneShot(audioClip, volume); // The audio plays
+                source.Play();
             }
         }
         else
         {
-            audioSource.Stop(); // The audio stops
+            source.Stop();
         }
     }
 
-
-
-    // Methods to play the audios
-    public void onLoopAudio(AudioClip audioClip, float volume, bool play)
+    public void runAudio(AudioSource source, bool play)
     {
-        audioSource.clip = audioClip;
-
-        if (!play)
-        {
-            audioSource.PlayOneShot(audioClip, volume); // The audio plays
-        }
-    }
-
-    
-
-    
-
-    public void oneShotAudio(AudioClip audioClip, float volume, bool play)
-    {
+        source.volume = generalVolume;
+        source.clip = run;
 
         if (play)
         {
-            audioSource.PlayOneShot(audioClip, volume); // The audio plays
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
         }
         else
         {
-            audioSource.Stop(); // The audio stops
+            source.Stop();
         }
     }
 
-    
+    public void jumpAudio(AudioSource source, bool play)
+    {
+        source.volume = generalVolume;
+
+        source.PlayOneShot(jump);
+
+    }
+
+    // Lever audio control
+    public void leverAudio(AudioSource source)
+    {
+        source.volume = generalVolume;
+        source.PlayOneShot(lever);
+    }
+
+    // Elevator audio control
+    public void elevatorAudio(AudioSource source, int clip, bool play)
+    {
+        source.volume = generalVolume;
+
+        switch (clip)
+        {
+            case 1: // Elevator moving
+                source.clip = elevator;
+
+                if (play)
+                {
+                    if (!source.isPlaying)
+                    {
+                        source.Play();
+                    }
+                }
+                else
+                {
+                    source.Stop();
+                }
+                break;
+
+            case 2: // Elevator stops
+                source.PlayOneShot(elevatorEnd);
+                break;
+        }
+    }
+
+    // Moving platform audio control
+    public void movingPlatformAudio(AudioSource source, bool play)
+    {
+        source.volume = generalVolume;
+        source.clip = movingPlatform;
+
+        if (play)
+        {
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
+        }
+        else
+        {
+            source.Stop(); // The audio stops
+        }
+    }
+
+    // Closing door audio control
+    public void closingDoorAudio(AudioSource source)
+    {
+        source.volume = generalVolume;
+        source.PlayOneShot(closingDoor);
+    }
+
+    // Life object audio control
+    public void lifeObjectAudio()
+    {
+        mainSource.PlayOneShot(lifeObject);
+    }
+
+    // Breaking rock audio control
+    public void rockBreakAudio(AudioSource source)
+    {
+        source.volume = generalVolume;
+        source.PlayOneShot(rockBreak);
+    }
 }

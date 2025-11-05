@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class LifeObject : MonoBehaviour
 {
-    // Visible variables
-    public AudioClip audioClip;
-
     // Not visible variables  
     private PlayerControl2D targetPlayer; 
     private AudioController audioController;
@@ -27,7 +24,7 @@ public class LifeObject : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
-            audioController.oneShotAudio(audioClip, 1f, true);
+            audioController.lifeObjectAudio();
             targetPlayer.abilityGestion("AddLife", true);
             Destroy(gameObject);
         }

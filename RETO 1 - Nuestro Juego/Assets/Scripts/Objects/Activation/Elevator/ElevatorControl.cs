@@ -7,21 +7,19 @@ public class ElevatorControl : MonoBehaviour
     // Visible variables  
     public int door; // 3 = LeftDoor 4 = RightDoor
     public bool doorStartOpen; // If the choosed door it starts open 
-    public AudioClip startAudioClip;
-    public AudioClip endAudioClip;
 
     // Not visible variables
-    private bool activated; // If the elevator starts activated or not
-    private Vector3 destinationPosition; // Destination
-    private bool towardsPosition = false; // Moving towards the position
-    private float speed = 3f; // Movement speed   
     private AudioController audioController;
-  
+    private bool activated; // If the elevator starts activated or not
+    private float speed = 3f; // Movement speed
+    private Vector3 destinationPosition; // Destination
+    private bool towardsPosition = false; // Moving towards the position    
+
     // START runs once before the first Update it's executed
     void Start()
     {
-        openDoor(doorStartOpen);
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        openDoor(doorStartOpen);
     }
 
     // UPDATE is executed once per frame
@@ -29,14 +27,15 @@ public class ElevatorControl : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
-            audioController.verifyedOShotAudio(startAudioClip, 1f, true);
+            audioController.elevatorAudio(GetComponent<AudioSource>(),1, true);
+
             openDoor(false); // Closes the door
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
 
-            if (transform.position == destinationPosition) 
+            if (transform.position == destinationPosition)
             {
-                audioController.oneShotAudio(startAudioClip, 1f, false);
-                audioController.oneShotAudio(endAudioClip, 1f, true);
+                audioController.elevatorAudio(GetComponent<AudioSource>(), 1, false);
+                audioController.elevatorAudio(GetComponent<AudioSource>(), 2, true);
                 towardsPosition = false; // Stops moving
                 activated = false;
                 openDoor(true); // Opens the door

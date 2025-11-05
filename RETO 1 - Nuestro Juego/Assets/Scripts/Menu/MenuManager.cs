@@ -11,15 +11,18 @@ public class MenuManager : MonoBehaviour
     public Button exitButton;
 
     // Not visible variables
+    private AudioController audioController;
     private OptionsManager optionsMenu;
     private string levelScene = "Level-1";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        optionsMenu = GameObject.Find("Options").GetComponent<OptionsManager>();
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        optionsMenu = GameObject.Find("Options").GetComponent<OptionsManager>(); // Finds the OptionsManager of the Scene
 
         playButton.onClick.AddListener(() => { // When clicking Play button starts the game
+            audioController.backgroundAudio("FOREST", true);
             SceneManager.LoadScene(levelScene, LoadSceneMode.Single);
             Destroy(GameObject.Find("MainCamera").GetComponent<MainCameraController>()); // Destroys the main camera
         });

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
+using static Unity.VisualScripting.Member;
 
 public class AudioController : MonoBehaviour
 {
@@ -13,15 +14,15 @@ public class AudioController : MonoBehaviour
     public AudioClip gameStart;
     public AudioClip gameOver;
 
+    [Header("Background Clips")] // Makes a header on the public variables
+    public AudioClip forestBackgroundMusic;
+    public AudioClip caveBackgroundMusic;
+
     [Header("Player Clips")] // Makes a header on the public variables
     public AudioClip walk;
     public AudioClip run;
     public AudioClip jump;
     public AudioClip damage;
-
-    [Header("Background Clips")] // Makes a header on the public variables
-    public AudioClip forestBackgroundMusic;
-    public AudioClip caveBackgroundMusic;
 
     [Header("Activation Clips")] // Makes a header on the public variables
     public AudioClip lever;
@@ -80,50 +81,55 @@ public class AudioController : MonoBehaviour
         return Instance;
     }
 
+    // Background music control
+    public void backgroundAudio(string clip, bool play)
+    {
+        if (play)
+        {
+            switch (clip.ToUpper())
+            {
+                case "FOREST":
+                    mainSource.clip = forestBackgroundMusic;
+
+                    if (mainSource.clip != forestBackgroundMusic)
+                    {
+                        mainSource.Pause();
+                        mainSource.Play();
+                    }
+                    else
+                    {
+                        if (!mainSource.isPlaying)
+                        {
+                            mainSource.Play();
+                        }
+                    }
+                    break;
+
+                case "CAVE":
+                    mainSource.clip = caveBackgroundMusic;
+
+                    if (mainSource.clip != caveBackgroundMusic)
+                    {
+                        mainSource.Pause();
+                        mainSource.Play();
+                    }
+                    else
+                    {
+                        if (!mainSource.isPlaying)
+                        {
+                            mainSource.Play();
+                        }
+                    }
+                    break;
+            }
+        }
+        else
+        {
+            mainSource.Pause();
+        }
+    }
+
     // Player audio control
-    /*public void walkAudio(AudioSource source, bool play)
-    {
-        source.volume = generalVolume;
-        source.clip = walk;
-
-        if (play)
-        {
-            if (!source.isPlaying)
-            {
-                source.Play();
-            }
-        }
-        else
-        {
-            source.Stop();
-        }
-    }
-
-    public void runAudio(AudioSource source, bool play)
-    {
-        source.volume = generalVolume;
-        source.clip = run;
-
-        if (play)
-        {
-            if (!source.isPlaying)
-            {
-                source.Play();
-            }
-        }
-        else
-        {
-            source.Stop();
-        }
-    }*/
-
-    public void jumpAudio(AudioSource source)
-    {
-        source.volume = generalVolume;
-
-        source.PlayOneShot(jump);
-    }
-
     public void playerAudio(AudioSource source, string clip, bool play)
     {
         source.volume = generalVolume;

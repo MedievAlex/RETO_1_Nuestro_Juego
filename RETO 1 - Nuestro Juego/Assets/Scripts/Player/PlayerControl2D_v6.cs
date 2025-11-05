@@ -98,11 +98,29 @@ public class PlayerControl2D : MonoBehaviour
                 {
                     GetComponent<SpriteRenderer>().flipX = false;
                 }
+
+                if (walking)
+                { 
+                    if (running)
+                    {
+                        audioController.playerAudio(GetComponent<AudioSource>(), "RUN", true);
+                    }
+                    else
+                    {
+                        audioController.playerAudio(GetComponent<AudioSource>(), "WALK", true);
+                    }
+                }
+                else
+                {
+                    
+                }
             }
             else
             {
                 walking = false;
+                audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
                 running = false;
+                audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);
             }
 
             // Jump

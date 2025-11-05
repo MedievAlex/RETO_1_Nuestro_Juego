@@ -128,25 +128,57 @@ public class AudioController : MonoBehaviour
     {
         source.volume = generalVolume;
 
-        switch (clip.ToUpper())
+        if (play)
         {
-            case "WALK":
-                source.clip = walk;
-                break;
+            switch (clip.ToUpper())
+            {
+                case "WALK":
+                    source.clip = walk;
 
-            case "RUN":
-                source.clip = run;
-                break;
+                    if (source.clip != walk)
+                    {
+                        source.Pause();
+                        source.Play();
+                    }
+                    else
+                    {
+                        if (!source.isPlaying)
+                        {
+                            source.Play();
+                        }
+                    }
+                    break;
 
-            case "JUMP":
-                source.PlayOneShot(jump);
-                break;
+                case "RUN":
+                    source.clip = run;
 
-            case "DAMAGE":
-                source.PlayOneShot(damage);
-                break;
+                    if (source.clip != run)
+                    {
+                        source.Pause();
+                        source.Play();
+                    }
+                    else
+                    {
+                        if (!source.isPlaying)
+                        {
+                            source.Play();
+                        }
+                    }
+                    break;
+
+                case "JUMP":
+                    source.PlayOneShot(jump);
+                    break;
+
+                case "DAMAGE":
+                    source.PlayOneShot(damage);
+                    break;
+            }
         }
-
+        else
+        {
+            source.Pause();
+        }
         /*if (play)
         {
             if (!source.isPlaying)

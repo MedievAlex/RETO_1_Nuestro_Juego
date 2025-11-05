@@ -8,7 +8,6 @@ public class FallingStonesSpawn : MonoBehaviour
     public float spawnTime = 2f;
 
     // Not visible variables
-    private FallingStone createdStone;
     private float timePassed;
     private Vector3 spawnPoint;
 

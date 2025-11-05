@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -22,7 +23,9 @@ public class PlayerControl2D : MonoBehaviour
 
     // Not visible variables
     private UIController uiController;
+    private AudioController audioController;
     private Rigidbody rb; // Referencia al Rigidbody
+    private Animator animator; // Reference to the animator
     private Vector3 spawnPoint; // Referencia al punto de reaparición
     private float baseSpeed = 5f; // Base movement speed
     private float speed; // Actual speed
@@ -31,10 +34,14 @@ public class PlayerControl2D : MonoBehaviour
     private int jumpsLeft; // Remaining extra jumps
     private bool jumpsReset = false; // To check if the counter had been reset   
 
+    public bool isFrozen = false;
+
     // START runs once before the first UPDATE it's executed
     void Start()
     {
-        uiController = GameObject.Find("UI").GetComponent<UIController>();
+        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the AudioController of the Scene
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        animator = gameObject.GetComponent<Animator>();
         lifeCount = uiController.getLife();
         uiController.setLife(lifeCount);
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
@@ -44,53 +51,90 @@ public class PlayerControl2D : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-        // Movement
-        if (Input.GetAxis("Horizontal") != 0)
+        if (!isFrozen)
         {
-            // Sideways movement
-            float moveLeftRight = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
 
-            // Dash
-            if (Input.GetKey(KeyCode.LeftShift) && activeDash) 
+            // Movement
+            if (Input.GetAxis("Horizontal") != 0)
             {
-                speed = baseSpeed * 1.7f;
+                // Sideways movement
+                animator.SetBool("walking", true); // ANIMATION: Start walking
+                float moveLeftRight = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+                transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
+
+                // Dash
+                if (Input.GetKey(KeyCode.LeftShift) && activeDash)
+                {
+                    animator.SetBool("walking", false); // ANIMATION: Stop walking
+                    animator.SetBool("running", true); // ANIMATION: Start running
+                    speed = baseSpeed * 1.7f;
+                }
+                else
+                {
+                    animator.SetBool("running", false); // ANIMATION: Stop running
+                    animator.SetBool("walking", true); // ANIMATION: Start walking
+                    speed = baseSpeed;
+                }
+
+                if (Input.GetAxis("Horizontal") < 0)
+                {
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
             }
             else
             {
-                speed = baseSpeed;
+                animator.SetBool("walking", false); // ANIMATION: Stop walking
             }
-        }
 
-        // Jump
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
-        {     
-            if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
+            // Jump
+            if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
-            else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
-            {
-                rb.AddForce(Vector3.up * (jumpForce * 0.7f ), ForceMode.Impulse);
-            }
-            jumpsReset = false;
-            jumpsLeft--;
-        }  
+                animator.SetBool("jumping", true); // ANIMATION: Start jumping
+                animator.SetBool("walking", false); // ANIMATION: Stop walking
+                animator.SetBool("running", false); // ANIMATION: Stop running
 
-        // Game Over
-        if (lifeCount == 0)
-        {
-            uiController.gameOver();
+                if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
+                {
+                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                }
+                else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
+                {
+                    rb.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+                }
+                jumpsReset = false;
+                jumpsLeft--;
+            }
+
+            // Game Over
+            if (lifeCount == 0)
+            {
+                uiController.gameOver();
+            }
+
         }
     }
 
     // Executed when a collision occurs
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static") && !jumpsReset) // Check that the collided object will restart the jumps
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
         {
-            jumpsLeft = extraJumps; // Resets the jump counter
-            jumpsReset = true;
+            animator.SetBool("jumping", false); // ANIMATION: Stop jumping
+
+            if (!jumpsReset)
+            {
+                jumpsLeft = extraJumps; // Resets the jump counter
+                jumpsReset = true;
+            }
+
+            if (isFrozen)
+            {
+                isFrozen = false;
+            }
         }
     }
 
@@ -112,6 +156,7 @@ public class PlayerControl2D : MonoBehaviour
     // Respawn methods
     public void applyDamage() // Deals damage
     {
+        animator.SetBool("jumping", true); // ANIMATION: Start jumping
         lifeCount--;
         uiController.setLife(lifeCount);
     }

@@ -101,7 +101,7 @@ public class UIController : MonoBehaviour
         else if (maxHearts == 5)
         {
             transform.GetChild(3).GetComponent<Image>().sprite = heatlhBarM;
-            transform.GetChild(3).GetComponent<Image>().sprite = heatlhBarE;
+            transform.GetChild(4).GetComponent<Image>().sprite = heatlhBarE;
             transform.GetChild(4).GetComponent<Image>().enabled = true;
         } 
     }

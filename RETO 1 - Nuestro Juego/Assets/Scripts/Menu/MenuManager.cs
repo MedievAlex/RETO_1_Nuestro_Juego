@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 
 public class MenuManager : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class MenuManager : MonoBehaviour
         optionsMenu = GameObject.Find("Options").GetComponent<OptionsManager>(); // Finds the OptionsManager of the Scene
 
         playButton.onClick.AddListener(() => { // When clicking Play button starts the game
+            audioController.gameStartAudio();
             audioController.backgroundAudio("FOREST", true);
+
             SceneManager.LoadScene(levelScene, LoadSceneMode.Single);
             Destroy(GameObject.Find("MainCamera").GetComponent<MainCameraController>()); // Destroys the main camera
         });

@@ -17,6 +17,7 @@ public class GameOverManager : MonoBehaviour
     void Start()
     {
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        audioController.gameOverAudio(GetComponent<AudioSource>());
 
         retryButton.onClick.AddListener(() => {
             audioController.backgroundAudio("FOREST", true);

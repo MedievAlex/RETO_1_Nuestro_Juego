@@ -81,6 +81,20 @@ public class AudioController : MonoBehaviour
         return Instance;
     }
 
+    // Menu audio control
+    public void gameStartAudio()
+    {
+        mainSource.PlayOneShot(gameStart);
+    }
+
+    public void gameOverAudio(AudioSource source)
+    {
+        source.volume = generalVolume;
+
+        mainSource.Pause();
+        source.PlayOneShot(gameOver);
+    }
+
     // Background music control
     public void backgroundAudio(string clip, bool play)
     {

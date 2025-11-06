@@ -25,6 +25,8 @@ public class MenuManager : MonoBehaviour
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
         optionsMenu = GameObject.Find("Options").GetComponent<OptionsManager>(); // Finds the OptionsManager of the Scene
 
+        audioController.backgroundAudio("MENU", true);
+
         playButton.onClick.AddListener(play); // When clicking Play button starts the game
         exitButton.onClick.AddListener(exit); // When clicking Exit button closes the game
         optionsButton.onClick.AddListener(options); // When clicking Options button opens the options menu

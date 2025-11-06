@@ -27,7 +27,7 @@ public class ElevatorControl : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
-            audioController.elevatorAudio(GetComponent<AudioSource>(),1, true);
+            audioController.elevatorAudio(GetComponent<AudioSource>(), 1, true);
 
             openDoor(false); // Closes the door
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
@@ -56,10 +56,15 @@ public class ElevatorControl : MonoBehaviour
     // Executed when a collision with a trigger is happening
     private void OnTriggerStay(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Player") && activated)
+        if (collider.gameObject.CompareTag("Player"))
         {
-            collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
-            towardsPosition = true; // Starts moving
+            collider.GetComponent<PlayerControl2D>().abilityGestion("JUMP", false);
+
+            if (activated)
+            {
+                collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
+                towardsPosition = true; // Starts moving
+            }
         }
     }
 
@@ -68,6 +73,7 @@ public class ElevatorControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
+            collider.GetComponent<PlayerControl2D>().abilityGestion("JUMP", true);
             collider.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }

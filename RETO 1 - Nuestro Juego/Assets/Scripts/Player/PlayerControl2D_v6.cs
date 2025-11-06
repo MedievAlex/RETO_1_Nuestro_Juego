@@ -160,6 +160,7 @@ public class PlayerControl2D : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
         {
             ground = true;
+            jumping = false;
         }
     }
 
@@ -169,6 +170,7 @@ public class PlayerControl2D : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
         {
             ground = false;
+            jumping = true;
         }
     }
 

@@ -8,7 +8,7 @@ public class FallingBox : MonoBehaviour
 {
     // Not visible variables  
     private AudioController audioController;
-    private bool ground;
+    private bool ground = false;
 
     // It runs once before the first Update it's executed
     void Start()
@@ -26,12 +26,8 @@ public class FallingBox : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Ground" or "Player" label
-        {
-            if (!ground)
-            {
-                audioController.fallBoxAudio(GetComponent<AudioSource>());
-                ground = true;
-            }
+        {           
+            audioController.fallBoxAudio(GetComponent<AudioSource>());       
         }
     }
 }

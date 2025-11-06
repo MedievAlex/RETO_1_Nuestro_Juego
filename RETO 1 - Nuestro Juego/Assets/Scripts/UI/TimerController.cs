@@ -16,6 +16,7 @@ public class TimerController : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        setPause(true);
     }
 
     // Update is called once per frame

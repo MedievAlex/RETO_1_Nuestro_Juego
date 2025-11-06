@@ -6,12 +6,17 @@ using UnityEngine.UI;
 public class PauseManager : MonoBehaviour
 {
     // Visible variables
-    private bool gameStopped = false;
+    [SerializeField] private GameObject Canvas;
+
+    [Header("Buttons")] // Makes a header on the public variables
+    public Button resumeButton;
+    public Button mainMenuButton;
+    public Button optionsButton;
 
     // Not visible variables
     private UIController uiController;
     private OptionsManager optionsMenu;
-    [SerializeField] private GameObject Canvas; 
+    private bool gameStopped = false;
     private string menuScene = "MainMenu";
 
     void Start()
@@ -25,33 +30,12 @@ public class PauseManager : MonoBehaviour
         {
             Canvas.SetActive(false);
         }
-        SetupButtonsManually();
+
+        resumeButton.onClick.AddListener(resume); // When clicking Resume button goes back to the game
+        mainMenuButton.onClick.AddListener(mainMenu); // When clicking Menu button goes back to the main menu
+        optionsButton.onClick.AddListener(options); // When clicking Options button opens the options menu 
     }
 
-    void SetupButtonsManually()
-    {
-        Button[] allButtons = GetComponentsInChildren<Button>(true);
-
-        foreach (Button button in allButtons)
-        {
-            if (button.name.Contains("Resume"))
-            {
-                button.onClick.AddListener(ResumeGame);
-            }
-            else if (button.name.Contains("Options"))
-            {
-                button.onClick.AddListener(OptionsButton);
-            }
-            else if (button.name.Contains("Menu"))
-            {
-                button.onClick.AddListener(MenuButton);
-            }
-
-            button.interactable = true;
-            Image btnImage = button.GetComponent<Image>();
-            if (btnImage != null) btnImage.raycastTarget = true;
-        }
-    }
 
     void EnsureEventSystem()
     {
@@ -78,11 +62,6 @@ public class PauseManager : MonoBehaviour
         {
             TogglePause();
         }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            uiController.resetTimer();
-        }
     }
 
     public void TogglePause()
@@ -97,7 +76,7 @@ public class PauseManager : MonoBehaviour
         else
         {
             uiController.pauseTimer(false);
-            ResumeGame();
+            resume();
         }
     }
 
@@ -109,7 +88,7 @@ public class PauseManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    private void ResumeGame()
+    private void resume()
     {
         Time.timeScale = 1f;
         Canvas.SetActive(false);
@@ -119,17 +98,18 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeButton()
     {
-        ResumeGame();
+        resume();
     }
 
-    public void OptionsButton()
+    public void options()
     {
         optionsMenu.setActive(true);
     }
 
-    public void MenuButton()
+    public void mainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(menuScene);
+        uiController.resetTimer();
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour
 {
+    // Visible variables
+    [SerializeField] private GameObject Canvas;
+
     [Header("Buttons")] // Makes a header on the public variables
     public Button backButton;
 
@@ -13,7 +16,7 @@ public class OptionsManager : MonoBehaviour
     public Slider volumeSlider;
     public TextMeshProUGUI volumePercentText;
 
-    [SerializeField] private GameObject Canvas;
+    // Not visible variables
     private AudioController audioController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,16 +30,18 @@ public class OptionsManager : MonoBehaviour
         volumeSlider.value = savedVolume;
         UpdateVolumeText(savedVolume);
 
-        volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+        volumeSlider.onValueChanged.AddListener(OnVolumeChanged); // When clicking Volume Slider changes the volume value
 
-        backButton.onClick.AddListener(() =>
-        {
-            PlayerPrefs.Save();
-
-            setActive(false);
-        });
+        backButton.onClick.AddListener(back); // When clicking Back button goes to the previous menu
 
         AudioListener.volume = savedVolume;
+    }
+
+    private void back()
+    {
+        PlayerPrefs.Save();
+
+        setActive(false);
     }
 
     void OnVolumeChanged(float volume)

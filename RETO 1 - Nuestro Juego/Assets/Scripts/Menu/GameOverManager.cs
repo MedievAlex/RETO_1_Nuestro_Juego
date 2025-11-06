@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GameOverManager : MonoBehaviour
 {
     // Visible variables
-    [Header("Botones")]
+    [Header("Buttons")] // Makes a header on the public variables
     public Button retryButton;
-    public Button menuButton;
+    public Button mainMenuButton;
 
     // Not visible variables
     private UIController uiController;
@@ -22,9 +22,9 @@ public class GameOverManager : MonoBehaviour
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
         audioController.gameOverAudio(GetComponent<AudioSource>());
 
-        retryButton.onClick.AddListener(retry);
+        retryButton.onClick.AddListener(retry); // When clicking Retry button restarts the game
 
-        menuButton.onClick.AddListener(mainMenu);
+        mainMenuButton.onClick.AddListener(mainMenu); // When clicking Menu button goes back to the main menu
 
         uiController.pauseTimer(true);
     }

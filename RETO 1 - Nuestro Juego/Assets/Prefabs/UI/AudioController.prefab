@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generalVolume: 0
+  mainMenu: {fileID: 8300000, guid: 0801f28ed1a315c4180dcb78c0f29d41, type: 3}
   gameStart: {fileID: 8300000, guid: 9412151ee8b4c1c4d8e9ee369bf89be5, type: 3}
   gameOver: {fileID: 8300000, guid: 9f2e7c4d2d68b8a4e8e063202ca9acc4, type: 3}
   forestBackgroundMusic: {fileID: 8300000, guid: a476a1e69eb8d604bbabe16d6dd4272b, type: 3}

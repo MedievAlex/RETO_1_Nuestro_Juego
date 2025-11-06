@@ -11,6 +11,7 @@ public class AudioController : MonoBehaviour
     public float generalVolume;
 
     [Header("Menu Clips")] // Makes a header on the public variables
+    public AudioClip mainMenu;
     public AudioClip gameStart;
     public AudioClip gameOver;
 
@@ -104,6 +105,23 @@ public class AudioController : MonoBehaviour
         {
             switch (clip.ToUpper())
             {
+                case "MENU":
+                    mainSource.clip = mainMenu;
+
+                    if (mainSource.clip != mainMenu)
+                    {
+                        mainSource.Pause();
+                        mainSource.Play();
+                    }
+                    else
+                    {
+                        if (!mainSource.isPlaying)
+                        {
+                            mainSource.Play();
+                        }
+                    }
+                    break;
+
                 case "FOREST":
                     mainSource.clip = forestBackgroundMusic;
 

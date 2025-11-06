@@ -24,9 +24,8 @@ public class MenuManager : MonoBehaviour
 
         playButton.onClick.AddListener(() => { // When clicking Play button starts the game
             audioController.gameStartAudio();
-            audioController.backgroundAudio("FOREST", true);
-
             SceneManager.LoadScene(levelScene, LoadSceneMode.Single);
+            audioController.backgroundAudio("FOREST", true);
             Destroy(GameObject.Find("MainCamera").GetComponent<MainCameraController>()); // Destroys the main camera
         });
 

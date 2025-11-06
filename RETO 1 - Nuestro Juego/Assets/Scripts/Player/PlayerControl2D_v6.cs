@@ -43,7 +43,8 @@ public class PlayerControl2D : MonoBehaviour
 
     private bool walking = false;   
     private bool running = false;
-    private bool jumping = false;   
+    private bool jumping = false; 
+    private bool ground; 
 
     // START runs once before the first UPDATE it's executed
     void Start()
@@ -63,11 +64,12 @@ public class PlayerControl2D : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-        animationControl();
-        audioControl();
 
         if (!isFrozen)
         {
+            animationControl();
+            audioControl();
+
             // Movement
             if (Input.GetAxis("Horizontal") != 0)
             {
@@ -99,32 +101,18 @@ public class PlayerControl2D : MonoBehaviour
                 {
                     GetComponent<SpriteRenderer>().flipX = false;
                 }
-
-                /*if (walking)
-                { 
-                    if (running)
-                    {
-                        audioController.playerAudio(GetComponent<AudioSource>(), "RUN", true);
-                    }
-                    else
-                    {
-                        audioController.playerAudio(GetComponent<AudioSource>(), "WALK", true);
-                    }
-                }*/
             }
             else
             {
-                walking = false;
-                //audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
+                walking = false;;
                 running = false;
-                //audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);
             }
 
             // Jump
             if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
                 jumping = true;
-                audioController.playerAudio(GetComponent<AudioSource>(), "JUMP", true);
+                audioController.playerEfects("JUMP");
 
                 if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
                 {
@@ -136,14 +124,14 @@ public class PlayerControl2D : MonoBehaviour
                 }
                 jumpsReset = false;
                 jumpsLeft--;
-            }
+            } 
+        }
 
-            // Game Over
+        // Game Over
             if (lifeCount == 0)
             {
                 uiController.gameOver();
             }
-        }
     }
 
     // Executed when a collision occurs
@@ -166,6 +154,24 @@ public class PlayerControl2D : MonoBehaviour
         }
     }
 
+    // Executed when a collision is happening
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
+        {
+            ground = true;
+        }
+    }
+
+    // Executed when a collision ends
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
+        {
+            ground = false;
+        }
+    }
+
     // Executed when a collision with a trigger occurs
     private void OnTriggerEnter(Collider collider)
     {
@@ -181,12 +187,14 @@ public class PlayerControl2D : MonoBehaviour
         }
     }
 
+
+
     // Respawn methods
     public void applyDamage() // Deals damage
     {
         jumping = false;
 
-        audioController.playerAudio(GetComponent<AudioSource>(), "DAMAGE", true);
+        audioController.playerEfects("DAMAGE");
         lifeCount--;
         uiController.setLife(lifeCount);
     }
@@ -249,7 +257,7 @@ public class PlayerControl2D : MonoBehaviour
 
     private void audioControl()
     {
-        if (walking)
+        if (walking && ground)
         {
             if (running)
             {
@@ -260,7 +268,7 @@ public class PlayerControl2D : MonoBehaviour
                 audioController.playerAudio(GetComponent<AudioSource>(), "WALK", true);
             }
         }
-        else if (!walking || jumping)
+        else if (!walking || jumping || !ground)
         {
             audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
             audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);

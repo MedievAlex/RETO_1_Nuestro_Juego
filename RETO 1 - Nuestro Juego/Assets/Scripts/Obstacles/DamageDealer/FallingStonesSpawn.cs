@@ -8,12 +8,14 @@ public class FallingStonesSpawn : MonoBehaviour
     public float spawnTime = 2f;
 
     // Not visible variables
+    private AudioController audioController;    
     private float timePassed;
     private Vector3 spawnPoint;
 
     // It runs once before the first Update it's executed
     void Start()
-    {
+    { 
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
         spawnPoint = transform.position;
     }
 
@@ -34,6 +36,7 @@ public class FallingStonesSpawn : MonoBehaviour
     // Generates more stones
     private void SpawnStone() // Spawns the object in the spawnpoint
     {
+        audioController.rockBreakAudio(GetComponent<AudioSource>());    
         Instantiate(fallingStone, spawnPoint, Quaternion.identity, this.transform); 
     } 
 }

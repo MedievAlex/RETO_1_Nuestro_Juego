@@ -32,8 +32,10 @@ public class AudioController : MonoBehaviour
     public AudioClip closingDoor;
 
     [Header("Object Clips")] // Makes a header on the public variables
+    public AudioClip checkPoint;
     public AudioClip lifeObject;
     public AudioClip rockBreak;
+    public AudioClip fallBox;
 
     // No visible variables
     public static AudioController Instance;
@@ -153,6 +155,7 @@ public class AudioController : MonoBehaviour
             switch (clip.ToUpper())
             {
                 case "WALK":
+                    source.volume = (source.volume * 2);
                     source.clip = walk;
 
                     if (source.clip != walk)
@@ -170,6 +173,7 @@ public class AudioController : MonoBehaviour
                     break;
 
                 case "RUN":
+                    source.volume = (source.volume * 2);
                     source.clip = run;
 
                     if (source.clip != run)
@@ -197,7 +201,21 @@ public class AudioController : MonoBehaviour
         }
         else
         {
-            source.Pause();
+            source.clip = null;
+        }
+    }
+
+    public void playerEfects(string clip)
+    {
+        switch (clip.ToUpper())
+        {
+            case "JUMP":
+                mainSource.PlayOneShot(jump);
+                break;
+
+            case "DAMAGE":
+                mainSource.PlayOneShot(damage);
+                break;
         }
     }
 
@@ -263,6 +281,12 @@ public class AudioController : MonoBehaviour
         source.PlayOneShot(closingDoor);
     }
 
+    // Checkpoint audio control
+    public void checkPointAudio(AudioSource source)
+    {
+        source.PlayOneShot(checkPoint);
+    }
+
     // Life object audio control
     public void lifeObjectAudio()
     {
@@ -272,7 +296,14 @@ public class AudioController : MonoBehaviour
     // Breaking rock audio control
     public void rockBreakAudio(AudioSource source)
     {
-        source.volume = generalVolume;
+        source.volume = (generalVolume / 5);
         source.PlayOneShot(rockBreak);
+    }
+
+    // Falling box audio control
+    public void fallBoxAudio(AudioSource source)
+    {
+        source.volume = generalVolume;
+        source.PlayOneShot(fallBox);
     }
 }

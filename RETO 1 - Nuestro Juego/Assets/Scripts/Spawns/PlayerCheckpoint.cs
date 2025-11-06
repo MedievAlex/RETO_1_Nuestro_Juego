@@ -4,12 +4,14 @@ public class PlayerCheckpoint : MonoBehaviour
 {
     // Not visible variables
     private PlayerControl2D targetPlayer = null;
+    private AudioController audioController;
     private Vector3 spawnPoint;
 
     // It runs once before the first Update it's executed
     void Start()
     {
         targetPlayer = GameObject.Find("Player2D").GetComponent<PlayerControl2D>(); // Finds the GameObject of the class PlayerControl2D
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
     }
 
     // Update is executed once per frame
@@ -23,6 +25,7 @@ public class PlayerCheckpoint : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
+            audioController.checkPointAudio(GetComponent<AudioSource>());
             targetPlayer.setRespawn(spawnPoint);
             Destroy(transform.GetChild(0).GetComponent<Collider>()); // Destroys the checkpoint
         }

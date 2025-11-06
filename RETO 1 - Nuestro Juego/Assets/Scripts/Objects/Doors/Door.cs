@@ -18,17 +18,17 @@ public class Door : MonoBehaviour
     // It runs once before the first Update it's executed
     void Start()
     {
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+       audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
 
-        if (startStateOpen){
+       if (startStateOpen){
             transform.position = openLocation;
             opened = true;
-        }
-        else
-        {
+       }
+       else
+       {
             transform.position = closeLocation;
             closed = true;
-        }
+       }
     }
 
     // Update is executed once per frame

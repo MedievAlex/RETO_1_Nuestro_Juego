@@ -16,6 +16,8 @@ public class MobileByActivationPlatformOf6 : MonoBehaviour
     public float speed = 2f; // Movement speed
 
     // Not visible variables
+    private AudioController audioController;
+
     private bool plyerOnTop = false; // If the platform is in movement
     private bool inMovement = false; // If the platform is in movement
     public bool frontwards = false;
@@ -32,7 +34,7 @@ public class MobileByActivationPlatformOf6 : MonoBehaviour
     // It runs once before the first Update it's executed
     void Start()
     {
-        
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
     }
 
     // Update is executed once per frame
@@ -156,6 +158,15 @@ public class MobileByActivationPlatformOf6 : MonoBehaviour
                 towardsE = true;
                 timePassed = 0f;
             }
+        }
+
+        if (inMovement)
+        {
+            audioController.movingPlatformAudio(GetComponent<AudioSource>(), true);
+        }
+        else
+        {
+            audioController.movingPlatformAudio(GetComponent<AudioSource>(), false);
         }
     }
 

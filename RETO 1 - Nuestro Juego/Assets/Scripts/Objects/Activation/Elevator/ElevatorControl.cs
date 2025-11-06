@@ -7,21 +7,19 @@ public class ElevatorControl : MonoBehaviour
     // Visible variables  
     public int door; // 3 = LeftDoor 4 = RightDoor
     public bool doorStartOpen; // If the choosed door it starts open 
-    public AudioClip startAudioClip;
-    public AudioClip endAudioClip;
 
     // Not visible variables
-    private bool activated; // If the elevator starts activated or not
-    private Vector3 destinationPosition; // Destination
-    private bool towardsPosition = false; // Moving towards the position
-    private float speed = 3f; // Movement speed   
     private AudioController audioController;
-  
+    private bool activated; // If the elevator starts activated or not
+    private float speed = 3f; // Movement speed
+    private Vector3 destinationPosition; // Destination
+    private bool towardsPosition = false; // Moving towards the position    
+
     // START runs once before the first Update it's executed
     void Start()
     {
-        openDoor(doorStartOpen);
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        openDoor(doorStartOpen);
     }
 
     // UPDATE is executed once per frame
@@ -29,14 +27,15 @@ public class ElevatorControl : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
-            audioController.verifyedOShotAudio(startAudioClip, 1f, true);
+            audioController.elevatorAudio(GetComponent<AudioSource>(), 1, true);
+
             openDoor(false); // Closes the door
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
 
-            if (transform.position == destinationPosition) 
+            if (transform.position == destinationPosition)
             {
-                audioController.oneShotAudio(startAudioClip, 1f, false);
-                audioController.oneShotAudio(endAudioClip, 1f, true);
+                audioController.elevatorAudio(GetComponent<AudioSource>(), 1, false);
+                audioController.elevatorAudio(GetComponent<AudioSource>(), 2, true);
                 towardsPosition = false; // Stops moving
                 activated = false;
                 openDoor(true); // Opens the door
@@ -57,10 +56,15 @@ public class ElevatorControl : MonoBehaviour
     // Executed when a collision with a trigger is happening
     private void OnTriggerStay(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Player") && activated)
+        if (collider.gameObject.CompareTag("Player"))
         {
-            collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
-            towardsPosition = true; // Starts moving
+            collider.GetComponent<PlayerControl2D>().abilityGestion("JUMP", false);
+
+            if (activated)
+            {
+                collider.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
+                towardsPosition = true; // Starts moving
+            }
         }
     }
 
@@ -69,6 +73,7 @@ public class ElevatorControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
+            collider.GetComponent<PlayerControl2D>().abilityGestion("JUMP", true);
             collider.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }

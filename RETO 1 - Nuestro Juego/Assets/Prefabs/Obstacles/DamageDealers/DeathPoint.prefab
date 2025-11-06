@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6643917572777225883}
   - component: {fileID: 7792827219966070304}
   - component: {fileID: 4727826304216058407}
-  - component: {fileID: -8300295367476505442}
+  - component: {fileID: 1437124521061052717}
   m_Layer: 0
   m_Name: DeathPoint
   m_TagString: DeathPoint
@@ -110,7 +110,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &-8300295367476505442
+--- !u!114 &1437124521061052717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +119,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3919083591181726570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aaeda8a03b9f504f9afa32de5eeef26, type: 3}
+  m_Script: {fileID: 11500000, guid: 18a0c5f715108564e84e5f45efe6ccc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPlayer: {fileID: 0}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DamageDealer : MonoBehaviour
+public class DeatheDealer : MonoBehaviour
 {
     // Not visible variables
     private PlayerControl2D targetPlayer;
@@ -24,11 +24,10 @@ public class DamageDealer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            if(!targetPlayer.isFrozen)
-            {
-                targetPlayer.isFrozen = true;
-                targetPlayer.applyDamage(); // Deals damage
-            }
+            targetPlayer.getRigidbody().linearVelocity = Vector3.zero; // Stop it from moving
+            targetPlayer.getRigidbody().angularVelocity = Vector3.zero; // Reset the physical rotation
+            targetPlayer.transform.position = targetPlayer.getRespawn(); // Respawn at the saved point
+            targetPlayer.applyDamage(); // Deals damage
         }
     }
 }

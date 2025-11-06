@@ -5,13 +5,10 @@ using UnityEngine;
 */
 public class Stalactite : MonoBehaviour
 {
-    // Visible variables
-    public AudioClip audioClip;
-
     // Not visible variables
-    private bool broken = false; // Indicates whether the object has touched the ground
-    private Rigidbody rb; // Referencia al Rigidbody
     private AudioController audioController;
+    private Rigidbody rb; // Referencia al Rigidbody
+    private bool broken = false; // Indicates whether the object has touched the ground
 
     private void Awake()
     {
@@ -39,7 +36,7 @@ public class Stalactite : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            audioController.oneShotAudio(audioClip, 1f, true);
+            audioController.rockBreakAudio(GetComponent<AudioSource>());
             rb.useGravity = true;
         }
     }

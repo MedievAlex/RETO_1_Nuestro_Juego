@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7998286992f7aaa40810b20b3fd63e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resumeButton: {fileID: 4047891660956226148}
+  mainMenuButton: {fileID: 8910554343587573046}
+  optionsButton: {fileID: 6979865119356047015}
   Canvas: {fileID: 5635175044358789013}
 --- !u!1 &1017859704856164346
 GameObject:

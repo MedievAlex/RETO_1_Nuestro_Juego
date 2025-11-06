@@ -8,28 +8,27 @@ public class Door : MonoBehaviour
     public Vector3 openLocation; 
     public Vector3 closeLocation;
     public bool startStateOpen; // If it starts open or closed
-    public AudioClip audioClip;
 
     // Not visible variables  
+    private AudioController audioController;
     private bool open, close;
     private bool opened, closed;
     private float speed = 8f; // Fall speed
-    private AudioController audioController;
 
     // It runs once before the first Update it's executed
     void Start()
     {
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+       audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
 
-        if (startStateOpen){
+       if (startStateOpen){
             transform.position = openLocation;
             opened = true;
-        }
-        else
-        {
+       }
+       else
+       {
             transform.position = closeLocation;
             closed = true;
-        }
+       }
     }
 
     // Update is executed once per frame
@@ -62,7 +61,7 @@ public class Door : MonoBehaviour
     {
         if (opened || open)
         {
-            audioController.oneShotAudio(audioClip, 1f, true);
+            audioController.closingDoorAudio(GetComponent<AudioSource>());
             open = false;
             close = true;
         }

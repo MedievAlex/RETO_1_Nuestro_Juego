@@ -1,22 +1,19 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
 
     // Not visible variables
     private static UIController Instance;
     private static HealthBarController healthBarController;
+    private static TimerController timerController;
 
     void Awake()
     {
-        healthBarController = transform.GetChild(0).GetComponent<HealthBarController>();
-
         if (Instance == null)
         {
+            healthBarController = transform.GetChild(1).GetComponent<HealthBarController>();
+            timerController = transform.GetChild(2).GetComponent<TimerController>();
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -37,6 +34,7 @@ public class UIController : MonoBehaviour
         
     }
 
+    // [ HEALTH BAR METHODS ]
     // Updates life
     public void setLife(int life)
 	{
@@ -55,10 +53,23 @@ public class UIController : MonoBehaviour
         healthBarController.saveLife(saveHearts);
     }
 
+    // [ TIMER METHODS ]
+
+    public void pauseTimer(bool pause)
+    {
+        timerController.setPause(pause);
+    }
+
+    public void resetTimer()
+    {
+        timerController.resetTime();
+    }
+
     // Game Over
     public void gameOver()
     {
         SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
         healthBarController.setDefault();
+        timerController.resetTime();
     }
 }

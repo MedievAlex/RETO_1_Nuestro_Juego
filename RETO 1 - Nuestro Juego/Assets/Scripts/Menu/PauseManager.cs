@@ -9,8 +9,9 @@ public class PauseManager : MonoBehaviour
     private bool gameStopped = false;
 
     // Not visible variables
-    [SerializeField] private GameObject Canvas;
+    private UIController uiController;
     private OptionsManager optionsMenu;
+    [SerializeField] private GameObject Canvas; 
     private string menuScene = "MainMenu";
 
     void Start()
@@ -18,6 +19,7 @@ public class PauseManager : MonoBehaviour
         EnsureEventSystem();
 
         optionsMenu = GameObject.Find("Options").GetComponent<OptionsManager>();
+        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the UIController of the Scene
 
         if (Canvas != null)
         {
@@ -76,6 +78,11 @@ public class PauseManager : MonoBehaviour
         {
             TogglePause();
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            uiController.resetTimer();
+        }
     }
 
     public void TogglePause()
@@ -84,10 +91,12 @@ public class PauseManager : MonoBehaviour
 
         if (gameStopped)
         {
+            uiController.pauseTimer(true);
             PauseGame();
         }
         else
         {
+            uiController.pauseTimer(false);
             ResumeGame();
         }
     }

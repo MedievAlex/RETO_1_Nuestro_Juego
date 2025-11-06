@@ -41,10 +41,10 @@ public class PlayerControl2D : MonoBehaviour
     private int jumpsLeft; // Remaining extra jumps
     private bool jumpsReset = false; // To check if the counter had been reset   
 
-    private bool walking = false;   
+    private bool walking = false;
     private bool running = false;
-    private bool jumping = false; 
-    private bool ground; 
+    private bool jumping = false;
+    private bool ground;
 
     // START runs once before the first UPDATE it's executed
     void Start()
@@ -57,7 +57,7 @@ public class PlayerControl2D : MonoBehaviour
 
         lifeCount = uiController.getLife(); // Get the life points
         uiController.setLife(lifeCount); // Sets the life points in the UI
-        
+
         spawnPoint = transform.position; // Save the initial position
     }
 
@@ -124,14 +124,14 @@ public class PlayerControl2D : MonoBehaviour
                 }
                 jumpsReset = false;
                 jumpsLeft--;
-            } 
+            }
         }
 
         // Game Over
-            if (lifeCount == 0)
-            {
-                uiController.gameOver();
-            }
+        if (lifeCount == 0)
+        {
+            uiController.gameOver();
+        }
     }
 
     // Executed when a collision occurs
@@ -139,7 +139,7 @@ public class PlayerControl2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
         {
-            jumping = false;      
+            jumping = false;
 
             if (!jumpsReset)
             {
@@ -147,7 +147,7 @@ public class PlayerControl2D : MonoBehaviour
                 jumpsReset = true;
             }
 
-            if(isFrozen)
+            if (isFrozen)
             {
                 isFrozen = false;
             }
@@ -198,17 +198,17 @@ public class PlayerControl2D : MonoBehaviour
         lifeCount--;
         uiController.setLife(lifeCount);
     }
-    
+
     public void setRespawn(Vector3 newSpawnPoint)
     {
         spawnPoint = newSpawnPoint;
     }
-    
+
     public Vector3 getRespawn()
     {
         return spawnPoint;
     }
-    
+
     public Rigidbody getRigidbody()
     {
         return rb;

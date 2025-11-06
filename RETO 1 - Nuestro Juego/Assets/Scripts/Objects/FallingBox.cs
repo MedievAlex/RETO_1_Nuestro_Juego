@@ -8,7 +8,6 @@ public class FallingBox : MonoBehaviour
 {
     // Not visible variables  
     private AudioController audioController;
-    private bool ground = false;
 
     // It runs once before the first Update it's executed
     void Start()

@@ -104,7 +104,7 @@ public class PlayerControl2D : MonoBehaviour
             }
             else
             {
-                walking = false;;
+                walking = false;
                 running = false;
             }
 

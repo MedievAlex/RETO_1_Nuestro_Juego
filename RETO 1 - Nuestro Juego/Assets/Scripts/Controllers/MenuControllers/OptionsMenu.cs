@@ -16,18 +16,26 @@ public class OptionsMenu : MonoBehaviour
     public Slider volumeSlider;
     public TextMeshProUGUI volumePercentText;
 
+    [Header("Backgrounds")] // Makes a header on the public variables
+    public Sprite menuBackground;
+    public Sprite firstLevelBackground;
+    public Sprite secondLevelBackground;
+    public Sprite thirdLevelBackground;
+
     // Not visible variables
     private MenuController menuController;
     private AudioController audioController;
+    private Image backgroundImage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 
         SetActive(false);
 
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
+        backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
 
         float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         volumeSlider.value = savedVolume;
@@ -48,6 +56,29 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
+    // Sets the background for each level
+    public void SetSpecificBackground(int level)
+    {
+        switch (level)
+        {
+            case 0:
+                backgroundImage.sprite = menuBackground;
+                break;
+
+            case 1:
+                backgroundImage.sprite = firstLevelBackground;
+                break;
+
+            case 2:
+                backgroundImage.sprite = secondLevelBackground;
+                break;
+
+            case 3:
+                backgroundImage.sprite = thirdLevelBackground;
+                break;
+        }
+    }     
+        
     // Closes the Menu
     private void CloseMenu()
     {

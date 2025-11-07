@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8978867639039253325}
   - component: {fileID: 3340094705960899391}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: VOLUME
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 2511739297464524196}
   - component: {fileID: 1482786799349256535}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: '%'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 814532816002562116}
   - component: {fileID: 5385521639125900545}
   m_Layer: 5
-  m_Name: BackgroundPanel
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -776,10 +776,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bd20ad923e9444aba111c3b4b8bb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 5533960268287504139}
   backButton: {fileID: 7915048081904250831}
   volumeSlider: {fileID: 2527491356667502462}
   volumePercentText: {fileID: 1482786799349256535}
-  Canvas: {fileID: 5533960268287504139}
 --- !u!1 &5533960268287504139
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 5086024132788960994}
   - component: {fileID: 3358351991429304101}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: BACK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1312,7 +1312,7 @@ GameObject:
   - component: {fileID: 1806001671689593353}
   - component: {fileID: 5509839103808481063}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: OPTIONS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

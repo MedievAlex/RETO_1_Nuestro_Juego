@@ -58,6 +58,12 @@ public class GameManager : MonoBehaviour
         menuController.OpenOptionsMenu();
     }
 
+    // Sets the background for each level
+    public void SetSpecificBackground(int level)
+    {
+        menuController.SetSpecificBackground(level);
+    }
+
     // Opens Game Over Menu
     public void OpenGameOverMenu()
     {
@@ -72,6 +78,7 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         levelController.GameStart();
+        uiController.PauseTimer(false);
         menuController.SetPauseActivable(true);
     }
 
@@ -88,6 +95,12 @@ public class GameManager : MonoBehaviour
         menuController.SetPauseActivable(true);
         uiController.ResetTimer();
         uiController.PauseTimer(false);
+    }
+
+    // Gets the number of the level
+    public int GetLevel()
+    {
+        return levelController.GetLevel();
     }
 
     // ---------------------------------------------------------------------------[ Player ]-----------------------------------------------------------------------------------

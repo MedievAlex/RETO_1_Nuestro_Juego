@@ -11,9 +11,15 @@ public class PauseMenu : MonoBehaviour
     public Button mainMenuButton;
     public Button optionsButton;
 
+    [Header("Backgrounds")] // Makes a header on the public variables
+    public Sprite firstLevelBackground;
+    public Sprite secondLevelBackground;
+    public Sprite thirdLevelBackground;
+
     // Not visible variables
-    private MenuController menuController; 
-    private UIController uiController;
+    private MenuController menuController;
+
+    private Image backgroundImage;
 
     private bool activable = false;
     private bool pause = false;
@@ -24,6 +30,8 @@ public class PauseMenu : MonoBehaviour
         menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
 
         SetActive(false);
+
+        backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
 
         resumeButton.onClick.AddListener(TogglePause); // When clicking Resume button goes back to the game
         mainMenuButton.onClick.AddListener(OpenMainMenu); // When clicking Menu button goes back to the main menu
@@ -55,7 +63,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            uiController.PauseTimer(true);
+            menuController.PauseTimer(true);
             SetActive(true);
         }
         else
@@ -63,7 +71,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            uiController.PauseTimer(false);
+            menuController.PauseTimer(false);
             SetActive(false);
         }
     }
@@ -73,6 +81,25 @@ public class PauseMenu : MonoBehaviour
         if (Canvas != null)
         {
             Canvas.SetActive(active);
+        }
+    }
+
+    // Sets the background for each level
+    public void SetSpecificBackground(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                backgroundImage.sprite = firstLevelBackground;
+                break;
+
+            case 2:
+                backgroundImage.sprite = secondLevelBackground;
+                break;
+
+            case 3:
+                backgroundImage.sprite = thirdLevelBackground;
+                break;
         }
     }
 

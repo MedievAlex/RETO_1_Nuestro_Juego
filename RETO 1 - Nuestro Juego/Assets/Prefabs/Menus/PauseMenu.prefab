@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7998286992f7aaa40810b20b3fd63e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 5635175044358789013}
   resumeButton: {fileID: 4047891660956226148}
   mainMenuButton: {fileID: 8910554343587573046}
   optionsButton: {fileID: 6979865119356047015}
-  Canvas: {fileID: 5635175044358789013}
 --- !u!1 &1017859704856164346
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 5353252837918339267}
   - component: {fileID: 470711920515284270}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PAUSE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 7732762071467463540}
   - component: {fileID: 3551431374360303213}
   m_Layer: 5
-  m_Name: BackgroundPanel
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 6592711227929097375}
   - component: {fileID: 7134065931896824936}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RESUME
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 1893655410145484296}
   - component: {fileID: 7496885803871646124}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: MAIN MENU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

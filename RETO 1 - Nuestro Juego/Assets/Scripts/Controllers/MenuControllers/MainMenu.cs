@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour
         playButton.onClick.AddListener(GameStart); // When clicking Play button starts the game
         exitButton.onClick.AddListener(ExitGame); // When clicking Exit button closes the game
         optionsButton.onClick.AddListener(OpenOptionsMenu); // When clicking Options button opens the Options Menu
+
+        menuController.SetSpecificBackground(menuController.GetLevel());
     }
 
     // Loads the fist level

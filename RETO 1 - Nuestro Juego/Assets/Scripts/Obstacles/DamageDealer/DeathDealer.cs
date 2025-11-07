@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DeatheDealer : MonoBehaviour
+public class DeathDealer : MonoBehaviour
 {
     // Not visible variables
     private PlayerControl2D targetPlayer;

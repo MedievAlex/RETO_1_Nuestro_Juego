@@ -5,7 +5,6 @@ public class PlayerCheckpoint : MonoBehaviour
     // Not visible variables
     private PlayerControl2D targetPlayer = null;
     private AudioController audioController;
-    private Vector3 spawnPoint;
 
     // It runs once before the first Update it's executed
     void Start()
@@ -26,8 +25,8 @@ public class PlayerCheckpoint : MonoBehaviour
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
             audioController.checkPointAudio(GetComponent<AudioSource>());
-            targetPlayer.setRespawn(spawnPoint);
-            Destroy(transform.GetChild(0).GetComponent<Collider>()); // Destroys the checkpoint
+            targetPlayer.setRespawn(collider.transform.position);
+            Destroy(GetComponent<Collider>()); // Destroys the checkpoint
         }
     }
 }

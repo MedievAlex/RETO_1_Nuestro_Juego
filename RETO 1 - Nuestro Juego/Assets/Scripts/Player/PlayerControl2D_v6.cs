@@ -177,12 +177,6 @@ public class PlayerControl2D : MonoBehaviour
     // Executed when a collision with a trigger occurs
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("CheckPoint")) // Check that the collided object has the "CheckPoint" label
-        {
-            spawnPoint = transform.position; // Saves the checkpoint position
-            Destroy(collider.gameObject); // Destroys the checkpoint
-        }
-
         if (collider.gameObject.CompareTag("LevelEnd")) // Check that the collided object has the "CheckPoint" label
         {
             uiController.saveLife(lifeCount);

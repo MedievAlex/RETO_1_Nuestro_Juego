@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   retryButton: {fileID: 1113572008}
-  menuButton: {fileID: 1185408982}
+  mainMenuButton: {fileID: 1185408982}
 --- !u!82 &1956468846
 AudioSource:
   m_ObjectHideFlags: 0

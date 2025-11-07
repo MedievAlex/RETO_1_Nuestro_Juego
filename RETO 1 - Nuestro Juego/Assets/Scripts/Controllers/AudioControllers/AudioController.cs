@@ -85,7 +85,7 @@ public class AudioController : MonoBehaviour
     }
 
     // Menu audio control
-    public void gameStartAudio()
+    public void GameStartAudio()
     {
         mainSource.PlayOneShot(gameStart);
     }

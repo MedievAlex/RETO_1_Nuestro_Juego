@@ -1,8 +1,4 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthBarController : MonoBehaviour
@@ -16,7 +12,7 @@ public class HealthBarController : MonoBehaviour
     public Sprite nullHeatlhBarE;
 
     // Not visible variables
-    private int hearts;
+    private int hearts; 
     private int maxHearts;
     private int defaultHearts = 3;
 
@@ -25,11 +21,13 @@ public class HealthBarController : MonoBehaviour
         
     }
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        setDefault();
+        SetDefault();
     }
 
+    // Update is called once per frame
     void Update()
     {
         
@@ -111,7 +109,7 @@ public class HealthBarController : MonoBehaviour
     }
 
     // Default settings
-    public void setDefault()
+    public void SetDefault()
     {
         defaultHearts = 3;
 

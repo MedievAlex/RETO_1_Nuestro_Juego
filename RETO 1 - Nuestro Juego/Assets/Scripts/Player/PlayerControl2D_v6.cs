@@ -130,7 +130,7 @@ public class PlayerControl2D : MonoBehaviour
         // Game Over
         if (lifeCount == 0)
         {
-            uiController.gameOver();
+            uiController.GameOver();
         }
     }
 

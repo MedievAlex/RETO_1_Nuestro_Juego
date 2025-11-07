@@ -4,7 +4,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class OptionsMenuController : MonoBehaviour
+public class OptionsMenu : MonoBehaviour
 {
     // Visible variables
     [SerializeField] private GameObject Canvas;
@@ -17,12 +17,15 @@ public class OptionsMenuController : MonoBehaviour
     public TextMeshProUGUI volumePercentText;
 
     // Not visible variables
+    private MenuController menuController;
     private AudioController audioController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        setActive(false);
+        menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
+
+        SetActive(false);
 
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 
@@ -31,17 +34,26 @@ public class OptionsMenuController : MonoBehaviour
         UpdateVolumeText(savedVolume);
 
         volumeSlider.onValueChanged.AddListener(OnVolumeChanged); // When clicking Volume Slider changes the volume value
-
-        backButton.onClick.AddListener(back); // When clicking Back button goes to the previous menu
+        backButton.onClick.AddListener(CloseMenu); // When clicking Back button goes to the previous menu
 
         AudioListener.volume = savedVolume;
     }
 
-    private void back()
+    // Open or close the menu
+    public void SetActive(bool active)
+    {
+        if (Canvas != null)
+        {
+            Canvas.SetActive(active);
+        }
+    }
+
+    // Closes the Menu
+    private void CloseMenu()
     {
         PlayerPrefs.Save();
 
-        setActive(false);
+        SetActive(false);
     }
 
     void OnVolumeChanged(float volume)
@@ -62,14 +74,6 @@ public class OptionsMenuController : MonoBehaviour
     {
         int percent = Mathf.RoundToInt(volume * 100);
         volumePercentText.text = percent + "%";
-    }
-
-    public void setActive(bool active)
-    {
-        if (Canvas != null)
-        {
-            Canvas.SetActive(active);
-        }
     }
 
     void OnDestroy()

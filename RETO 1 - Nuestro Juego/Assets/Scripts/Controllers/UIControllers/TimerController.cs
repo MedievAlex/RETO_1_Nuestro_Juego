@@ -4,7 +4,7 @@ using UnityEngine;
 public class TimerController : MonoBehaviour
 {
     // Visible variables
-    public TextMeshProUGUI timer;
+    public TextMeshProUGUI timer; // Text showing the numbers
 
     // Not visible variables
     private bool pause;
@@ -12,42 +12,36 @@ public class TimerController : MonoBehaviour
     private string minutes;
     private string seconds;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Time.timeScale = 1.0f;
-        setPause(true);
-    }
-
     // Update is called once per frame
     void Update()
-    {
-        timer.text = timeFormat();
-    }
-
-    private string timeFormat()
     {
         if (!pause)
         {
             timePassed += Time.deltaTime;
         }
+        
+        timer.text = TimeFormat();
+    }
 
+    // Transforms float value to seconds and minutes giving it format
+    private string TimeFormat()
+    {
         minutes = Mathf.Floor(timePassed / 60).ToString("00");
         seconds = Mathf.Floor(timePassed % 60).ToString("00");
 
         return minutes + ":" + seconds;
     }
 
-    // To stop the cronometer
-    public void setPause(bool pause)
+    // Stop or play the timer
+    public void ToggleTimer(bool pause)
     {
         this.pause = pause;
     }
 
-    // To reset the time
-    public void resetTime()
+    // Reset the value of the timer to 0
+    public void ResetTimer()
     {
-        setPause(true);
+        ToggleTimer(false);
         timePassed = 0;
     }
 }

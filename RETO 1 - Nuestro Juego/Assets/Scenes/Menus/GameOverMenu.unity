@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 253867471}
   - component: {fileID: 253867470}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: MAIN MENU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 1113572009}
   - component: {fileID: 1113572008}
   m_Layer: 5
-  m_Name: RetryButton
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 1185408983}
   - component: {fileID: 1185408982}
   m_Layer: 5
-  m_Name: MenuButton
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a47d6b9cc0c9944a7284e52f673329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retryButton: {fileID: 1113572008}
+  restartButton: {fileID: 0}
   mainMenuButton: {fileID: 1185408982}
 --- !u!82 &1956468846
 AudioSource:
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 1995542779}
   - component: {fileID: 1995542778}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RESTART
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -988,7 +988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RETRY
+  m_text: RESTART
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 2077811969}
   - component: {fileID: 2077811968}
   m_Layer: 5
-  m_Name: BackgroundPanel
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

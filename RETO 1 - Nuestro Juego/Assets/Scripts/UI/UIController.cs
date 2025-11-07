@@ -5,8 +5,8 @@ public class UIController : MonoBehaviour
 
     // Not visible variables
     private static UIController Instance;
-    private static HealthBarController healthBarController;
-    private static TimerController timerController;
+    private HealthBarController healthBarController;
+    private TimerController timerController;
 
     void Awake()
     {
@@ -21,7 +21,6 @@ public class UIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     void Start()

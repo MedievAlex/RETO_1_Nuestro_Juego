@@ -9,6 +9,11 @@ public class PlayerCameraController : MonoBehaviour
     // Not visible variables
     private PlayerControl2D targetPlayer;
 
+    private void Awake()
+    {
+        Destroy(GameObject.Find("MainCamera")); // Destroys the main camera
+    }
+
     // START runs once before the first UPDATE it's executed
     void Start()
     {     

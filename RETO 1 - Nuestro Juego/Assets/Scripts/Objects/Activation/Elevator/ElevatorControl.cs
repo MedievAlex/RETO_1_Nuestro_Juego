@@ -58,7 +58,7 @@ public class ElevatorControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            collider.GetComponent<PlayerControl2D>().abilityGestion("JUMP", false);
+            collider.GetComponent<PlayerControl2D>().AbilityGestion("JUMP", false);
 
             if (activated)
             {
@@ -73,7 +73,7 @@ public class ElevatorControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
-            collider.GetComponent<PlayerControl2D>().abilityGestion("JUMP", true);
+            collider.GetComponent<PlayerControl2D>().AbilityGestion("JUMP", true);
             collider.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }

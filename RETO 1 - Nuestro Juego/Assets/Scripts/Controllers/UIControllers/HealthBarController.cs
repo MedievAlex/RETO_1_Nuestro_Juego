@@ -12,75 +12,73 @@ public class HealthBarController : MonoBehaviour
     public Sprite nullHeatlhBarE;
 
     // Not visible variables
-    private int hearts; 
+    private UIController uiController;
+    private int hearts;
     private int maxHearts;
-    private int defaultHearts = 3;
-
-    void Awake()
-    {
-        
-    }
+    private int defaultHearts;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetDefault();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        uiController = transform.parent.GetComponentInParent<UIController>();
     }
 
     // Updates life
-    public void setLife(int life)
-	{
-        hearts = life;
-
-        if (hearts > maxHearts)
+    public void UpdateLives(int lives)
+    {
+        // Game Over
+        if (lives == 0)
         {
-            maxHearts = hearts;
-            activateHearts(maxHearts);
+            uiController.GameOver();
         }
-
-        // Sets null hearts
-        for (int i = 0; i < maxHearts; i++)
+        else
         {
-            if (i == 0)
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarS;
-            }
-            else if (i == maxHearts-1)
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarE;
-            }
-            else
-            {
-                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarM;
-            }
-        }
+            hearts = lives;
 
-        // Sets hearts
-        for (int i = 0; i < hearts; i++)
-        {
-            if (i == 0)
+            if (hearts > maxHearts)
             {
-                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarS;
+                maxHearts = hearts;
+                ActivateExtraHearts(maxHearts);
             }
-            else if (i == maxHearts-1)
+
+            // Sets null hearts
+            for (int i = 0; i < maxHearts; i++)
             {
-                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarE;
+                if (i == 0)
+                {
+                    transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarS;
+                }
+                else if (i == maxHearts - 1)
+                {
+                    transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarE;
+                }
+                else
+                {
+                    transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarM;
+                }
             }
-            else
+
+            // Sets hearts
+            for (int i = 0; i < hearts; i++)
             {
-                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarM;
+                if (i == 0)
+                {
+                    transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarS;
+                }
+                else if (i == maxHearts - 1)
+                {
+                    transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarE;
+                }
+                else
+                {
+                    transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarM;
+                }
             }
         }
-    }  
+    }
 
     // Extra hearts activation
-    private void activateHearts(int maxHearts)
+    private void ActivateExtraHearts(int maxHearts)
     {
         if (maxHearts == 4)
         {
@@ -93,17 +91,17 @@ public class HealthBarController : MonoBehaviour
             transform.GetChild(3).GetComponent<Image>().sprite = heatlhBarM;
             transform.GetChild(4).GetComponent<Image>().sprite = heatlhBarE;
             transform.GetChild(4).GetComponent<Image>().enabled = true;
-        } 
+        }
     }
 
     // Gets the heart count
-    public int getLife()
+    public int GetLives()
     {
         return defaultHearts;
     }
 
     // Saves the heart count
-    public void saveLife(int saveHearts)
+    public void SaveLives(int saveHearts)
     {
         defaultHearts = saveHearts;
     }

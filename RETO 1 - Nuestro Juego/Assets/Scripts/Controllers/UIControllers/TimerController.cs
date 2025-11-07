@@ -33,7 +33,7 @@ public class TimerController : MonoBehaviour
     }
 
     // Stop or play the timer
-    public void ToggleTimer(bool pause)
+    public void PauseTimer(bool pause)
     {
         this.pause = pause;
     }
@@ -41,7 +41,7 @@ public class TimerController : MonoBehaviour
     // Reset the value of the timer to 0
     public void ResetTimer()
     {
-        ToggleTimer(false);
+        PauseTimer(false);
         timePassed = 0;
     }
 }

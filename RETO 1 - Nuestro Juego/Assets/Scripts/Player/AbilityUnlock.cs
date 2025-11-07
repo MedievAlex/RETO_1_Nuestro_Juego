@@ -25,7 +25,7 @@ public class AbilityUnlock : MonoBehaviour
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
             tutorialGestion(true);
-            collider.GetComponent<PlayerControl2D>().abilityGestion(abilityName, activates);
+            collider.GetComponent<PlayerControl2D>().AbilityGestion(abilityName, activates);
             Destroy(gameObject); // It's destoyed
         }
     }

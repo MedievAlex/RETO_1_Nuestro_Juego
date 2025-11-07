@@ -22,10 +22,10 @@ public class DeathPoint : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            targetPlayer.applyDamage(); // Deals damage
-            targetPlayer.getRigidbody().linearVelocity = Vector3.zero; // Stop it from moving
-            targetPlayer.getRigidbody().angularVelocity = Vector3.zero; // Reset the physical rotation
-            targetPlayer.transform.position = targetPlayer.getRespawn(); // Respawn at the saved point
+            targetPlayer.ApplyDamage(); // Deals damage
+            targetPlayer.GetRigidbody().linearVelocity = Vector3.zero; // Stop it from moving
+            targetPlayer.GetRigidbody().angularVelocity = Vector3.zero; // Reset the physical rotation
+            targetPlayer.transform.position = targetPlayer.GetRespawn(); // Respawn at the saved point
         }
     }
 }

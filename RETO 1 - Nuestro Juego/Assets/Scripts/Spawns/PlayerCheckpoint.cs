@@ -25,7 +25,7 @@ public class PlayerCheckpoint : MonoBehaviour
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
             audioController.checkPointAudio(GetComponent<AudioSource>());
-            targetPlayer.setRespawn(collider.transform.position);
+            targetPlayer.SetRespawn(collider.transform.position);
             Destroy(GetComponent<Collider>()); // Destroys the checkpoint
         }
     }

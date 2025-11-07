@@ -54,7 +54,7 @@ public class LeverPuzzle : MonoBehaviour
                     if (remainingAttempts == 0)
                     {    
                         Debug.LogWarning("Knockback missing.");
-                        targetPlayer.applyDamage();
+                        targetPlayer.ApplyDamage();
                         remainingAttempts = attempts;
                     }
                     timePassed = 0f;

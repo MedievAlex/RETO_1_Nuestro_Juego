@@ -3,12 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    // Visible variables
+    [Header("Player")] // Makes a header on the public variables
+    public PlayerControl2D player;
+
+    [Header("Controllers")] // Makes a header on the public variables
+    public MenuController menuController;
+    public LevelController levelController;
+    public UIController uiController;
+    public AudioController audioController;
+
+    // Not visible variables
     private static GameManager Instance;
-    private MenuController menuController;
-    private LevelController levelController;
-    private UIController uiController;
-    private AudioController audioController;
-    private PlayerControl2D player;
 
     // Awake is called when the script instance is being loaded
     void Awake()
@@ -27,9 +33,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.Find("Payer2D").GetComponent<PlayerControl2D>(); // Finds the Player of the Scene
-        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the UIController of the Scene
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        
     }
 
     // Update is called once per frame
@@ -83,23 +87,49 @@ public class GameManager : MonoBehaviour
         levelController.RestartGame();
         menuController.SetPauseActivable(true);
         uiController.ResetTimer();
-        uiController.ToggleTimer(false);
+        uiController.PauseTimer(false);
     }
 
     // ---------------------------------------------------------------------------[ Player ]-----------------------------------------------------------------------------------
 
-
+    // Sets the current player
+    public void SetPlayer(PlayerControl2D player)
+    {
+        this.player = player;
+    }
 
     // ---------------------------------------------------------------------------[ UI: Health Bar ]---------------------------------------------------------------------------
 
+    // Updates life
+    public void UpdateLives(int lives)
+    {
+        uiController.UpdateLives(lives);
+    }
 
+    // Gets the heart count
+    public int GetLives()
+    {
+        return uiController.GetLives();
+    }
+
+    // Saves the heart count
+    public void SaveLives(int saveHearts)
+    {
+        uiController.SaveLives(saveHearts);
+    }
+
+    // Default settings
+    public void SetDefault()
+    {
+        uiController.SetDefault();
+    }
 
     // ---------------------------------------------------------------------------[ UI: Timer ]--------------------------------------------------------------------------------
 
     // Stops or plays the counting 
-    public void ToggleTimer(bool pause)
+    public void PauseTimer(bool pause)
     {
-        uiController.ToggleTimer(pause);
+        uiController.PauseTimer(pause);
     }
 
     // Resets the timer to 0
@@ -114,9 +144,5 @@ public class GameManager : MonoBehaviour
     {
         audioController.GameStartAudio();
     }
-
-    // ---------------------------------------------------------------------------[ AUDIO ]------------------------------------------------------------------------------------
-
-
 
 }

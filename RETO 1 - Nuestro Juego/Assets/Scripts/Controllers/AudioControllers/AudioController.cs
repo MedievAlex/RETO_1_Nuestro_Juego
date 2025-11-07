@@ -42,26 +42,10 @@ public class AudioController : MonoBehaviour
     public static AudioController Instance;
     private AudioSource mainSource;
 
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-
-            mainSource = transform.GetComponent<AudioSource>();
-
-            mainSource.volume = 0.5f;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     // START runs once before the first UPDATE it's executed
     void Start()
     {
+        mainSource = transform.GetComponent<AudioSource>();
         generalVolume = mainSource.volume;
     }
 

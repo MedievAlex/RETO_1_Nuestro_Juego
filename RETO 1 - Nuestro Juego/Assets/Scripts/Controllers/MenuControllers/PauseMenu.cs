@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            uiController.ToggleTimer(true);
+            uiController.PauseTimer(true);
             SetActive(true);
         }
         else
@@ -63,7 +63,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            uiController.ToggleTimer(false);
+            uiController.PauseTimer(false);
             SetActive(false);
         }
     }

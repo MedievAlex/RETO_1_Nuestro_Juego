@@ -6,14 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Unity.VisualScripting.Member;
 
-/** [ 2D MOVEMENT CONTROLS V.6 ]
-- Movement: Left and right
-- Jump: Single jump
-- Double jump: As many jumps as indicated
-- Respawn: Respawn at the first point
-- Checkpoints: Stores the location of checkpoints to respawn there
-- Dash: Holding Left Shift will double movement speed
-*/
 public class PlayerControl2D : MonoBehaviour
 {
     // Visible variables 
@@ -27,7 +19,7 @@ public class PlayerControl2D : MonoBehaviour
     public bool isFrozen = false;
 
     // Not visible variables
-    private UIController uiController;
+    private GameManager gameManager;
     private AudioController audioController;
 
     private Rigidbody rb; // Referencia al Rigidbody
@@ -49,14 +41,16 @@ public class PlayerControl2D : MonoBehaviour
     // START runs once before the first UPDATE it's executed
     void Start()
     {
-        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the UIController of the Scene
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Gets the Game Manager
+        gameManager.SetPlayer(this);
+ 
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
 
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         animator = gameObject.GetComponent<Animator>(); // Get the Animator component
 
-        lifeCount = uiController.getLife(); // Get the life points
-        uiController.setLife(lifeCount); // Sets the life points in the UI
+        lifeCount = gameManager.GetLives(); // Get the life points
+        gameManager.UpdateLives(lifeCount); // Sets the life points in the UI
 
         spawnPoint = transform.position; // Save the initial position
     }
@@ -64,11 +58,10 @@ public class PlayerControl2D : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-
         if (!isFrozen)
         {
-            animationControl();
-            audioControl();
+            AnimationControl();
+            AudioControl();
 
             // Movement
             if (Input.GetAxis("Horizontal") != 0)
@@ -126,12 +119,6 @@ public class PlayerControl2D : MonoBehaviour
                 jumpsLeft--;
             }
         }
-
-        // Game Over
-        if (lifeCount == 0)
-        {
-            uiController.GameOver();
-        }
     }
 
     // Executed when a collision occurs
@@ -179,39 +166,37 @@ public class PlayerControl2D : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("LevelEnd")) // Check that the collided object has the "CheckPoint" label
         {
-            uiController.saveLife(lifeCount);
+            gameManager.SaveLives(lifeCount);
         }
     }
 
-
-
     // Respawn methods
-    public void applyDamage() // Deals damage
+    public void ApplyDamage() // Deals damage
     {
         jumping = false;
 
         audioController.playerEfects("DAMAGE");
         lifeCount--;
-        uiController.setLife(lifeCount);
+        gameManager.UpdateLives(lifeCount);
     }
 
-    public void setRespawn(Vector3 newSpawnPoint)
+    public void SetRespawn(Vector3 newSpawnPoint)
     {
         spawnPoint = newSpawnPoint;
     }
 
-    public Vector3 getRespawn()
+    public Vector3 GetRespawn()
     {
         return spawnPoint;
     }
 
-    public Rigidbody getRigidbody()
+    public Rigidbody GetRigidbody()
     {
         return rb;
     }
 
     // Ability gestion
-    public void abilityGestion(string abilityName, bool active)
+    public void AbilityGestion(string abilityName, bool active)
     {
         switch (abilityName.ToUpper())
         {
@@ -233,13 +218,13 @@ public class PlayerControl2D : MonoBehaviour
 
             case "ADDLIFE":
                 lifeCount++;
-                uiController.setLife(lifeCount);
+                gameManager.UpdateLives(lifeCount);
                 break;
         }
     }
 
     // Animation and sound controller
-    private void animationControl()
+    private void AnimationControl()
     {
         // Walking
         animator.SetBool("walking", walking);
@@ -251,7 +236,7 @@ public class PlayerControl2D : MonoBehaviour
         animator.SetBool("jumping", jumping);
     }
 
-    private void audioControl()
+    private void AudioControl()
     {
         if (walking && ground)
         {
@@ -269,5 +254,5 @@ public class PlayerControl2D : MonoBehaviour
             audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
             audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);
         }
-    }
+    } 
 }

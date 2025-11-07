@@ -25,7 +25,7 @@ public class LifeObject : MonoBehaviour
         if (collider.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
             audioController.lifeObjectAudio();
-            targetPlayer.abilityGestion("AddLife", true);
+            targetPlayer.AbilityGestion("AddLife", true);
             Destroy(gameObject);
         }
     }

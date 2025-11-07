@@ -27,7 +27,7 @@ public class DamageDealer : MonoBehaviour
             if(!targetPlayer.isFrozen)
             {
                 targetPlayer.isFrozen = true;
-                targetPlayer.applyDamage(); // Deals damage
+                targetPlayer.ApplyDamage(); // Deals damage
             }
         }
     }

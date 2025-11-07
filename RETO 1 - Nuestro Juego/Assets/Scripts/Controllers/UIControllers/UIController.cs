@@ -18,35 +18,42 @@ public class UIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        timerController.PauseTimer(true);
+        healthBarController.SetDefault();
     }
 
     // ---------------------------------------------------------------------------[ UI: Health Bar ]---------------------------------------------------------------------------
 
     // Updates life
-    public void setLife(int life)
+    public void UpdateLives(int lives)
     {
-        healthBarController.setLife(life);
+        healthBarController.UpdateLives(lives);
     }
 
     // Gets the heart count
-    public int getLife()
+    public int GetLives()
     {
-        return healthBarController.getLife();
+        return healthBarController.GetLives();
     }
 
     // Saves the heart count
-    public void saveLife(int saveHearts)
+    public void SaveLives(int saveHearts)
     {
-        healthBarController.saveLife(saveHearts);
+        healthBarController.SaveLives(saveHearts);
+    }
+
+    // Default settings
+    public void SetDefault()
+    {
+        healthBarController.SetDefault();
     }
 
     // ---------------------------------------------------------------------------[ UI: Timer ]--------------------------------------------------------------------------------
 
     // Stop or play the timer
-    public void ToggleTimer(bool pause)
+    public void PauseTimer(bool pause)
     {
-        timerController.ToggleTimer(pause);
+        timerController.PauseTimer(pause);
     }
 
     // Reset the value of the timer to 0

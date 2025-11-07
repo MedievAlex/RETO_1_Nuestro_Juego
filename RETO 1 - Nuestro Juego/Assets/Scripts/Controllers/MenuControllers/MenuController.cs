@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    // Not visible variables
     private GameManager gameManager;
 
     private OptionsMenu optionsMenu;
@@ -13,6 +14,9 @@ public class MenuController : MonoBehaviour
     void Start()
     {
         gameManager = transform.parent.GetComponentInParent<GameManager>(); // Gets the Game Manager
+
+        optionsMenu = transform.GetChild(0).transform.GetComponent<OptionsMenu>();
+        pauseMenu = transform.GetChild(1).transform.GetComponent<PauseMenu>();
 
         EnsureEventSystem();  
     }
@@ -70,7 +74,7 @@ public class MenuController : MonoBehaviour
     // Stops or plays the counting 
     public void ToggleTimer(bool pause)
     {
-        gameManager.ToggleTimer(pause);
+        gameManager.PauseTimer(pause);
     }
 
     // ---------------------------------------------------------------------------[ Game Over Menu ]--------------------------------------------------------------------------------

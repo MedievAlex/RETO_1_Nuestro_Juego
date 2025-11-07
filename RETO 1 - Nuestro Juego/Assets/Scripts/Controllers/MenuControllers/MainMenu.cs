@@ -10,12 +10,12 @@ public class MainMenu : MonoBehaviour
     public Button optionsButton;
 
     // Not visible variables
-    private MenuController menuController;
+    public MenuController menuController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
+        //menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
 
         playButton.onClick.AddListener(GameStart); // When clicking Play button starts the game
         exitButton.onClick.AddListener(ExitGame); // When clicking Exit button closes the game

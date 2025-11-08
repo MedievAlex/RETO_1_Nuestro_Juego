@@ -31,11 +31,11 @@ public class OptionsMenuController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
+        Debug.Log("[OptionsMenu] Getting Audio Controller.");
+        audioController = menuController.GetAudioController();
 
+        Debug.Log("[OptionsMenu] Getting Background.");
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
-
-        SetActive(false);
 
         float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         volumeSlider.value = savedVolume;
@@ -52,6 +52,7 @@ public class OptionsMenuController : MonoBehaviour
     {
         if (Canvas != null)
         {
+            Debug.Log("[OptionsMenu] Active " + active + ".");
             Canvas.SetActive(active);
         }
     }
@@ -62,21 +63,25 @@ public class OptionsMenuController : MonoBehaviour
         switch (level)
         {
             case 0:
+                Debug.Log("[OptionsMenu] Setting Background for Main Menu.");
                 backgroundImage.preserveAspect = false;
-                backgroundImage.sprite = firstLevelBackground;  
+                backgroundImage.sprite = menuBackground;  
                 break;
 
             case 1:
+                Debug.Log("[OptionsMenu] Setting Background for Level-" + level + ".");
                 backgroundImage.preserveAspect = true;
                 backgroundImage.sprite = firstLevelBackground;
                 break;
 
             case 2:
+                Debug.Log("[OptionsMenu] Setting Background for Level-" + level + ".");
                 backgroundImage.preserveAspect = true;
                 backgroundImage.sprite = secondLevelBackground;
                 break;
 
             case 3:
+                Debug.Log("[OptionsMenu] Setting Background for Level-" + level + ".");
                 backgroundImage.preserveAspect = true;
                 backgroundImage.sprite = thirdLevelBackground;
                 break;
@@ -86,12 +91,13 @@ public class OptionsMenuController : MonoBehaviour
     // Closes the Menu
     private void CloseMenu()
     {
+        Debug.Log("[OptionsMenu] Saving changes.");
         PlayerPrefs.Save();
 
         SetActive(false);
     }
 
-    void OnVolumeChanged(float volume)
+    private void OnVolumeChanged(float volume)
     {
         AudioListener.volume = volume;
 
@@ -105,13 +111,13 @@ public class OptionsMenuController : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    void UpdateVolumeText(float volume)
+    private void UpdateVolumeText(float volume)
     {
         int percent = Mathf.RoundToInt(volume * 100);
         volumePercentText.text = percent + "%";
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         PlayerPrefs.Save();
     }

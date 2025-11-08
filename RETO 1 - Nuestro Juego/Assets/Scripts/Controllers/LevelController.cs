@@ -14,12 +14,13 @@ public class LevelController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentLevel = 0;   
+
     }
 
     // Loads the fist level
     public void GameStart()
     {
+        Debug.Log("[LevelController] Game Start.");
         LoadLevel(1);
     }
 
@@ -27,16 +28,25 @@ public class LevelController : MonoBehaviour
     public void NextLevel()
     {
         currentLevel++;
+        Debug.Log("[LevelController] Loading next Level: Level-" + currentLevel + ".");
         SceneManager.LoadScene(Level(), LoadSceneMode.Single);
-        SetSpecificBackground(currentLevel);
+        SetSpecificBackground();
     }
 
     // Restart the Level count and loads the first one
     public void RestartGame()
     {
         currentLevel = 1;
+        Debug.Log("[LevelController] Restarting at Level-" + currentLevel + ".");
         SceneManager.LoadScene(Level(), LoadSceneMode.Single);
-        SetSpecificBackground(currentLevel);
+        SetSpecificBackground();
+    }
+
+    // Main menu
+    public void MainMenu()
+    {
+        currentLevel = 0;
+        SetSpecificBackground();
     }
 
     // Makes the name of the Level
@@ -48,13 +58,22 @@ public class LevelController : MonoBehaviour
     // Gets the number of the level
     public int GetLevel()
     {
+        Debug.Log("[LevelController] Current Level: " + currentLevel + ".");
         return currentLevel;
     }
 
     // Sets the background for each level
-    public void SetSpecificBackground(int level)
+    public void SetSpecificBackground()
     {
-        gameManager.SetSpecificBackground(level);
+        if (currentLevel > 0)
+        {
+            Debug.Log("[LevelController] Setting specific Background for Level-" + currentLevel + ".");
+        }
+        else
+        {
+            Debug.Log("[LevelController] Setting specific Background for Main Menu.");
+        }
+        gameManager.SetSpecificBackground(currentLevel);
     }
 
     // Loads an specific Level
@@ -64,22 +83,24 @@ public class LevelController : MonoBehaviour
         {
             case 1:
                 currentLevel = 1;
+                Debug.Log("[LevelController]: Loading Level-" + currentLevel + ".");
                 SceneManager.LoadScene("Level-1", LoadSceneMode.Single);
-                SetSpecificBackground(currentLevel);
+                SetSpecificBackground();
                 break;
 
             case 2:
                 currentLevel = 2;
+                Debug.Log("[LevelController]: Loading Level-" + currentLevel + ".");
                 SceneManager.LoadScene("Level-2", LoadSceneMode.Single);
-                SetSpecificBackground(currentLevel);
+                SetSpecificBackground();
                 break;
 
             case 3:
                 currentLevel = 3;
+                Debug.Log("[LevelController]: Loading Level-" + currentLevel + ".");
                 SceneManager.LoadScene("Level-3", LoadSceneMode.Single);
-                SetSpecificBackground(currentLevel);
+                SetSpecificBackground();
                 break;
         }
     }
-
 }

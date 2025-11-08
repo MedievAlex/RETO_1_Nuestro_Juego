@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,10 +30,10 @@ public class PauseMenuController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log("[PauseMenu] Getting Background.");
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
-        
-        SetActive(false);
 
+        Debug.Log("[PauseMenu] Setting Buttons.");
         resumeButton.onClick.AddListener(TogglePause); // When clicking Resume button goes back to the game
         mainMenuButton.onClick.AddListener(OpenMainMenu); // When clicking Menu button goes back to the main menu
         optionsButton.onClick.AddListener(OpenOptionsMenu); // When clicking Options button opens the options menu 
@@ -50,6 +51,7 @@ public class PauseMenuController : MonoBehaviour
     // Sets if it can be opened
     public void SetActivable(bool activable)
     {
+        Debug.Log("[PauseMenu] Activable " + activable + ".");
         this.activable = activable;
     }
 
@@ -58,18 +60,21 @@ public class PauseMenuController : MonoBehaviour
     {
         if (Canvas != null)
         {
+            Debug.Log("[PauseMenu] Active " + active + ".");
             Canvas.SetActive(active);
         }
     }
 
     // Opens or closes the menu
-    public void TogglePause()
+    private void TogglePause()
     {
+        Debug.Log("[PauseMenu] State changed to " + !pause + ".");
         pause = !pause;
 
         if (pause)
         {
             Time.timeScale = 0f;
+            Debug.Log("[PauseMenu] Time Scale " + Time.timeScale + ".");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             menuController.PauseTimer(true);
@@ -78,6 +83,7 @@ public class PauseMenuController : MonoBehaviour
         else
         {
             Time.timeScale = 1f;
+            Debug.Log("[PauseMenu] Time Scale " + Time.timeScale + ".");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             menuController.PauseTimer(false);
@@ -90,30 +96,40 @@ public class PauseMenuController : MonoBehaviour
     {
         switch (level)
         {
+            case 0:
+                Debug.Log("[PauseMenu] Setting Background for Level-" + (level++) + ".");
+                backgroundImage.sprite = firstLevelBackground;
+                break;
+
             case 1:
+                Debug.Log("[PauseMenu] Setting Background for Level-" + level + ".");
                 backgroundImage.sprite = firstLevelBackground;
                 break;
 
             case 2:
+                Debug.Log("[PauseMenu] Setting Background for Level-" + level + ".");
                 backgroundImage.sprite = secondLevelBackground;
                 break;
 
             case 3:
+                Debug.Log("[PauseMenu] Setting Background for Level-" + level + ".");
                 backgroundImage.sprite = thirdLevelBackground;
                 break;
         }
     }
 
     // Goes back to the Main Menu
-    public void OpenMainMenu()
+    private void OpenMainMenu()
     {
-        menuController.OpenMainMenu();
+        Debug.Log("[PauseMenu] Open Main Menu.");
+        menuController.OpenMainMenu(true);
         TogglePause();
     }
 
     // Opens the Options Menu
-    public void OpenOptionsMenu()
+    private void OpenOptionsMenu()
     {
-        menuController.OpenOptionsMenu();
+        Debug.Log("[PauseMenu] Open Options Menu.");
+        menuController.OpenOptionsMenu(true);
     }
 }

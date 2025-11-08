@@ -18,8 +18,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetActive(true);
-
+        Debug.Log("[MainMenu] Setting Buttons.");
         playButton.onClick.AddListener(GameStart); // When clicking Play button starts the game
         exitButton.onClick.AddListener(ExitGame); // When clicking Exit button closes the game
         optionsButton.onClick.AddListener(OpenOptionsMenu); // When clicking Options button opens the Options Menu
@@ -30,6 +29,7 @@ public class MainMenuController : MonoBehaviour
     {
         if (Canvas != null)
         {
+            Debug.Log("[MainMenu] Active " + active + ".");
             Canvas.SetActive(active);
         }
     }
@@ -37,20 +37,22 @@ public class MainMenuController : MonoBehaviour
     // Loads the fist level
     private void GameStart()
     {
+        Debug.Log("[MainMenu] Game Start.");
         menuController.GameStart();
         SetActive(false);
     }
 
     // Opens the Options Menu
-    public void OpenOptionsMenu()
+    private void OpenOptionsMenu()
     {
-        menuController.OpenOptionsMenu();
+        Debug.Log("[MainMenu] Open Options Menu.");
+        menuController.OpenOptionsMenu(true);
     }
 
     // Closes the Game
     private void ExitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
-        Application.Quit();
+        Debug.Log("[MainMenu] Exit Game.");
+        menuController.CloseGame();
     }
 }

@@ -15,14 +15,30 @@ public class MenuController : MonoBehaviour
     private GameOverMenuController gameOverMenu;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        Debug.Log("[MenuController] Setting Menus.");
         mainMenu = transform.GetChild(1).transform.GetComponent<MainMenuController>();
         optionsMenu = transform.GetChild(2).transform.GetComponent<OptionsMenuController>();
         pauseMenu = transform.GetChild(3).transform.GetComponent<PauseMenuController>();
         gameOverMenu = transform.GetChild(4).transform.GetComponent<GameOverMenuController>();
+    }
 
-        EnsureEventSystem();  
+    // Sets the values for the start
+    public void StartSettings()
+    {
+        Debug.Log("[MenuController] Starting Menus.");
+
+        EnsureEventSystem();
+
+        OpenMainMenu(true);
+
+        OpenPauseMenu(false);
+        SetPauseActivable(false);
+
+        OpenOptionsMenu(false);
+
+        OpenGameOverMenu(false);
     }
 
     // To use buttons
@@ -45,15 +61,25 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    // Loads the fist level
+    public void GameStart()
+    {
+        Debug.Log("[MenuController] Game Start.");
+        gameManager.GameStart();
+    }
+
     // Gets the number of the level
     public int GetLevel()
     {
-        return gameManager.GetLevel();
+        int level = gameManager.GetLevel();
+        Debug.Log("[MenuController] Actual Level: Level-"+ level + ".");
+        return level;
     }
 
     // Sets the background for each level
     public void SetSpecificBackground(int level)
     {
+        Debug.Log("[MenuController] Setting Backgrounds for Level-" + level + ".");
         SetOptionsSpecificBackground(level);
         SetPauseSpecificBackground(level);
     }
@@ -61,68 +87,92 @@ public class MenuController : MonoBehaviour
     // ---------------------------------------------------------------------------[ Main Menu ]------------------------------------------------------------------------------------
 
     // Opens Main Menu
-    public void OpenMainMenu()
+    public void OpenMainMenu(bool active)
     {
-        mainMenu.SetActive(true);
+        Debug.Log("[MenuController] Opening Main Menu " + active +".");
+        mainMenu.SetActive(active);
     }
 
-    // Loads the fist level
-    public void GameStart()
+    // Closes the Game
+    public void CloseGame()
     {
-        gameManager.GameStart();
+        Debug.Log("[MenuController] Closing game.");
+        CloseGame();
     }
 
     // ---------------------------------------------------------------------------[ Options Menu ]-----------------------------------------------------------------------------------
 
     // Opens Options Menu
-    public void OpenOptionsMenu()
+    public void OpenOptionsMenu(bool active)
     {
-        optionsMenu.SetActive(true);
+        Debug.Log("[MenuController] Opening Options Menu " + active + ".");
+        optionsMenu.SetActive(active);
     }
 
     // Sets the background for each level
-    public void SetOptionsSpecificBackground(int level)
+    private void SetOptionsSpecificBackground(int level)
     {
+        Debug.Log("[MenuController] Setting Options Menu Background for Level-" + level + ".");
         optionsMenu.SetSpecificBackground(level);
+    }
+
+    // Obtains the Audio Controller
+    public AudioController GetAudioController()
+    {
+        Debug.Log("[MenuController] Getting Audio Controller.");
+        return gameManager.GetAudioController();
     }
 
     // ---------------------------------------------------------------------------[ Pause Menu ]---------------------------------------------------------------------------
 
-        // Sets if it can be opened
+    // Sets if it can be opened
     public void SetPauseActivable(bool activable)
     {
+        Debug.Log("[MenuController] Set Pause Menu activable" + activable + ".");
         pauseMenu.SetActivable(activable);
+    }
+
+    // Opens Options Menu
+    public void OpenPauseMenu(bool active)
+    {
+        Debug.Log("[MenuController] Opening Pause Menu " + active + ".");
+        pauseMenu.SetActive(active);
     }
 
     // Stops or plays the counting 
     public void PauseTimer(bool pause)
     {
+        Debug.Log("[MenuController] Pause Timer " + pause + ".");
         gameManager.PauseTimer(pause);
     }
 
     // Resets the timer to 0 
     public void ResetTimer()
     {
+        Debug.Log("[MenuController] Resest Timer.");
         gameManager.ResetTimer();
     }
 
     // Sets the background for each level
-    public void SetPauseSpecificBackground(int level)
+    private void SetPauseSpecificBackground(int level)
     {
+        Debug.Log("[MenuController] Setting Pause Menu Background for Level-" + level + ".");
         pauseMenu.SetSpecificBackground(level);
     }
 
     // ---------------------------------------------------------------------------[ Game Over Menu ]--------------------------------------------------------------------------------
 
     // Opens Game Over Menu
-    public void OpenGameOverMenu()
+    public void OpenGameOverMenu(bool active)
     {
-        gameOverMenu.SetActive(true);
+        Debug.Log("[MenuController] Opening Game Over Menu " + active + ".");
+        gameOverMenu.SetActive(active);
     }
 
     // Restarts the game
     public void RestartGame()
     {
+        Debug.Log("[MenuController] Restart Game.");
         gameManager.RestartGame();
     }
 

@@ -15,11 +15,12 @@ public class HealthBarController : MonoBehaviour
     private UIController uiController;
     private int hearts;
     private int maxHearts;
-    private int defaultHearts;
+    private int currentHearts;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log("[HealthBar] Getting UI Controller.");
         uiController = transform.parent.GetComponentInParent<UIController>();
     }
 
@@ -29,10 +30,22 @@ public class HealthBarController : MonoBehaviour
         // Game Over
         if (lives == 0)
         {
+            Debug.Log("[HealthBar] " + lives + " lives left.");
             uiController.GameOver();
         }
         else
         {
+            Debug.Log("[HealthBar] Updating Hearts to " + lives + ".");
+
+            if (hearts > lives)
+            {
+                Debug.Log("[HealthBar] - 1 Heart.");
+            }
+            else
+            {
+                Debug.Log("[HealthBar] + 1 Heart.");
+            }
+
             hearts = lives;
 
             if (hearts > maxHearts)
@@ -82,12 +95,14 @@ public class HealthBarController : MonoBehaviour
     {
         if (maxHearts == 4)
         {
+            Debug.Log("[HealthBar] 4th Extra Heart unlocked.");
             transform.GetChild(2).GetComponent<Image>().sprite = heatlhBarM;
             transform.GetChild(3).GetComponent<Image>().sprite = heatlhBarE;
             transform.GetChild(3).GetComponent<Image>().enabled = true;
         }
         else if (maxHearts == 5)
         {
+            Debug.Log("[HealthBar] 5th Extra Heart unlocked.");
             transform.GetChild(3).GetComponent<Image>().sprite = heatlhBarM;
             transform.GetChild(4).GetComponent<Image>().sprite = heatlhBarE;
             transform.GetChild(4).GetComponent<Image>().enabled = true;
@@ -97,19 +112,25 @@ public class HealthBarController : MonoBehaviour
     // Gets the heart count
     public int GetLives()
     {
-        return defaultHearts;
+        Debug.Log("[HealthBar] Current Hearts: " + currentHearts + ".");
+        return currentHearts;
     }
 
     // Saves the heart count
     public void SaveLives(int saveHearts)
     {
-        defaultHearts = saveHearts;
+        Debug.Log("[HealthBar] Saving " + currentHearts + " Hearts.");
+        currentHearts = saveHearts;
     }
 
     // Default settings
     public void SetDefault()
     {
-        defaultHearts = 3;
+        Debug.Log("[HealthBar] Setting default Health Bar.");
+        
+        hearts = 3;
+        maxHearts = 3;
+        currentHearts = 3;
 
         transform.GetChild(0).GetComponent<Image>().sprite = heatlhBarS;
         transform.GetChild(1).GetComponent<Image>().sprite = heatlhBarM;

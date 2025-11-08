@@ -16,17 +16,19 @@ public class UIController : MonoBehaviour
     // Awake is called when the script instance is being loaded
     void Awake()
     {
+        Debug.Log("[UIController] Setting Elements.");
         healthBarController = transform.GetChild(0).transform.GetChild(1).GetComponent<HealthBarController>(); // Gets the Health Bar Controller
         timerController = transform.GetChild(0).transform.GetChild(2).GetComponent<TimerController>(); // Gets the Timer Controller
-
-        SetActive(false);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Sets the values for the start
+    public void StartSettings()
     {
-        timerController.PauseTimer(true);
+        SetActive(false);
+
+        Debug.Log("[UIController] Starting Elements.");
         healthBarController.SetDefault();
+        timerController.PauseTimer(true); 
     }
 
     // Open or close the menu
@@ -34,6 +36,7 @@ public class UIController : MonoBehaviour
     {
         if (Canvas != null)
         {
+            Debug.Log("[UI] Active " + active + ".");
             Canvas.SetActive(active);
         }
     }
@@ -43,24 +46,28 @@ public class UIController : MonoBehaviour
     // Updates life
     public void UpdateLives(int lives)
     {
+        Debug.Log("[UIController] Updating Lives to.");
         healthBarController.UpdateLives(lives);
     }
 
     // Gets the heart count
     public int GetLives()
     {
+        Debug.Log("[UIController] Getting Lives.");
         return healthBarController.GetLives();
     }
 
     // Saves the heart count
     public void SaveLives(int saveHearts)
     {
+        Debug.Log("[UIController] Saving Lives.");
         healthBarController.SaveLives(saveHearts);
     }
 
     // Default settings
     public void SetDefault()
     {
+        Debug.Log("[UIController] Setting Health Bar to default values.");
         healthBarController.SetDefault();
     }
 
@@ -69,12 +76,14 @@ public class UIController : MonoBehaviour
     // Stop or play the timer
     public void PauseTimer(bool pause)
     {
+        Debug.Log("[UIController] Pause Timer " + pause + ".");
         timerController.PauseTimer(pause);
     }
 
     // Reset the value of the timer to 0
     public void ResetTimer()
     {
+        Debug.Log("[UIController] Reseting Timer.");
         timerController.ResetTimer();
     }
 

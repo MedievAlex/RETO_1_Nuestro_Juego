@@ -27,15 +27,15 @@ public class ElevatorControl : MonoBehaviour
     {
         if (towardsPosition) // Moving towards the position
         {
-            audioController.elevatorAudio(GetComponent<AudioSource>(), 1, true);
+            audioController.ElevatorAudio(GetComponent<AudioSource>(), 1, true);
 
             openDoor(false); // Closes the door
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, speed * Time.deltaTime);
 
             if (transform.position == destinationPosition)
             {
-                audioController.elevatorAudio(GetComponent<AudioSource>(), 1, false);
-                audioController.elevatorAudio(GetComponent<AudioSource>(), 2, true);
+                audioController.ElevatorAudio(GetComponent<AudioSource>(), 1, false);
+                audioController.ElevatorAudio(GetComponent<AudioSource>(), 2, true);
                 towardsPosition = false; // Stops moving
                 activated = false;
                 openDoor(true); // Opens the door
@@ -58,7 +58,7 @@ public class ElevatorControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            collider.GetComponent<PlayerControl2D>().AbilityGestion("JUMP", false);
+            collider.GetComponent<Player2D>().AbilityGestion("JUMP", false);
 
             if (activated)
             {
@@ -73,7 +73,7 @@ public class ElevatorControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
-            collider.GetComponent<PlayerControl2D>().AbilityGestion("JUMP", true);
+            collider.GetComponent<Player2D>().AbilityGestion("JUMP", true);
             collider.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }

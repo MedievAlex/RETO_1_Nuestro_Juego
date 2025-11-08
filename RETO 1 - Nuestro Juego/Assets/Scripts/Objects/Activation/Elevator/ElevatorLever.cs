@@ -26,7 +26,7 @@ public class ElevatorLever : MonoBehaviour
     {
        if (stateActivable && Input.GetKeyDown(KeyCode.E)) // Changes lever's state
        {
-            audioController.leverAudio(GetComponent<AudioSource>());
+            audioController.LeverAudio(GetComponent<AudioSource>());
 
             if (!stateActive) // If the lever was activated, it deactivates it
            {

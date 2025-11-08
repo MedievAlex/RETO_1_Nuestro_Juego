@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class BackgroundAudioChange : MonoBehaviour
 {
@@ -25,7 +24,7 @@ public class BackgroundAudioChange : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            audioController.backgroundAudio(clip, true);
+            audioController.BackgroundAudio(clip, true);
         }
     }
 
@@ -33,7 +32,7 @@ public class BackgroundAudioChange : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            audioController.backgroundAudio(clip, false);
+            audioController.BackgroundAudio(clip, false);
         }
     }
 }

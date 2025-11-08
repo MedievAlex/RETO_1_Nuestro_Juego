@@ -25,15 +25,11 @@ public class OptionsMenuController : MonoBehaviour
     public Sprite thirdLevelBackground;
 
     // Not visible variables
-    private AudioController audioController;
     private Image backgroundImage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("[OptionsMenu] Getting Audio Controller.");
-        audioController = menuController.GetAudioController();
-
         Debug.Log("[OptionsMenu] Getting Background.");
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
 
@@ -65,7 +61,7 @@ public class OptionsMenuController : MonoBehaviour
             case 0:
                 Debug.Log("[OptionsMenu] Setting Background for Main Menu.");
                 backgroundImage.preserveAspect = false;
-                backgroundImage.sprite = menuBackground;  
+                backgroundImage.sprite = menuBackground;
                 break;
 
             case 1:
@@ -86,8 +82,8 @@ public class OptionsMenuController : MonoBehaviour
                 backgroundImage.sprite = thirdLevelBackground;
                 break;
         }
-    }     
-        
+    }
+
     // Closes the Menu
     private void CloseMenu()
     {
@@ -101,10 +97,7 @@ public class OptionsMenuController : MonoBehaviour
     {
         AudioListener.volume = volume;
 
-        if (audioController.getAudioController() != null)
-        {
-            audioController.getAudioController().SetVolume(volume);
-        }
+        menuController.GetAudioController().SetVolume(volume);
 
         UpdateVolumeText(volume);
         PlayerPrefs.SetFloat("MasterVolume", volume);

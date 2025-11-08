@@ -3,13 +3,13 @@ using UnityEngine;
 public class DeathDealer : MonoBehaviour
 {
     // Not visible variables
-    private PlayerControl2D targetPlayer;
+    private Player2D targetPlayer;
     private Rigidbody playerRB;
 
     // It runs once before the first Update it's executed
     void Start()
     {
-        targetPlayer = GameObject.Find("Player2D").GetComponent<PlayerControl2D>(); // Finds the GameObject of the class PlayerControl2D
+        targetPlayer = GameObject.Find("Player2D").GetComponent<Player2D>(); // Finds the GameObject of the class PlayerControl2D
         playerRB = targetPlayer.GetComponent<Rigidbody>();
     }
 

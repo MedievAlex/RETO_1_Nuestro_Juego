@@ -13,7 +13,7 @@ public class LeverPuzzle : MonoBehaviour
     public int attempts; // Attempts to complete the puzzle
 
     // Not visible variables  
-    private PlayerControl2D targetPlayer;
+    private Player2D targetPlayer;
     private int remainingAttempts; // Remaining extra attempts
     private float checkTime = 1;
     private float timePassed;
@@ -21,7 +21,7 @@ public class LeverPuzzle : MonoBehaviour
     // START runs once before the first Update it's executed
     void Start()
     {
-        targetPlayer = GameObject.Find("Player2D").GetComponent<PlayerControl2D>(); // Finds the GameObject of the class PlayerControl2D    
+        targetPlayer = GameObject.Find("Player2D").GetComponent<Player2D>(); // Finds the GameObject of the class PlayerControl2D    
         remainingAttempts = attempts;
         resetPuzzle();
     }

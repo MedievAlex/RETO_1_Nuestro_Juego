@@ -1,13 +1,10 @@
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     // Visible variables
     [Header("Player")] // Makes a header on the public variables
-    public PlayerControl2D player;
+    public Player2D player;
 
     [Header("Controllers")] // Makes a header on the public variables
     public MenuController menuController;
@@ -66,7 +63,6 @@ public class GameManager : MonoBehaviour
         menuController.SetPauseActivable(!active);
         levelController.MainMenu();
         menuController.OpenMainMenu(active);
-        audioController.backgroundAudio("MENU", active);
     }
 
     // Opens Options Menu
@@ -96,7 +92,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GAME MANAGER] Open Options Menu " + active + ".");
         ActivateUI(!active);
         menuController.SetPauseActivable(!active);
-        audioController.gameOverAudio(GetComponent<AudioSource>());
+        audioController.GameOverAudio();
         menuController.OpenGameOverMenu(active);
     }
 
@@ -106,6 +102,7 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         Debug.Log("[GAME MANAGER] Starting Game.");
+        audioController.GameStartAudio();
         levelController.GameStart();
         ActivateUI(true);
         ResetTimer();
@@ -142,7 +139,7 @@ public class GameManager : MonoBehaviour
     // ---------------------------------------------------------------------------[ Player ]-----------------------------------------------------------------------------------
 
     // Sets the current player
-    public void SetPlayer(PlayerControl2D player)
+    public void SetPlayer(Player2D player)
     {
         Debug.Log("[GAME MANAGER] Setting Player.");
         this.player = player;
@@ -206,13 +203,9 @@ public class GameManager : MonoBehaviour
 
     // ---------------------------------------------------------------------------[ AUDIO ]------------------------------------------------------------------------------------
 
+    // Get Audio Controller
     public AudioController GetAudioController()
     {
         return audioController;
     }
-
-    public void GameStartAudio()
-    {
-        audioController.GameStartAudio();
-    } 
 }

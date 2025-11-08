@@ -1,12 +1,6 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static Unity.VisualScripting.Member;
 
-public class PlayerControl2D : MonoBehaviour
+public class Player2D : MonoBehaviour
 {
     // Visible variables 
     [Header("Abilities")] // Makes a header on the public variables
@@ -105,7 +99,7 @@ public class PlayerControl2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
                 jumping = true;
-                audioController.playerEfects("JUMP");
+                audioController.PlayerEffects("JUMP");
 
                 if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
                 {
@@ -175,7 +169,7 @@ public class PlayerControl2D : MonoBehaviour
     {
         jumping = false;
 
-        audioController.playerEfects("DAMAGE");
+        audioController.PlayerEffects("DAMAGE");
         lifeCount--;
         gameManager.UpdateLives(lifeCount);
     }
@@ -242,17 +236,17 @@ public class PlayerControl2D : MonoBehaviour
         {
             if (running)
             {
-                audioController.playerAudio(GetComponent<AudioSource>(), "RUN", true);
+                audioController.PlayerAudio(GetComponent<AudioSource>(), "RUN", true);
             }
             else
             {
-                audioController.playerAudio(GetComponent<AudioSource>(), "WALK", true);
+                audioController.PlayerAudio(GetComponent<AudioSource>(), "WALK", true);
             }
         }
         else if (!walking || jumping || !ground)
         {
-            audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
-            audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);
+            audioController.PlayerAudio(GetComponent<AudioSource>(), "WALK", false);
+            audioController.PlayerAudio(GetComponent<AudioSource>(), "RUN", false);
         }
     } 
 }

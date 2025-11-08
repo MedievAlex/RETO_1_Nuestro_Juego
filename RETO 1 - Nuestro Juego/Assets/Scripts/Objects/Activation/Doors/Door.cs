@@ -61,7 +61,7 @@ public class Door : MonoBehaviour
     {
         if (opened || open)
         {
-            audioController.closingDoorAudio(GetComponent<AudioSource>());
+            audioController.ClosingDoorAudio(GetComponent<AudioSource>());
             open = false;
             close = true;
         }

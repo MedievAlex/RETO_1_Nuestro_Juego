@@ -36,7 +36,7 @@ public class Stalactite : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            audioController.rockBreakAudio(GetComponent<AudioSource>());
+            audioController.RockBreakAudio(GetComponent<AudioSource>());
             rb.useGravity = true;
         }
     }

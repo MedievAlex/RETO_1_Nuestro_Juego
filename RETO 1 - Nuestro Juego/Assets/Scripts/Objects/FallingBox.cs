@@ -26,7 +26,7 @@ public class FallingBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Ground" or "Player" label
         {           
-            audioController.fallBoxAudio(GetComponent<AudioSource>());       
+            audioController.FallBoxAudio(GetComponent<AudioSource>());       
         }
     }
 }

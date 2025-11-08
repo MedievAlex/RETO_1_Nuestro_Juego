@@ -162,11 +162,11 @@ public class MobileByActivationPlatformOf6 : MonoBehaviour
 
         if (inMovement)
         {
-            audioController.movingPlatformAudio(GetComponent<AudioSource>(), true);
+            audioController.MovingPlatformAudio(GetComponent<AudioSource>(), true);
         }
         else
         {
-            audioController.movingPlatformAudio(GetComponent<AudioSource>(), false);
+            audioController.MovingPlatformAudio(GetComponent<AudioSource>(), false);
         }
     }
 

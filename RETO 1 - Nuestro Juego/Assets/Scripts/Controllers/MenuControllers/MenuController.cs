@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class MenuController : MonoBehaviour
     private PauseMenuController pauseMenu;
     private GameOverMenuController gameOverMenu;
 
+    public AudioController audioController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -22,6 +23,9 @@ public class MenuController : MonoBehaviour
         optionsMenu = transform.GetChild(2).transform.GetComponent<OptionsMenuController>();
         pauseMenu = transform.GetChild(3).transform.GetComponent<PauseMenuController>();
         gameOverMenu = transform.GetChild(4).transform.GetComponent<GameOverMenuController>();
+
+        Debug.Log("[MenuController] Getting Audio Controller.");
+        audioController = gameManager.GetAudioController();
     }
 
     // Sets the values for the start
@@ -65,6 +69,7 @@ public class MenuController : MonoBehaviour
     public void GameStart()
     {
         Debug.Log("[MenuController] Game Start.");
+        audioController.GameStartAudio();
         gameManager.GameStart();
     }
 
@@ -72,7 +77,7 @@ public class MenuController : MonoBehaviour
     public int GetLevel()
     {
         int level = gameManager.GetLevel();
-        Debug.Log("[MenuController] Actual Level: Level-"+ level + ".");
+        Debug.Log("[MenuController] Actual Level: Level-" + level + ".");
         return level;
     }
 
@@ -89,7 +94,8 @@ public class MenuController : MonoBehaviour
     // Opens Main Menu
     public void OpenMainMenu(bool active)
     {
-        Debug.Log("[MenuController] Opening Main Menu " + active +".");
+        Debug.Log("[MenuController] Opening Main Menu " + active + ".");
+        audioController.BackgroundAudio("MENU", true);
         mainMenu.SetActive(active);
     }
 
@@ -160,6 +166,10 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("[MenuController] Opening Game Over Menu " + active + ".");
         gameOverMenu.SetActive(active);
+        if (active)
+        {
+            audioController.GameOverAudio();
+        }
     }
 
     // Restarts the game

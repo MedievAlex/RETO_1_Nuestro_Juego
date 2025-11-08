@@ -36,7 +36,7 @@ public class FallingStonesSpawn : MonoBehaviour
     // Generates more stones
     private void SpawnStone() // Spawns the object in the spawnpoint
     {
-        audioController.rockBreakAudio(GetComponent<AudioSource>());    
+        audioController.RockBreakAudio(GetComponent<AudioSource>());    
         Instantiate(fallingStone, spawnPoint, Quaternion.identity, this.transform); 
     } 
 }

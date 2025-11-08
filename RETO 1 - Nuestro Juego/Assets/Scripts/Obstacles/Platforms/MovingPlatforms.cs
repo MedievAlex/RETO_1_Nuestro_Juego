@@ -14,6 +14,6 @@ public class MovingPlatforms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioController.movingPlatformAudio(GetComponent<AudioSource>(), true);
+        audioController.MovingPlatformAudio(GetComponent<AudioSource>(), true);
     }
 }

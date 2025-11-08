@@ -36,7 +36,7 @@ public class UIController : MonoBehaviour
     {
         if (Canvas != null)
         {
-            Debug.Log("[UI] Active " + active + ".");
+            Debug.Log("[UIController] Active " + active + ".");
             Canvas.SetActive(active);
         }
     }

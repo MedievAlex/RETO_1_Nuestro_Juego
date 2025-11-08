@@ -27,66 +27,63 @@ public class HealthBarController : MonoBehaviour
     // Updates life
     public void UpdateLives(int lives)
     {
-        // Game Over
-        if (lives == 0)
+        Debug.Log("[HealthBar] " + lives + " lives left.");
+
+        if (hearts > lives)
         {
-            Debug.Log("[HealthBar] " + lives + " lives left.");
-            uiController.GameOver();
+            Debug.Log("[HealthBar] - 1 Heart.");
         }
         else
         {
-            Debug.Log("[HealthBar] Updating Hearts to " + lives + ".");
+            Debug.Log("[HealthBar] + 1 Heart.");
+        }
 
-            if (hearts > lives)
+        hearts = lives;
+
+        if (hearts > maxHearts)
+        {
+            maxHearts = hearts;
+            ActivateExtraHearts(maxHearts);
+        }
+
+        // Sets null hearts
+        for (int i = 0; i < maxHearts; i++)
+        {
+            if (i == 0)
             {
-                Debug.Log("[HealthBar] - 1 Heart.");
+                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarS;
+            }
+            else if (i == maxHearts - 1)
+            {
+                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarE;
             }
             else
             {
-                Debug.Log("[HealthBar] + 1 Heart.");
+                transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarM;
             }
+        }
 
-            hearts = lives;
-
-            if (hearts > maxHearts)
+        // Sets hearts
+        for (int i = 0; i < hearts; i++)
+        {
+            if (i == 0)
             {
-                maxHearts = hearts;
-                ActivateExtraHearts(maxHearts);
+                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarS;
             }
-
-            // Sets null hearts
-            for (int i = 0; i < maxHearts; i++)
+            else if (i == maxHearts - 1)
             {
-                if (i == 0)
-                {
-                    transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarS;
-                }
-                else if (i == maxHearts - 1)
-                {
-                    transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarE;
-                }
-                else
-                {
-                    transform.GetChild(i).GetComponent<Image>().sprite = nullHeatlhBarM;
-                }
+                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarE;
             }
-
-            // Sets hearts
-            for (int i = 0; i < hearts; i++)
+            else
             {
-                if (i == 0)
-                {
-                    transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarS;
-                }
-                else if (i == maxHearts - 1)
-                {
-                    transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarE;
-                }
-                else
-                {
-                    transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarM;
-                }
+                transform.GetChild(i).GetComponent<Image>().sprite = heatlhBarM;
             }
+        }
+
+        // Game Over
+        if (lives == 0)
+        {
+            uiController.GameOver();
         }
     }
 
@@ -127,9 +124,7 @@ public class HealthBarController : MonoBehaviour
     public void SetDefault()
     {
         Debug.Log("[HealthBar] Setting default Health Bar.");
-        
-        hearts = 3;
-        maxHearts = 3;
+
         currentHearts = 3;
 
         transform.GetChild(0).GetComponent<Image>().sprite = heatlhBarS;

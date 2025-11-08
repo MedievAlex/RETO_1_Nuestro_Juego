@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -57,9 +59,16 @@ public class GameManager : MonoBehaviour
     // Closes the Game
     public void CloseGame()
     {
-        Debug.Log("[GAME MANAGER]: Exiting Game...");
-        UnityEditor.EditorApplication.isPlaying = false;
-        Application.Quit();
+        Debug.Log("[GAME MANAGER]: Exiting Game.");
+
+        if (EditorApplication.isPlaying)
+        {
+            EditorApplication.ExitPlaymode();
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 
     // ---------------------------------------------------------------------------[ Menu ]------------------------------------------------------------------------------------
@@ -168,24 +177,29 @@ public class GameManager : MonoBehaviour
     // Updates life
     public void UpdateLives(int lives)
     {
+        Debug.Log("[GAME MANAGER] Update Lives.");
         uiController.UpdateLives(lives);
     }
 
     // Gets the heart count
     public int GetLives()
     {
-        return uiController.GetLives();
+        int lives = uiController.GetLives();
+        Debug.Log("[GAME MANAGER] Actual Lives: " + lives + ".");
+        return lives;
     }
 
     // Saves the heart count
     public void SaveLives(int saveHearts)
     {
+        Debug.Log("[GAME MANAGER] Saving Lives.");
         uiController.SaveLives(saveHearts);
     }
 
     // Default settings
     public void SetDefault()
     {
+        Debug.Log("[GAME MANAGER] Setting default Lives.");
         uiController.SetDefault();
     }
 

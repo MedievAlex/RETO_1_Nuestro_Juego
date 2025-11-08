@@ -29,7 +29,7 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("[MenuController] Starting Menus.");
 
-        EnsureEventSystem();
+        //EnsureEventSystem();
 
         OpenMainMenu(true);
 

@@ -4,21 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    // Not visible variables
-    private GameManager gameManager;
+    // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
 
-    private MainMenu mainMenu;
-    private OptionsMenu optionsMenu;
-    private PauseMenu pauseMenu;
+    // Not visible variables
+    private MainMenuController mainMenu;
+    private OptionsMenuController optionsMenu;
+    private PauseMenuController pauseMenu;
+    private GameOverMenuController gameOverMenu;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager = transform.parent.GetComponentInParent<GameManager>(); // Gets the Game Manager
-
-        mainMenu = transform.GetChild(1).transform.GetComponent<MainMenu>();
-        optionsMenu = transform.GetChild(2).transform.GetComponent<OptionsMenu>();
-        pauseMenu = transform.GetChild(3).transform.GetComponent<PauseMenu>();
+        mainMenu = transform.GetChild(1).transform.GetComponent<MainMenuController>();
+        optionsMenu = transform.GetChild(2).transform.GetComponent<OptionsMenuController>();
+        pauseMenu = transform.GetChild(3).transform.GetComponent<PauseMenuController>();
+        gameOverMenu = transform.GetChild(4).transform.GetComponent<GameOverMenuController>();
 
         EnsureEventSystem();  
     }
@@ -98,6 +100,12 @@ public class MenuController : MonoBehaviour
         gameManager.PauseTimer(pause);
     }
 
+    // Resets the timer to 0 
+    public void ResetTimer()
+    {
+        gameManager.ResetTimer();
+    }
+
     // Sets the background for each level
     public void SetPauseSpecificBackground(int level)
     {
@@ -109,7 +117,7 @@ public class MenuController : MonoBehaviour
     // Opens Game Over Menu
     public void OpenGameOverMenu()
     {
-        SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
+        gameOverMenu.SetActive(true);
     }
 
     // Restarts the game

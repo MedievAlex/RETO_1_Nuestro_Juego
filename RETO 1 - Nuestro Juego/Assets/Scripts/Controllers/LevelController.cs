@@ -4,15 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
+    // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
+
     // Not visible variables
-    private GameManager gameManager;
     private int currentLevel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager = transform.parent.GetComponentInParent<GameManager>(); // Gets the Game Manager
-
         currentLevel = 0;   
     }
 

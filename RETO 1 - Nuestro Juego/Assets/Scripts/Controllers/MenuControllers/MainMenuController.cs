@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
-    // Visible vaiables
+    // Visible variables
+    [Header("Controller")] // Makes a header on the public variables
+    public MenuController menuController;
+
+    [Header("Canvas")] // Makes a header on the public variables
     [SerializeField] private GameObject Canvas;
 
     [Header("Buttons")] // Makes a header on the public variables
@@ -11,14 +15,9 @@ public class MainMenu : MonoBehaviour
     public Button exitButton;
     public Button optionsButton;
 
-    // Not visible variables
-    private MenuController menuController;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
-
         SetActive(true);
 
         playButton.onClick.AddListener(GameStart); // When clicking Play button starts the game

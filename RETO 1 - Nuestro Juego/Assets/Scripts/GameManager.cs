@@ -80,7 +80,8 @@ public class GameManager : MonoBehaviour
     {
         levelController.GameStart();
         ActivateUI(true);
-        uiController.PauseTimer(false);
+        ResetTimer();
+        PauseTimer(false);
         menuController.SetPauseActivable(true);
     }
 
@@ -96,8 +97,8 @@ public class GameManager : MonoBehaviour
         levelController.RestartGame();
         ActivateUI(true);
         menuController.SetPauseActivable(true);
-        uiController.ResetTimer();
-        uiController.PauseTimer(false);
+        ResetTimer();
+        PauseTimer(false);
     }
 
     // Gets the number of the level

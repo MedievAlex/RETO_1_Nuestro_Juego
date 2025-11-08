@@ -7,6 +7,9 @@ using static Unity.VisualScripting.Member;
 public class AudioController : MonoBehaviour
 {
     // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
+
     [Header("Volume")] // Makes a header on the public variables
     public float generalVolume;
 

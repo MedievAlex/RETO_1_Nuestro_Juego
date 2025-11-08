@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2659267402120058059}
   - component: {fileID: 9000152431849022725}
   m_Layer: 0
-  m_Name: PauseMenu
+  m_Name: PauseMenuController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 888349366108710174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7998286992f7aaa40810b20b3fd63e29, type: 3}
+  m_Script: {fileID: 11500000, guid: fef2db72f13ecec4fa2f57afd4e9b18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Canvas: {fileID: 5635175044358789013}
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 6031201497391554514}
   - component: {fileID: 8910554343587573046}
   m_Layer: 5
-  m_Name: MenuButton
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

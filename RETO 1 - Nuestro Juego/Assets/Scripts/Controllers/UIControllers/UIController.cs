@@ -3,17 +3,19 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
+
+    [Header("Canvas")] // Makes a header on the public variables
     [SerializeField] private GameObject Canvas;
 
     // Not visible variables
-    private GameManager gameManager;
     private HealthBarController healthBarController;
     private TimerController timerController;
 
     // Awake is called when the script instance is being loaded
     void Awake()
     {
-        gameManager = transform.parent.GetComponentInParent<GameManager>(); // Gets the Game Manager
         healthBarController = transform.GetChild(0).transform.GetChild(1).GetComponent<HealthBarController>(); // Gets the Health Bar Controller
         timerController = transform.GetChild(0).transform.GetChild(2).GetComponent<TimerController>(); // Gets the Timer Controller
 

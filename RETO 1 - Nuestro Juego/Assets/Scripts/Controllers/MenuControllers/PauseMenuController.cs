@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenuController : MonoBehaviour
 {
     // Visible variables
+    [Header("Controller")] // Makes a header on the public variables
+    public MenuController menuController;
+
+    [Header("Canvas")] // Makes a header on the public variables
     [SerializeField] private GameObject Canvas;
 
     [Header("Buttons")] // Makes a header on the public variables
@@ -17,8 +21,6 @@ public class PauseMenu : MonoBehaviour
     public Sprite thirdLevelBackground;
 
     // Not visible variables
-    private MenuController menuController;
-
     private Image backgroundImage;
 
     private bool activable = false;
@@ -27,8 +29,6 @@ public class PauseMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
-
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
         
         SetActive(false);
@@ -53,6 +53,15 @@ public class PauseMenu : MonoBehaviour
         this.activable = activable;
     }
 
+    // Open or close the menu
+    public void SetActive(bool active)
+    {
+        if (Canvas != null)
+        {
+            Canvas.SetActive(active);
+        }
+    }
+
     // Opens or closes the menu
     public void TogglePause()
     {
@@ -68,20 +77,11 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             menuController.PauseTimer(false);
             SetActive(false);
-        }
-    }
-
-    // Open or close the menu
-    public void SetActive(bool active)
-    {
-        if (Canvas != null)
-        {
-            Canvas.SetActive(active);
         }
     }
 
@@ -108,6 +108,7 @@ public class PauseMenu : MonoBehaviour
     public void OpenMainMenu()
     {
         menuController.OpenMainMenu();
+        TogglePause();
     }
 
     // Opens the Options Menu

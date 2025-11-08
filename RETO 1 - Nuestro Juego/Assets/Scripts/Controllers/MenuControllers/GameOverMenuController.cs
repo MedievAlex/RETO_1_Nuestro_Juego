@@ -3,34 +3,48 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameOverMenu : MonoBehaviour
+public class GameOverMenuController : MonoBehaviour
 {
     // Visible variables
+    [Header("Controller")] // Makes a header on the public variables
+    public MenuController menuController;
+
+    [Header("Canvas")] // Makes a header on the public variables
+    [SerializeField] private GameObject Canvas;
+
     [Header("Buttons")] // Makes a header on the public variables
     public Button restartButton;
     public Button mainMenuButton;
 
-    // Not visible variables
-    private MenuController menuController;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
+        SetActive(false);
 
         restartButton.onClick.AddListener(RestartGame); // When clicking Retry button restarts the game
         mainMenuButton.onClick.AddListener(OpenMainMenu); // When clicking Menu button goes back to the main menu
+    }
+
+    // Open or close the menu
+    public void SetActive(bool active)
+    {
+        if (Canvas != null)
+        {
+            Canvas.SetActive(active);
+        }
     }
 
     // Restarts the Game
     private void RestartGame()
     {
         menuController.RestartGame();
+        SetActive(false);
     }
 
     // Opens Main Menu
     private void OpenMainMenu()
     {
         menuController.OpenMainMenu();
+        SetActive(false);
     }
 }

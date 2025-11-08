@@ -1,12 +1,14 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class OptionsMenu : MonoBehaviour
+public class OptionsMenuController : MonoBehaviour
 {
     // Visible variables
+    [Header("Controller")] // Makes a header on the public variables
+    public MenuController menuController;
+
+    [Header("Canvas")] // Makes a header on the public variables
     [SerializeField] private GameObject Canvas;
 
     [Header("Buttons")] // Makes a header on the public variables
@@ -23,14 +25,12 @@ public class OptionsMenu : MonoBehaviour
     public Sprite thirdLevelBackground;
 
     // Not visible variables
-    private MenuController menuController;
     private AudioController audioController;
     private Image backgroundImage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();

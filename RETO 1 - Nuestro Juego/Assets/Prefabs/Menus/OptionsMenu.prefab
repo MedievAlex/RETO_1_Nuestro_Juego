@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 814532816002562116}
   - component: {fileID: 5385521639125900545}
   m_Layer: 5
-  m_Name: Background
+  m_Name: OptionsBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,7 +723,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -780,6 +780,10 @@ MonoBehaviour:
   backButton: {fileID: 7915048081904250831}
   volumeSlider: {fileID: 2527491356667502462}
   volumePercentText: {fileID: 1482786799349256535}
+  menuBackground: {fileID: 21300000, guid: 7ef272c4d32f5d342bc6242c92088846, type: 3}
+  firstLevelBackground: {fileID: 21300000, guid: 309baf9cf1f4d73469e8153bc2263427, type: 3}
+  secondLevelBackground: {fileID: 21300000, guid: 4a670c2530cf782498751f252a7dab57, type: 3}
+  thirdLevelBackground: {fileID: 21300000, guid: cd257192fe339644e8d4ae278a0cdb22, type: 3}
 --- !u!1 &5533960268287504139
 GameObject:
   m_ObjectHideFlags: 0

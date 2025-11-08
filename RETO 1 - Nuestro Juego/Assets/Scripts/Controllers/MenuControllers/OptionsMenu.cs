@@ -33,9 +33,9 @@ public class OptionsMenu : MonoBehaviour
         menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 
-        SetActive(false);
-
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
+
+        SetActive(false);
 
         float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         volumeSlider.value = savedVolume;
@@ -62,18 +62,22 @@ public class OptionsMenu : MonoBehaviour
         switch (level)
         {
             case 0:
-                backgroundImage.sprite = menuBackground;
+                backgroundImage.preserveAspect = false;
+                backgroundImage.sprite = firstLevelBackground;  
                 break;
 
             case 1:
+                backgroundImage.preserveAspect = true;
                 backgroundImage.sprite = firstLevelBackground;
                 break;
 
             case 2:
+                backgroundImage.preserveAspect = true;
                 backgroundImage.sprite = secondLevelBackground;
                 break;
 
             case 3:
+                backgroundImage.preserveAspect = true;
                 backgroundImage.sprite = thirdLevelBackground;
                 break;
         }

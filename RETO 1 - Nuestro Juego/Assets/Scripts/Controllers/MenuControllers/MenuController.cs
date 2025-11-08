@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
     // Not visible variables
     private GameManager gameManager;
 
+    private MainMenu mainMenu;
     private OptionsMenu optionsMenu;
     private PauseMenu pauseMenu;
 
@@ -15,8 +16,9 @@ public class MenuController : MonoBehaviour
     {
         gameManager = transform.parent.GetComponentInParent<GameManager>(); // Gets the Game Manager
 
-        optionsMenu = transform.GetChild(1).transform.GetComponent<OptionsMenu>();
-        pauseMenu = transform.GetChild(2).transform.GetComponent<PauseMenu>();
+        mainMenu = transform.GetChild(1).transform.GetComponent<MainMenu>();
+        optionsMenu = transform.GetChild(2).transform.GetComponent<OptionsMenu>();
+        pauseMenu = transform.GetChild(3).transform.GetComponent<PauseMenu>();
 
         EnsureEventSystem();  
     }
@@ -59,7 +61,7 @@ public class MenuController : MonoBehaviour
     // Opens Main Menu
     public void OpenMainMenu()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        mainMenu.SetActive(true);
     }
 
     // Loads the fist level

@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     // Opens Game Over Menu
     public void OpenGameOverMenu()
     {
+        ActivateUI(false);
         menuController.SetPauseActivable(false);
         audioController.gameOverAudio(GetComponent<AudioSource>());
         menuController.OpenGameOverMenu();
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         levelController.GameStart();
+        ActivateUI(true);
         uiController.PauseTimer(false);
         menuController.SetPauseActivable(true);
     }
@@ -92,6 +94,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         levelController.RestartGame();
+        ActivateUI(true);
         menuController.SetPauseActivable(true);
         uiController.ResetTimer();
         uiController.PauseTimer(false);
@@ -109,6 +112,14 @@ public class GameManager : MonoBehaviour
     public void SetPlayer(PlayerControl2D player)
     {
         this.player = player;
+    }
+
+    // ---------------------------------------------------------------------------[ UI ]---------------------------------------------------------------------------------------
+
+    // Activates or deactivates the UI
+    public void ActivateUI(bool active)
+    {
+        uiController.SetActive(active);
     }
 
     // ---------------------------------------------------------------------------[ UI: Health Bar ]---------------------------------------------------------------------------

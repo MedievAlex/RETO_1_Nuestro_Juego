@@ -29,9 +29,9 @@ public class PauseMenu : MonoBehaviour
     {
         menuController = transform.parent.GetComponentInParent<MenuController>(); // Gets the Menu Controller
 
-        SetActive(false);
-
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
+        
+        SetActive(false);
 
         resumeButton.onClick.AddListener(TogglePause); // When clicking Resume button goes back to the game
         mainMenuButton.onClick.AddListener(OpenMainMenu); // When clicking Menu button goes back to the main menu
@@ -76,6 +76,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Open or close the menu
     public void SetActive(bool active)
     {
         if (Canvas != null)

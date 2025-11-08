@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
+    // Visible variables
+    [SerializeField] private GameObject Canvas;
+
     // Not visible variables
     private GameManager gameManager;
     private HealthBarController healthBarController;
@@ -11,8 +14,10 @@ public class UIController : MonoBehaviour
     void Awake()
     {
         gameManager = transform.parent.GetComponentInParent<GameManager>(); // Gets the Game Manager
-        healthBarController = transform.GetChild(1).GetComponent<HealthBarController>(); // Gets the Health Bar Controller
-        timerController = transform.GetChild(2).GetComponent<TimerController>(); // Gets the Timer Controller
+        healthBarController = transform.GetChild(0).transform.GetChild(1).GetComponent<HealthBarController>(); // Gets the Health Bar Controller
+        timerController = transform.GetChild(0).transform.GetChild(2).GetComponent<TimerController>(); // Gets the Timer Controller
+
+        SetActive(false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,6 +25,15 @@ public class UIController : MonoBehaviour
     {
         timerController.PauseTimer(true);
         healthBarController.SetDefault();
+    }
+
+    // Open or close the menu
+    public void SetActive(bool active)
+    {
+        if (Canvas != null)
+        {
+            Canvas.SetActive(active);
+        }
     }
 
     // ---------------------------------------------------------------------------[ UI: Health Bar ]---------------------------------------------------------------------------

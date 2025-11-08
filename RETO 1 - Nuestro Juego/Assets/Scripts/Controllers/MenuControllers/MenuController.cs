@@ -93,13 +93,6 @@ public class MenuController : MonoBehaviour
         mainMenu.SetActive(active);
     }
 
-    // Closes the Game
-    public void CloseGame()
-    {
-        Debug.Log("[MenuController] Closing game.");
-        CloseGame();
-    }
-
     // ---------------------------------------------------------------------------[ Options Menu ]-----------------------------------------------------------------------------------
 
     // Opens Options Menu

@@ -130,17 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f34e2c7891a12488a97be23a90975d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &211911920 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8939195013802670763, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
-  m_PrefabInstance: {fileID: 2649212194482371733}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d72a8c9baaa2b14ba0fbf5d85cfe143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &242342690 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 544822508661025669, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
@@ -150,6 +139,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c3d222668816bf43ab2a3bd00ff53e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1045584133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8939195013802670763, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+  m_PrefabInstance: {fileID: 2649212194482371733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d72a8c9baaa2b14ba0fbf5d85cfe143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1133815379 stripped
@@ -371,6 +371,10 @@ PrefabInstance:
       propertyPath: secondLevelBackground
       value: 
       objectReference: {fileID: 21300000, guid: 4a670c2530cf782498751f252a7dab57, type: 3}
+    - target: {fileID: 3990907885407438878, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4728169879466301492, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: menuBackground
       value: 
@@ -395,6 +399,18 @@ PrefabInstance:
       propertyPath: menuController
       value: 
       objectReference: {fileID: 242342690}
+    - target: {fileID: 5149606972265126611, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149606972265126611, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149606972265126611, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5314627143930886248, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: gameManager
       value: 
@@ -422,7 +438,7 @@ PrefabInstance:
     - target: {fileID: 6932073568635328967, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: uiController
       value: 
-      objectReference: {fileID: 211911920}
+      objectReference: {fileID: 1045584133}
     - target: {fileID: 6932073568635328967, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: menuController
       value: 

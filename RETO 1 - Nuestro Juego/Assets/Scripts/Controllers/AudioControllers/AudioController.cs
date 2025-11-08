@@ -48,6 +48,7 @@ public class AudioController : MonoBehaviour
     // START runs once before the first UPDATE it's executed
     void Start()
     {
+        Debug.Log("[AudioController] .");
         mainSource = transform.GetComponent<AudioSource>();
         generalVolume = mainSource.volume;
     }

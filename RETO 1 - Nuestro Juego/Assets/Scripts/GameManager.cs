@@ -56,21 +56,6 @@ public class GameManager : MonoBehaviour
         uiController.StartSettings();
     }
 
-    // Closes the Game
-    public void CloseGame()
-    {
-        Debug.Log("[GAME MANAGER]: Exiting Game.");
-
-        if (EditorApplication.isPlaying)
-        {
-            EditorApplication.ExitPlaymode();
-        }
-        else
-        {
-            Application.Quit();
-        }
-    }
-
     // ---------------------------------------------------------------------------[ Menu ]------------------------------------------------------------------------------------
 
     // Opens Main Menu

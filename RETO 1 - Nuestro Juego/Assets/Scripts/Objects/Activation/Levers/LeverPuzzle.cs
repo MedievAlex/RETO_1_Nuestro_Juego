@@ -36,7 +36,7 @@ public class LeverPuzzle : MonoBehaviour
                 timePassed += Time.deltaTime; // Calculates the time
                 if (timePassed > checkTime) // Creates a new object and restarts the counter
                 {
-                    Debug.Log("[LeverPuzzle] Correct convination.");
+                    Debug.Log("[LeverPuzzle] Correct combination.");
                     door.changeState();
                     testLever.stateActive = false;
                     timePassed = 0f;
@@ -48,7 +48,7 @@ public class LeverPuzzle : MonoBehaviour
                 if (timePassed > checkTime) // Creates a new object and restarts the counter
                 {
                     remainingAttempts--;
-                    Debug.Log("[LeverPuzzle] Incorrect convination. " + remainingAttempts + " attemps left.");
+                    Debug.Log("[LeverPuzzle] Incorrect combination. " + remainingAttempts + " attemps left.");
                     testLever.stateActive = false;
                     resetPuzzle();
                     if (remainingAttempts == 0)

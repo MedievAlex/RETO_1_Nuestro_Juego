@@ -9,8 +9,7 @@ public class DeathDealer : MonoBehaviour
     // It runs once before the first Update it's executed
     void Start()
     {
-        targetPlayer = GameObject.Find("Player2D").GetComponent<Player2D>(); // Finds the GameObject of the class PlayerControl2D
-        playerRB = targetPlayer.GetComponent<Rigidbody>();
+   
     }
 
     // Update is executed once per frame
@@ -24,8 +23,11 @@ public class DeathDealer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            targetPlayer.GetRigidbody().linearVelocity = Vector3.zero; // Stop it from moving
-            targetPlayer.GetRigidbody().angularVelocity = Vector3.zero; // Reset the physical rotation
+            targetPlayer = collision.transform.GetComponent<Player2D>();
+            playerRB = targetPlayer.GetComponent<Rigidbody>();
+
+            playerRB.linearVelocity = Vector3.zero; // Stop it from moving
+            playerRB.angularVelocity = Vector3.zero; // Reset the physical rotation
             targetPlayer.transform.position = targetPlayer.GetRespawn(); // Respawn at the saved point
             targetPlayer.ApplyDamage(); // Deals damage
         }

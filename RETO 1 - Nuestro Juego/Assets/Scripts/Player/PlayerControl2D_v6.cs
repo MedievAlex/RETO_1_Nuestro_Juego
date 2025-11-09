@@ -35,10 +35,11 @@ public class Player2D : MonoBehaviour
     // START runs once before the first UPDATE it's executed
     void Start()
     {
+        Debug.Log("[Player] Searching for GameManager.");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Gets the Game Manager
         gameManager.SetPlayer(this);
  
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        audioController = gameManager.GetAudioController(); // Finds the AudioController of the Scene
 
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         animator = gameObject.GetComponent<Animator>(); // Get the Animator component
@@ -164,8 +165,8 @@ public class Player2D : MonoBehaviour
         }
     }
 
-    // Respawn methods
-    public void ApplyDamage() // Deals damage
+    // Deals damage
+    public void ApplyDamage() 
     {
         jumping = false;
 
@@ -174,19 +175,21 @@ public class Player2D : MonoBehaviour
         gameManager.UpdateLives(lifeCount);
     }
 
+    public Rigidbody GetRigidbody()
+    {
+        return rb;
+    }
+
+    // Sets new respawn point
     public void SetRespawn(Vector3 newSpawnPoint)
     {
         spawnPoint = newSpawnPoint;
     }
 
+    // Gets the actual respawn point
     public Vector3 GetRespawn()
     {
         return spawnPoint;
-    }
-
-    public Rigidbody GetRigidbody()
-    {
-        return rb;
     }
 
     // Ability gestion

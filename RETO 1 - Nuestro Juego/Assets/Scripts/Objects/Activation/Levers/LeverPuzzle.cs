@@ -36,7 +36,7 @@ public class LeverPuzzle : MonoBehaviour
                 timePassed += Time.deltaTime; // Calculates the time
                 if (timePassed > checkTime) // Creates a new object and restarts the counter
                 {
-                    Debug.Log("Correct convination.");
+                    Debug.Log("[LeverPuzzle] Correct convination.");
                     door.changeState();
                     testLever.stateActive = false;
                     timePassed = 0f;
@@ -48,12 +48,11 @@ public class LeverPuzzle : MonoBehaviour
                 if (timePassed > checkTime) // Creates a new object and restarts the counter
                 {
                     remainingAttempts--;
-                    Debug.LogWarning(remainingAttempts + " attemps left.");
+                    Debug.Log("[LeverPuzzle] Incorrect convination. " + remainingAttempts + " attemps left.");
                     testLever.stateActive = false;
                     resetPuzzle();
                     if (remainingAttempts == 0)
                     {    
-                        Debug.LogWarning("Knockback missing.");
                         targetPlayer.ApplyDamage();
                         remainingAttempts = attempts;
                     }
@@ -66,11 +65,11 @@ public class LeverPuzzle : MonoBehaviour
     // Resets the puzzle values
     private bool verifyPuzzle()
     {
-        if(lever1.stateActive && !lever2.stateActive && !lever3.stateActive && !lever4.stateActive){
+        if(lever1.stateActive && !lever2.stateActive && !lever3.stateActive && !lever4.stateActive){ 
             return true;
         }
         else
-        {
+        { 
             return false;
         }
     }

@@ -145,9 +145,15 @@ public class GameManager : MonoBehaviour
         this.player = player;
     }
 
+    // Deals damage
+    public void ApplyDamage() 
+    {
+        player.ApplyDamage();
+    }
+
     // ---------------------------------------------------------------------------[ UI ]---------------------------------------------------------------------------------------
 
-    // Activates or deactivates the UI
+        // Activates or deactivates the UI
     public void ActivateUI(bool active)
     {
         Debug.Log("[GAME MANAGER] Active UI " + active + ".");

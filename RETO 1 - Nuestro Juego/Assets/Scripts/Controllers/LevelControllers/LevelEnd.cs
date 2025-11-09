@@ -1,18 +1,16 @@
 using UnityEngine;
-using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
 
 public class LevelEnd : MonoBehaviour
 {
     // Visible variables
-    public string thisScene; // Next level name
-    public string nextScene; // Next level name
-    public Vector3 nextSpawn; // Next scene's spawn
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
     
     // START runs once before the first Update it's executed
     void Start()
     {
-    
+        Debug.Log("[LevelEnd] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
     }
 
     // UPDATE is executed once per frame
@@ -28,11 +26,11 @@ public class LevelEnd : MonoBehaviour
         {
             if (collider.gameObject.transform.parent.gameObject.CompareTag("Elevator")) // Check that the collided object has the "Player" label and its in the "Elevator"
             {
+                Debug.Log("[LevelEnd] Player to Next Level.");
                 collider.gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; // Stop it from moving
                 collider.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; // Reset the physical rotation
-                // collider.gameObject.transform.position = nextSpawn;
-  
-                SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+
+                gameManager.NextLevel();
             }
         }
     }

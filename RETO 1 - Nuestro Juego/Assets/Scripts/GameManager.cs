@@ -151,6 +151,26 @@ public class GameManager : MonoBehaviour
         player.ApplyDamage();
     }
 
+    // Sets respawn
+    public void SetRespawn(Vector3 newSpawnPoint)
+    {
+        player.SetRespawn(newSpawnPoint);
+    }
+
+    // Gets the actual respawn point
+    public Vector3 GetRespawn()
+    {
+        return player.GetRespawn();
+    }
+
+    // Ability gestion
+    public void AbilityGestion(string abilityName, bool active)
+    {
+        player.AbilityGestion(abilityName, active);
+    }
+
+    
+
     // ---------------------------------------------------------------------------[ UI ]---------------------------------------------------------------------------------------
 
         // Activates or deactivates the UI
@@ -227,5 +247,88 @@ public class GameManager : MonoBehaviour
     public AudioController GetAudioController()
     {
         return audioController;
+    }
+
+    // Sets the general volume
+    public void SetVolume(float volume)
+    {
+        Debug.Log("[GAME MANAGER] Set volume to " + volume + ".");
+        audioController.SetVolume(volume);
+    }
+
+    // Menu audio control
+    public void GameStartAudio()
+    {
+        audioController.GameStartAudio();
+    }
+
+    public void GameOverAudio()
+    {
+        audioController.GameOverAudio();
+    }
+
+    // Background music control
+    public void BackgroundAudio(string clip, bool play)
+    {
+        audioController.BackgroundAudio(clip, play);
+    }
+
+    // Player audio control
+    public void PlayerAudio(AudioSource source, string clip, bool play)
+    {
+        audioController.PlayerAudio(source, clip, play);
+    }
+
+    public void PlayerEffects(string clip)
+    {
+        audioController.PlayerEffects(clip);
+    }
+
+    // Lever audio control
+    public void LeverAudio(AudioSource source)
+    {
+        audioController.LeverAudio(source);
+    }
+
+    // Elevator audio control
+    public void ElevatorAudio(AudioSource source, int clip, bool play)
+    {
+        audioController.ElevatorAudio(source, clip, play);
+    }
+
+    // Moving platform audio control
+    public void MovingPlatformAudio(AudioSource source, bool play)
+    {
+       audioController.MovingPlatformAudio(source, play);
+    }
+
+    // Closing door audio control
+    public void ClosingDoorAudio(AudioSource source)
+    {
+        audioController.ClosingDoorAudio(source);
+    }
+
+    // Checkpoint audio control
+    public void CheckPointAudio(AudioSource source)
+    {
+        audioController.CheckPointAudio(source);
+    }
+
+    // Life object audio control
+    public void LifeObjectAudio()
+    {
+        audioController.LifeObjectAudio();
+    }
+
+    // Breaking rock audio control
+    public void RockBreakAudio(AudioSource source)
+    {
+        audioController.RockBreakAudio(source);
+    }
+
+    // Falling box audio control
+    public void FallBoxAudio(AudioSource source)
+    {
+        audioController.FallBoxAudio(source);
     }
 }

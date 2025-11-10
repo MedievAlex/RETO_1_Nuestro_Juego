@@ -2,21 +2,15 @@ using UnityEngine;
 
 public class LifeObject : MonoBehaviour
 {
-    // Not visible variables  
-    private Player2D targetPlayer; 
-    private AudioController audioController;
+    // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;    
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // It runs once before the first Update it's executed
     void Start()
     {
-        targetPlayer = GameObject.Find("Player2D").GetComponent<Player2D>(); // Finds the GameObject of the class PlayerControl2D
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("[LifeObject] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
     }
 
     // Executed when a collision with a trigger happens
@@ -24,8 +18,9 @@ public class LifeObject : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
-            audioController.LifeObjectAudio();
-            targetPlayer.AbilityGestion("AddLife", true);
+            Debug.Log("[LifeObject] +1 lives.");
+            gameManager.LifeObjectAudio();
+            gameManager.AbilityGestion("AddLife", true);
             Destroy(gameObject);
         }
     }

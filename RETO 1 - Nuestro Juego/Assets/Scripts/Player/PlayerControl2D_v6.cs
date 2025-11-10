@@ -14,9 +14,9 @@ public class Player2D : MonoBehaviour
 
     // Not visible variables
     private GameManager gameManager;
-    private AudioController audioController;
 
-    private Rigidbody rb; // Referencia al Rigidbody
+    private Rigidbody rigidbody; // Reference to the Rigidbody
+    private AudioSource audioSource; // Reference to the Audio Source
     private Animator animator; // Reference to the animator
 
     private Vector3 spawnPoint; // Referencia al punto de reaparición
@@ -38,10 +38,9 @@ public class Player2D : MonoBehaviour
         Debug.Log("[Player] Searching for GameManager.");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Gets the Game Manager
         gameManager.SetPlayer(this);
- 
-        audioController = gameManager.GetAudioController(); // Finds the AudioController of the Scene
 
-        rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
+        rigidbody = GetComponent<Rigidbody>(); // Get the Rigidbody component
+        audioSource = GetComponent<AudioSource>(); // Get the Audio Source component
         animator = gameObject.GetComponent<Animator>(); // Get the Animator component
 
         lifeCount = gameManager.GetLives(); // Get the life points
@@ -100,15 +99,15 @@ public class Player2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
                 jumping = true;
-                audioController.PlayerEffects("JUMP");
+                gameManager.PlayerEffects("JUMP");
 
                 if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
                 {
-                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 }
                 else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
                 {
-                    rb.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+                    rigidbody.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
                 }
                 jumpsReset = false;
                 jumpsLeft--;
@@ -170,7 +169,7 @@ public class Player2D : MonoBehaviour
     {
         jumping = false;
 
-        audioController.PlayerEffects("DAMAGE");
+        gameManager.PlayerEffects("DAMAGE");
         lifeCount--;
         gameManager.UpdateLives(lifeCount);
         gameManager.ShowDamageBorder(true, 0.5f);
@@ -178,7 +177,7 @@ public class Player2D : MonoBehaviour
 
     public Rigidbody GetRigidbody()
     {
-        return rb;
+        return rigidbody;
     }
 
     // Sets new respawn point
@@ -240,17 +239,17 @@ public class Player2D : MonoBehaviour
         {
             if (running)
             {
-                audioController.PlayerAudio(GetComponent<AudioSource>(), "RUN", true);
+                gameManager.PlayerAudio(audioSource, "RUN", true);
             }
             else
             {
-                audioController.PlayerAudio(GetComponent<AudioSource>(), "WALK", true);
+                gameManager.PlayerAudio(audioSource, "WALK", true);
             }
         }
         else if (!walking || jumping || !ground)
         {
-            audioController.PlayerAudio(GetComponent<AudioSource>(), "WALK", false);
-            audioController.PlayerAudio(GetComponent<AudioSource>(), "RUN", false);
+            gameManager.PlayerAudio(audioSource, "WALK", false);
+            gameManager.PlayerAudio(audioSource, "RUN", false);
         }
     } 
 }

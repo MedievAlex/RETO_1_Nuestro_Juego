@@ -13,8 +13,6 @@ public class MenuController : MonoBehaviour
     private PauseMenuController pauseMenu;
     private GameOverMenuController gameOverMenu;
 
-    public AudioController audioController;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -23,9 +21,6 @@ public class MenuController : MonoBehaviour
         optionsMenu = transform.GetChild(2).transform.GetComponent<OptionsMenuController>();
         pauseMenu = transform.GetChild(3).transform.GetComponent<PauseMenuController>();
         gameOverMenu = transform.GetChild(4).transform.GetComponent<GameOverMenuController>();
-
-        Debug.Log("[MenuController] Getting Audio Controller.");
-        audioController = gameManager.GetAudioController();
     }
 
     // Sets the values for the start
@@ -69,7 +64,7 @@ public class MenuController : MonoBehaviour
     public void GameStart()
     {
         Debug.Log("[MenuController] Game Start.");
-        audioController.GameStartAudio();
+        gameManager.GameStartAudio();
         gameManager.GameStart();
     }
 
@@ -95,7 +90,7 @@ public class MenuController : MonoBehaviour
     public void OpenMainMenu(bool active)
     {
         Debug.Log("[MenuController] Opening Main Menu " + active + ".");
-        audioController.BackgroundAudio("MENU", true);
+        gameManager.BackgroundAudio("MENU", true);
         mainMenu.SetActive(active);
     }
 
@@ -115,11 +110,10 @@ public class MenuController : MonoBehaviour
         optionsMenu.SetSpecificBackground(level);
     }
 
-    // Obtains the Audio Controller
-    public AudioController GetAudioController()
+    // Sets the general volume
+    public void SetVolume(float volume)
     {
-        Debug.Log("[MenuController] Getting Audio Controller.");
-        return gameManager.GetAudioController();
+        gameManager.SetVolume(volume);
     }
 
     // ---------------------------------------------------------------------------[ Pause Menu ]---------------------------------------------------------------------------
@@ -168,7 +162,7 @@ public class MenuController : MonoBehaviour
         gameOverMenu.SetActive(active);
         if (active)
         {
-            audioController.GameOverAudio();
+            gameManager.GameOverAudio();
         }
     }
 

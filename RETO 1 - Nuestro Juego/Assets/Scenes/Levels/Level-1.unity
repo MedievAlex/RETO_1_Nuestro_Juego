@@ -127,6 +127,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1373694999}
     m_Modifications:
+    - target: {fileID: 3564251495269866297, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: elevator
+      value: 
+      objectReference: {fileID: 1142004095}
+    - target: {fileID: 3564251495269866297, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: destinationPosition.x
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564251495269866297, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: destinationPosition.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3779875336722192843, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.07
@@ -10097,6 +10109,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1373694999}
     m_Modifications:
+    - target: {fileID: 3564251495269866297, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: elevator
+      value: 
+      objectReference: {fileID: 1142004095}
+    - target: {fileID: 3564251495269866297, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: destinationPosition.x
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564251495269866297, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: destinationPosition.y
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3779875336722192843, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.07
@@ -10658,6 +10682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab5ab66e638cac47b579ebda2492682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   clip: CAVE
 --- !u!65 &686713551
 BoxCollider:
@@ -31878,6 +31903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab5ab66e638cac47b579ebda2492682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   clip: FOREST
 --- !u!65 &2035131977
 BoxCollider:
@@ -33742,7 +33768,7 @@ PrefabInstance:
     - target: {fileID: 8431235672480291897, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: elevator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1142004095}
     - target: {fileID: 8431235672480291897, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: destinationPosition.x
       value: 43

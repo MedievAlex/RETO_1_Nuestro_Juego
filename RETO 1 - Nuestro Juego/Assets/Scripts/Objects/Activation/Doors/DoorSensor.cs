@@ -12,12 +12,6 @@ public class DoorSensor : MonoBehaviour
         door = transform.parent.gameObject.GetComponent<Door>();
     }
 
-    // Update is executed once per frame
-    void Update()
-    {
-        
-    }
-
     // Executed when a collision occurs
     private void OnTriggerEnter(Collider collider)
     {

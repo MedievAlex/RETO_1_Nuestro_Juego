@@ -3,25 +3,19 @@ using UnityEngine;
 public class LeverGestion : MonoBehaviour
 {
     // Visible variables
-    public ElevatorCallLever lever1; // Referenced lever
-    public ElevatorCallLever lever2; // Referenced lever
+    public Lever lever1; // Referenced lever
+    public Lever lever2; // Referenced lever
 
-    // START runs once before the first Update it's executed
-    void Start()
-    {
-
-    }
-
-    // UPDATE is executed once per frame
+    // Update is called once per frame
     void Update()
     {
-       if(lever1.getStateActivable() && lever1.stateActive)
+       if(lever1.GetActivable() && lever1.GetState())
        {
-            lever2.stateActive = false;
+            lever2.SetState(false);
        }
-       else if(lever2.getStateActivable() && lever2.stateActive)
+       else if(lever2.GetActivable() && lever2.GetState())
        {
-            lever1.stateActive = false;
+            lever1.SetState(false);
         }
     }
 }

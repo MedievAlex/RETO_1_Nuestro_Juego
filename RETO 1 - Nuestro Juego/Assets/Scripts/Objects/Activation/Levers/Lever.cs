@@ -14,17 +14,16 @@ public class Lever : MonoBehaviour
     public Material inactiveSprite;
 
     // Not visible variables
-    private AudioController audioController;
+    private AudioSource audioSource;
     private bool stateActivable; // If the ladder is actibable or not
 
-    // START runs once before the first Update it's executed
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Debug.Log("[Lever] Searching for GameManager.");
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Sceneent 
 
-        Debug.Log("[Lever] Setting Audio Controller.");
-        audioController = gameManager.GetAudioController();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // UPDATE is executed once per frame
@@ -32,35 +31,12 @@ public class Lever : MonoBehaviour
     {
         if (stateActivable && Input.GetKeyDown(KeyCode.E)) // Changes lever's state
         {
-            audioController.LeverAudio(GetComponent<AudioSource>());
+            gameManager.LeverAudio(audioSource);
 
             stateActive = !stateActive;
             Debug.Log("[Lever] Changed state to " + stateActive + ".");
-
-            /*
-            if (!stateActive) // If the lever was activated, it deactivates it
-            {
-                stateActive = true;
-            }
-            else // If the lever was deactivated, it activates it
-            {
-                stateActive = false;
-            }
-            */
         }
         changeSprite();
-    }
-
-    private void changeSprite()
-    {
-        if (stateActive) // Changes the sprite
-        {
-            transform.GetComponent<Renderer>().material = activeSprite;
-        }
-        else
-        {
-            transform.GetComponent<Renderer>().material = inactiveSprite;
-        }
     }
 
     // Executed when a collision with a trigger occurs
@@ -79,5 +55,36 @@ public class Lever : MonoBehaviour
         {
             stateActivable = false;
         }
+    }
+
+    // Sprite manager
+    private void changeSprite()
+    {
+        if (stateActive) // Changes the sprite
+        {
+            transform.GetComponent<Renderer>().material = activeSprite;
+        }
+        else
+        {
+            transform.GetComponent<Renderer>().material = inactiveSprite;
+        }
+    }
+
+    // Get State
+    public bool GetActivable()
+    {
+        return stateActivable;
+    }
+
+    // Get State
+    public bool GetState()
+    {
+        return stateActive;
+    }
+
+    // Set State
+    public void SetState(bool state)
+    {
+        stateActive = state;
     }
 }

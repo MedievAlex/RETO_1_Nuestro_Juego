@@ -2,21 +2,15 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Not visible variables
-    private Player2D targetPlayer = null;
-    private AudioController audioController;
+    // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;    
 
     // It runs once before the first Update it's executed
     void Start()
     {
-        targetPlayer = GameObject.Find("Player2D").GetComponent<Player2D>(); // Finds the GameObject of the class PlayerControl2D
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
-    }
-
-    // Update is executed once per frame
-    void Update()
-    {
-
+        Debug.Log("[Checkpoint] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
     }
 
     // Executed when a collision with a trigger occurs
@@ -24,8 +18,9 @@ public class Checkpoint : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            audioController.CheckPointAudio(GetComponent<AudioSource>());
-            targetPlayer.SetRespawn(collider.transform.position);
+            Debug.Log("[Checkpoint] Player arrived at a Checkpoint.");
+            gameManager.CheckPointAudio(GetComponent<AudioSource>());
+            gameManager.SetRespawn(collider.transform.position);
             Destroy(GetComponent<Collider>()); // Destroys the checkpoint
         }
     }

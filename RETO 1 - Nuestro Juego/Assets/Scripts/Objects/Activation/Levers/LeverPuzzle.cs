@@ -4,24 +4,33 @@ using UnityEngine;
 public class LeverPuzzle : MonoBehaviour
 {
     // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
+
+    [Header("Door")] // Makes a header on the public variables
     public Door door; // Referenced door
+
+    [Header("Levers")] // Makes a header on the public variables
     public Lever lever1; // Referenced lever
     public Lever lever2; // Referenced lever
     public Lever lever3; // Referenced lever
     public Lever lever4; // Referenced lever
     public Lever testLever; // Referenced lever
+
+    [Header("Attemps")] // Makes a header on the public variables
     public int attempts; // Attempts to complete the puzzle
 
     // Not visible variables  
-    private Player2D targetPlayer;
     private int remainingAttempts; // Remaining extra attempts
     private float checkTime = 1;
     private float timePassed;
 
-    // START runs once before the first Update it's executed
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        targetPlayer = GameObject.Find("Player2D").GetComponent<Player2D>(); // Finds the GameObject of the class PlayerControl2D    
+        Debug.Log("[LeverPuzzle] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Sceneent
+
         remainingAttempts = attempts;
         resetPuzzle();
     }
@@ -29,7 +38,7 @@ public class LeverPuzzle : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-        if (testLever.stateActive)
+        if (testLever.GetState())
         {
             if (verifyPuzzle()) // Correct combination
             { 
@@ -38,7 +47,7 @@ public class LeverPuzzle : MonoBehaviour
                 {
                     Debug.Log("[LeverPuzzle] Correct combination.");
                     door.changeState();
-                    testLever.stateActive = false;
+                    testLever.SetState(false);
                     timePassed = 0f;
                 }
             }
@@ -49,11 +58,11 @@ public class LeverPuzzle : MonoBehaviour
                 {
                     remainingAttempts--;
                     Debug.Log("[LeverPuzzle] Incorrect combination. " + remainingAttempts + " attemps left.");
-                    testLever.stateActive = false;
+                    testLever.SetState(false);
                     resetPuzzle();
                     if (remainingAttempts == 0)
                     {    
-                        targetPlayer.ApplyDamage();
+                        gameManager.ApplyDamage();
                         remainingAttempts = attempts;
                     }
                     timePassed = 0f;
@@ -77,7 +86,7 @@ public class LeverPuzzle : MonoBehaviour
     // Resets the puzzle values
     private void resetPuzzle()
     {
-        testLever.stateActive = false;         
+        testLever.SetState(false);         
         do
         {     
             lever1.stateActive = randomState();

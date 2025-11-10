@@ -8,64 +8,35 @@ public class StonesLever : MonoBehaviour
     public float stopTime;
 
     // Not visible variables  
-    private bool stateActivable; // If the ladder is actibable or not
+    private Lever lever; 
     private bool fall; // Remaining extra attempts
     private float timePassed;
 
-    // START runs once before the first Update it's executed
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        lever = transform.GetComponent<Lever>();
     }
 
     // UPDATE is executed once per frame
     void Update()
     {
-        if (stateActivable && Input.GetKeyDown(KeyCode.E)) // Changes lever's state
-       {
-           if (!stateActive) // If the lever was activated, it deactivates it
-           {
-                stateActive = true;
-                fall = false;
-            } 
-           else // If the lever was deactivated, it activates it
-           {
-                stateActive = false;
-                fall = true;
-           }
-       }
-
-       if (stateActive)
-       {
-           timePassed += Time.deltaTime; // Calculates the time
-           if (timePassed > stopTime) // Creates a new object and restarts the counter
-           {
-               stateActive = false;
-               fall = true;
-               timePassed = 0f;
-           }
-       }
-       else
-       {
-           fall = true;
-       }
-    }
-
-    // Executed when a collision with a trigger occurs
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
+        if (lever.GetState()) // If the lever was activated, it deactivates it
+        { 
+            fall = false;
+            Debug.Log("[StonesLever] Stones falling " + fall + ".");
+            
+            timePassed += Time.deltaTime; // Calculates the time
+            if (timePassed > stopTime) // Creates a new object and restarts the counter
+            {
+                lever.SetState(false);
+                timePassed = 0f;
+            }
+        } 
+        else // If the lever was deactivated, it activates it
         {
-            stateActivable = true;
-        }
-    }
-
-    // Executed when a collision with a trigger ends
-    private void OnTriggerExit(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
-        {
-            stateActivable = false;
+            fall = true;
+            Debug.Log("[StonesLever] Stones falling " + fall + ".");
         }
     }
 

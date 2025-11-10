@@ -97,7 +97,7 @@ public class OptionsMenuController : MonoBehaviour
     {
         AudioListener.volume = volume;
 
-        menuController.GetAudioController().SetVolume(volume);
+        menuController.SetVolume(volume);
 
         UpdateVolumeText(volume);
         PlayerPrefs.SetFloat("MasterVolume", volume);

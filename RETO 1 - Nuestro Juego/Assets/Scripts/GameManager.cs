@@ -160,6 +160,20 @@ public class GameManager : MonoBehaviour
         uiController.SetActive(active);
     }
 
+    // Activates or deactivates the UI
+    public void DamageBorder(bool active)
+    {
+        Debug.Log("[GAME MANAGER] Damage Border " + active + ".");
+        uiController.SetActive(active);
+    }
+
+    // Shows or hides the Damage Border
+    public void ShowDamageBorder(bool visible, float visibleSeconds)
+    {
+        Debug.Log("[GAME MANAGER] Damage Border visible " + visible + ".");
+        uiController.ShowDamageBorder(visible, visibleSeconds);
+    }
+
     // ---------------------------------------------------------------------------[ UI: Health Bar ]---------------------------------------------------------------------------
 
     // Updates life

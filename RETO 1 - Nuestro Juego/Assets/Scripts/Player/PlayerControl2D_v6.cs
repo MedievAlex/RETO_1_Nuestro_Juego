@@ -173,6 +173,7 @@ public class Player2D : MonoBehaviour
         audioController.PlayerEffects("DAMAGE");
         lifeCount--;
         gameManager.UpdateLives(lifeCount);
+        gameManager.ShowDamageBorder(true, 0.5f);
     }
 
     public Rigidbody GetRigidbody()

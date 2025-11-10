@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 3633937937280859076}
   - component: {fileID: 1575326681085732581}
   - component: {fileID: 6871233505223633027}
+  - component: {fileID: 5064649013706875065}
   m_Layer: 5
   m_Name: Damage border
   m_TagString: Untagged
@@ -523,7 +524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a3dbe7a3aae7b240ad175f163d25870, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -533,6 +534,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5064649013706875065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3614455295659412185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e719dcbd815515246b3639f387ffa4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  border: {fileID: 21300000, guid: 2a3dbe7a3aae7b240ad175f163d25870, type: 3}
 --- !u!1 &4622327093351766080
 GameObject:
   m_ObjectHideFlags: 0

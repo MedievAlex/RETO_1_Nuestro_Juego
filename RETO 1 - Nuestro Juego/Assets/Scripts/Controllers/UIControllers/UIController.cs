@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     // Not visible variables
     private HealthBarController healthBarController;
     private TimerController timerController;
+    private DamageBorderController damageBorder;
 
     // Awake is called when the script instance is being loaded
     void Awake()
@@ -19,6 +20,7 @@ public class UIController : MonoBehaviour
         Debug.Log("[UIController] Setting Elements.");
         healthBarController = transform.GetChild(0).transform.GetChild(1).GetComponent<HealthBarController>(); // Gets the Health Bar Controller
         timerController = transform.GetChild(0).transform.GetChild(2).GetComponent<TimerController>(); // Gets the Timer Controller
+        damageBorder  = transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<DamageBorderController>(); // Gets the Damage Border Controller
     }
 
     // Sets the values for the start
@@ -27,8 +29,9 @@ public class UIController : MonoBehaviour
         SetActive(false);
 
         Debug.Log("[UIController] Starting Elements.");
-        healthBarController.SetDefault();
-        timerController.PauseTimer(true); 
+        SetDefault();
+        PauseTimer(true); 
+        ShowDamageBorder(false, 0f);
     }
 
     // Open or close the menu
@@ -93,5 +96,14 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
         healthBarController.SetDefault();
         timerController.ResetTimer();
+    }
+
+    // ---------------------------------------------------------------------------[ UI: Damage Border ]--------------------------------------------------------------------------------
+
+    // Shows or hides the border
+    public void ShowDamageBorder(bool visible, float visibleSeconds)
+    {
+        Debug.Log("[UIController] Damage Border visible " + visible + ".");
+        damageBorder.ShowDamageBorder(visible, visibleSeconds);
     }
 }

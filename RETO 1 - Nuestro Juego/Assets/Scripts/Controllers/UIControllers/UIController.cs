@@ -93,7 +93,7 @@ public class UIController : MonoBehaviour
     // Game Over
     public void GameOver()
     {
-        SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
+        gameManager.OpenGameOverMenu(true);
         healthBarController.SetDefault();
         timerController.ResetTimer();
     }

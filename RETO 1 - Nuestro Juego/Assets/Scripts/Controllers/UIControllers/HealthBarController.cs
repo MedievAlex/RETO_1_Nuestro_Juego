@@ -81,8 +81,9 @@ public class HealthBarController : MonoBehaviour
         }
 
         // Game Over
-        if (lives == 0)
+        if (hearts == 0)
         {
+            Debug.LogWarning("[HealthBar] No hearts left.");
             uiController.GameOver();
         }
     }

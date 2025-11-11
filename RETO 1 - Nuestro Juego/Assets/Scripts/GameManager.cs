@@ -211,6 +211,12 @@ public class GameManager : MonoBehaviour
         uiController.ShowDamageBorder(visible, visibleSeconds);
     }
 
+    // Plays Timer audio
+    public void CountdownAudio(AudioSource audioSource)
+    {
+        audioController.CountdownAudio(audioSource);
+    }
+
     // ---------------------------------------------------------------------------[ UI: Health Bar ]---------------------------------------------------------------------------
 
     // Updates life

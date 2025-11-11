@@ -142,10 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f34e2c7891a12488a97be23a90975d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   generalVolume: 0
   mainMenu: {fileID: 8300000, guid: 0801f28ed1a315c4180dcb78c0f29d41, type: 3}
   gameStart: {fileID: 8300000, guid: 9412151ee8b4c1c4d8e9ee369bf89be5, type: 3}
   gameOver: {fileID: 8300000, guid: 9f2e7c4d2d68b8a4e8e063202ca9acc4, type: 3}
+  countdown: {fileID: 8300000, guid: eab50f6b39274cb4d9ab72ec2a2643db, type: 3}
   forestBackgroundMusic: {fileID: 8300000, guid: a476a1e69eb8d604bbabe16d6dd4272b, type: 3}
   caveBackgroundMusic: {fileID: 8300000, guid: e8d5198206ceb304899aeec0b6f116d8, type: 3}
   walk: {fileID: 8300000, guid: 3294bf3ede1b0fc45874858a23eb92f6, type: 3}

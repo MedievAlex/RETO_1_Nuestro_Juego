@@ -146,6 +146,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d222668816bf43ab2a3bd00ff53e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &921665430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6459215067352556957, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+  m_PrefabInstance: {fileID: 2649212194482371733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd104276121901439b39ef555e95bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1045584133 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8939195013802670763, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
@@ -191,7 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9e7671e28c7c14d8556df1c4f01f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1256416530}
+  timerController: {fileID: 921665430}
   player: {fileID: 0}
   level: 0
   tDamageDealers: {x: 0, y: 0, z: 0}
@@ -540,6 +552,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8709364386743623044, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 8300000, guid: eab50f6b39274cb4d9ab72ec2a2643db, type: 3}
     - target: {fileID: 8709364386743623044, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: gameManager
       value: 

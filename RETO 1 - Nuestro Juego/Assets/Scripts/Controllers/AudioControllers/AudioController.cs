@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class AudioController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class AudioController : MonoBehaviour
     public AudioClip mainMenu;
     public AudioClip gameStart;
     public AudioClip gameOver;
+    public AudioClip countdown;
 
     [Header("Background Clips")] // Makes a header on the public variables
     public AudioClip forestBackgroundMusic;
@@ -70,6 +72,16 @@ public class AudioController : MonoBehaviour
         Debug.Log("[AudioController] Game Over.");
         mainSource.Pause();
         mainSource.PlayOneShot(gameOver);
+    }
+
+    // UI Audio Control
+    public void CountdownAudio(AudioSource source)
+    {
+        Debug.Log("[AudioController] Countdown.");
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(countdown);
+        } 
     }
 
     // ---------------------------------------------------------------------------[ Background ]------------------------------------------------------------------------------

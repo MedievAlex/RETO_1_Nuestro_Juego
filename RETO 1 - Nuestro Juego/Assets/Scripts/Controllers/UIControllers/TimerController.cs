@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem.XR;
 
 public class TimerController : MonoBehaviour
@@ -9,9 +10,9 @@ public class TimerController : MonoBehaviour
 
     // Not visible variables
     private UIController uiController;
+    private AudioSource audioSource;
     private bool pause;
     private float timePassed;
-    private float damageTimer;
     private string minutes;
     private string seconds;
 
@@ -20,6 +21,8 @@ public class TimerController : MonoBehaviour
     {
         Debug.Log("[HealthBar] Getting UI Controller.");
         uiController = transform.parent.GetComponentInParent<UIController>();
+
+        audioSource = GetComponent<AudioSource>(); // Get the Audio Source component
     }
 
     // Update is called once per frame
@@ -28,16 +31,10 @@ public class TimerController : MonoBehaviour
         if (!pause)
         {
             timePassed += Time.deltaTime;
-            damageTimer = timePassed;
         }
 
         timer.text = TimeFormat();
-
-        if (damageTimer == 900f)
-        {
-            uiController.ApplyDamage();
-            damageTimer = 0.0f;
-        }
+        TimerColor();
     }
 
     // Transforms float value to seconds and minutes giving it format
@@ -47,6 +44,24 @@ public class TimerController : MonoBehaviour
         seconds = Mathf.Floor(timePassed % 60).ToString("00");
 
         return minutes + ":" + seconds;
+    }
+
+    // Color and Countdown control
+    private void TimerColor()
+    {
+        if (timePassed > 1500f)
+        {
+            timer.color = Color.red;
+            if (timePassed > 1740f)
+            {
+                uiController.CountdownAudio(audioSource);
+                if (timePassed > 1800f)
+                {
+                    uiController.GameOver();
+                    timer.color = Color.white;
+                }
+            }
+        }
     }
 
     // Stop or play the timer
@@ -60,5 +75,11 @@ public class TimerController : MonoBehaviour
     {
         PauseTimer(false);
         timePassed = 0;
+    }
+
+
+    public void AddTime()
+    {
+        timePassed = timePassed + 60f;
     }
 }

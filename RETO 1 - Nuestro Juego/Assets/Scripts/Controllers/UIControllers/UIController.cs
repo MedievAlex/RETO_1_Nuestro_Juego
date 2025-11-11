@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.SpriteMask;
 public class UIController : MonoBehaviour
 {
     // Visible variables
@@ -90,10 +91,10 @@ public class UIController : MonoBehaviour
         timerController.ResetTimer();
     }
 
-    // Deals damage
-    public void ApplyDamage()
+    // Plays Timer audio
+    public void CountdownAudio(AudioSource audioSource)
     {
-        gameManager.ApplyDamage();
+        gameManager.CountdownAudio(audioSource);
     }
 
     // Game Over

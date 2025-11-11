@@ -4,6 +4,7 @@ public class Test : MonoBehaviour
 {
     [Header("Manager")] // Makes a header on the public variables
     public GameManager gameManager;
+    public TimerController timerController;
 
     [Header("Player")]
     public Player2D player;
@@ -26,8 +27,6 @@ public class Test : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
-
         tDamageDealers = new Vector3(-3f, 14f, 0f);
         yCheckpoint = new Vector3(20f, 18f, 0f);
         uElevator = new Vector3(35f, 20f, 0f);
@@ -38,9 +37,9 @@ public class Test : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.T))
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.T) && Input.GetKey(KeyCode.M))
         {
-            testMode = !testMode;
+            testMode = true;
             SetPlayer();
         }
 
@@ -61,12 +60,17 @@ public class Test : MonoBehaviour
                 level = 3;
             }
 
-            if (Input.GetKeyDown(KeyCode.N))
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                timerController.AddTime();
+            }
+
+            if (Input.GetKeyDown(KeyCode.H))
             {
                 gameManager.AbilityGestion("ADDLIFE", true);
             }
 
-            if (Input.GetKeyDown(KeyCode.M))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 gameManager.ApplyDamage();
             }

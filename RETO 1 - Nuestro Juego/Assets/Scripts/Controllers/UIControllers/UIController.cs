@@ -90,6 +90,12 @@ public class UIController : MonoBehaviour
         timerController.ResetTimer();
     }
 
+    // Deals damage
+    public void ApplyDamage()
+    {
+        gameManager.ApplyDamage();
+    }
+
     // Game Over
     public void GameOver()
     {

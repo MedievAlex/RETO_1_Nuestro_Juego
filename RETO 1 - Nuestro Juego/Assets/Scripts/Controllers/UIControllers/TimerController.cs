@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class TimerController : MonoBehaviour
 {
@@ -7,10 +8,19 @@ public class TimerController : MonoBehaviour
     public TextMeshProUGUI timer; // Text showing the numbers
 
     // Not visible variables
+    private UIController uiController;
     private bool pause;
     private float timePassed;
+    private float damageTimer;
     private string minutes;
     private string seconds;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        Debug.Log("[HealthBar] Getting UI Controller.");
+        uiController = transform.parent.GetComponentInParent<UIController>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -18,15 +28,15 @@ public class TimerController : MonoBehaviour
         if (!pause)
         {
             timePassed += Time.deltaTime;
+            damageTimer = timePassed;
         }
-
-        Debug.LogWarning("Time Passed: " + timePassed + ".");
 
         timer.text = TimeFormat();
 
-        if (timePassed == 0)
+        if (damageTimer == 900f)
         {
-
+            uiController.ApplyDamage();
+            damageTimer = 0.0f;
         }
     }
 

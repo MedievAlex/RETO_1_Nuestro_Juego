@@ -244,6 +244,8 @@ public class Player2D : MonoBehaviour
                 lifeCount++;
                 gameManager.UpdateLives(lifeCount);
                 break;
+            default:
+                break;
         }
     }
 

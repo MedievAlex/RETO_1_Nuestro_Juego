@@ -19,6 +19,7 @@ public class Test : MonoBehaviour
 
     [Header("Key locations Level-2")]
     public Vector3 tPlatforms;
+    public Vector3 yEnd;
 
     [Header("Key locations Level-3")]
     public Vector3 tPuzzle;
@@ -27,12 +28,16 @@ public class Test : MonoBehaviour
 
     void Start()
     {
+        level = gameManager.GetLevel();
+
         tDamageDealers = new Vector3(-3f, 14f, 0f);
         yCheckpoint = new Vector3(20f, 18f, 0f);
         uElevator = new Vector3(35f, 20f, 0f);
 
-        tPlatforms = new Vector3(20f, 18f, 0f);
-        tPuzzle = new Vector3(35f, 20f, 0f);
+        tPlatforms = new Vector3(-38f, 15f, 0f);
+        yEnd = new Vector3(56.5f, 25f, 0f);
+
+        tPuzzle = new Vector3(-3f, 5f, 0f);
     }
 
     void Update()
@@ -40,24 +45,13 @@ public class Test : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.T) && Input.GetKey(KeyCode.M))
         {
             testMode = true;
-            SetPlayer();
         }
 
         if (testMode)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (player == null)
             {
-                level = 1;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                level = 2;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                level = 3;
+                SetPlayer();
             }
 
             if (Input.GetKeyDown(KeyCode.G))
@@ -73,39 +67,59 @@ public class Test : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.J))
             {
                 gameManager.ApplyDamage();
-            }
+            } 
 
-            if (level == 1)
+            if (Input.GetKeyDown(KeyCode.T))
             {
-                if (Input.GetKeyDown(KeyCode.T))
+                level = gameManager.GetLevel();
+
+                if (level == 1)
                 {
                     player.transform.position = tDamageDealers;
                 }
-
-                if (Input.GetKeyDown(KeyCode.Y))
-                {
-                    player.transform.position = yCheckpoint;
-                }
-
-                if (Input.GetKeyDown(KeyCode.U))
-                {
-                    player.transform.position = uElevator;
-                }
-            }
-
-            if (level == 2)
-            {
-                if (Input.GetKeyDown(KeyCode.T))
+                else if (level == 2)
                 {
                     player.transform.position = tPlatforms;
                 }
-            }
-
-            if (level == 3)
-            {
-                if (Input.GetKeyDown(KeyCode.T))
+                else if (level == 3)
                 {
                     player.transform.position = tPuzzle;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                level = gameManager.GetLevel();
+
+                if (level == 1)
+                {
+                    player.transform.position = yCheckpoint;
+                }
+                else if (level == 2)
+                {
+                    player.transform.position = yEnd;
+                }
+                else if (level == 3)
+                {
+
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                level = gameManager.GetLevel();
+
+                if (level == 1)
+                {
+                    player.transform.position = uElevator;
+                }
+                else if (level == 2)
+                {
+
+                }
+                else if (level == 3)
+                {
+
                 }
             }
         }

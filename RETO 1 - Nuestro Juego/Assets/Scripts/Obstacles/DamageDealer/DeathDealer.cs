@@ -9,8 +9,7 @@ public class DeathDealer : MonoBehaviour
     // It runs once before the first Update it's executed
     void Start()
     {
-        Debug.Log("[Elevator] Searching for GameManager.");
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
     }
 
     // Executed when a collision occurs
@@ -18,6 +17,7 @@ public class DeathDealer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
+            Debug.Log("[DeathDealer] Player Death.");
             gameManager.ApplyDamage();
             gameManager.Respawn();
         }

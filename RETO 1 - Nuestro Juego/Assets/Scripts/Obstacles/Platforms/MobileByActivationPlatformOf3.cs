@@ -1,6 +1,4 @@
-using System.Drawing;
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class MobileByActivationPlatformOf3 : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class MobileByActivationPlatformOf3 : MonoBehaviour
     void Start()
     {
         Debug.Log("[PlatformByActivation] Searching for GameManager.");
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
     }
 
     // Update is executed once per frame

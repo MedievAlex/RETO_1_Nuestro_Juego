@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2384522551813043734}
   - component: {fileID: 2383682036675364274}
   m_Layer: 0
-  m_Name: MobileAutomaticPlatformLoopOf4
+  m_Name: SquareLoopPlatform
   m_TagString: Platform
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

@@ -1,11 +1,6 @@
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-/** [ AUTOMATIC MOBILE PLATFORM BETWEEN A-B-C-D ]
-- The object moves constantly from the entered points A, B, C and D
-- The order is sequential in a loop
-*/
-public class MobileAutomaticPlatformLoopOf4 : MonoBehaviour
+public class SquareLoopPlatfrom : MonoBehaviour
 {
     // Visible variables
     public Vector3 pointA; // First position
@@ -19,12 +14,6 @@ public class MobileAutomaticPlatformLoopOf4 : MonoBehaviour
     private bool towardsB = false; // Moving towards the second position (point B)
     private bool towardsC = false; // Moving towards the third position (point C)
     private bool towardsD = false; // Moving towards the fourth position (point D)
-
-    // It runs once before the first Update it's executed
-    void Start()
-    {
-        
-    }
 
     // Update is executed once per frame
     void Update()

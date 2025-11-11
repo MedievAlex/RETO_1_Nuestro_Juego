@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BreakablePlatformAtWeight : MonoBehaviour
@@ -58,15 +57,6 @@ public class BreakablePlatformAtWeight : MonoBehaviour
         {
             hasWeight = false;
             timePassed = 0f;
-        }
-    }
-
-    private void breakThePlatform() 
-    {
-        transform.position = Vector3.MoveTowards(transform.position, location, speed * Time.deltaTime);
-        if (transform.position == location)
-        {
-            Destroy(gameObject); // El objeto se destruirá en 2 frames (segundos)
         }
     }
 }

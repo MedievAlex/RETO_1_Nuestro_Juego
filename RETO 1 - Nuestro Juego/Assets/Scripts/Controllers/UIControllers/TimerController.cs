@@ -19,8 +19,15 @@ public class TimerController : MonoBehaviour
         {
             timePassed += Time.deltaTime;
         }
-        
+
+        Debug.LogWarning("Time Passed: " + timePassed + ".");
+
         timer.text = TimeFormat();
+
+        if (timePassed == 0)
+        {
+
+        }
     }
 
     // Transforms float value to seconds and minutes giving it format

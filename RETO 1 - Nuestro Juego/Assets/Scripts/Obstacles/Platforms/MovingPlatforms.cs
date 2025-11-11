@@ -10,7 +10,7 @@ public class MovingPlatforms : MonoBehaviour
     void Start()
     {
         Debug.Log("[MovingPlatforms] Searching for GameManager.");
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
     }
 
     // Update is called once per frame

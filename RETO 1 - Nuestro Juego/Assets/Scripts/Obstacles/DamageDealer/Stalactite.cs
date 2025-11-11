@@ -5,21 +5,24 @@ using UnityEngine;
 */
 public class Stalactite : MonoBehaviour
 {
+    // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
+
     // Not visible variables
-    private AudioController audioController;
-    private Rigidbody rb; // Referencia al Rigidbody
+    private Rigidbody stoneRB; // Referencia al Rigidbody
     private bool broken = false; // Indicates whether the object has touched the ground
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
-        rb.useGravity = false;
+        stoneRB = GetComponent<Rigidbody>(); // Get the Rigidbody component
+        stoneRB.useGravity = false;
     }
 
     // It runs once before the first Update it's executed
     void Start()
     {
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
     }
 
     // Update is executed once per frame
@@ -36,8 +39,8 @@ public class Stalactite : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            audioController.RockBreakAudio(GetComponent<AudioSource>());
-            rb.useGravity = true;
+            gameManager.RockBreakAudio(GetComponent<AudioSource>());
+            stoneRB.useGravity = true;
         }
     }
 

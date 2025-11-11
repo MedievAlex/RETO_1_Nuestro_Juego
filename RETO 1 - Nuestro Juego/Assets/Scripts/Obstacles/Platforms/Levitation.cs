@@ -1,10 +1,5 @@
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-/** [ AUTOMATIC MOBILE PLATFORM BETWEEN A-B-C ]
-- The object moves constantly from the entered points A, B and C
-- The order is sequential. From the first point to the last one and backwards
-*/
 public class Levitation : MonoBehaviour
 {     
     // Not visible variables

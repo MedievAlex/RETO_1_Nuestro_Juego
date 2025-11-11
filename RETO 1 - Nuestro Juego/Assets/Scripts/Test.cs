@@ -26,7 +26,7 @@ public class Test : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
 
         tDamageDealers = new Vector3(-3f, 14f, 0f);
         yCheckpoint = new Vector3(20f, 18f, 0f);

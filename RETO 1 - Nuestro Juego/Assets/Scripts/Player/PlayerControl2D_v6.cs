@@ -36,7 +36,7 @@ public class Player2D : MonoBehaviour
     void Start()
     {
         Debug.Log("[Player] Searching for GameManager.");
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Gets the Game Manager
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
         gameManager.SetPlayer(this);
 
         playerRB = GetComponent<Rigidbody>(); // Get the Rigidbody component

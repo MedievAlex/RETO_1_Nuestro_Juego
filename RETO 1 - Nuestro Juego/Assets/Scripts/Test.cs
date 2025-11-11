@@ -4,7 +4,7 @@ public class Test : MonoBehaviour
 {
     [Header("Manager")] // Makes a header on the public variables
     public GameManager gameManager;
-    
+
     [Header("Player")]
     public Player2D player;
 
@@ -14,7 +14,7 @@ public class Test : MonoBehaviour
     [Header("Key locations Level-1")]
     public Vector3 tDamageDealers;
     public Vector3 yCheckpoint;
-    public Vector3 uElevator; 
+    public Vector3 uElevator;
 
     [Header("Key locations Level-2")]
     public Vector3 tPlatforms;
@@ -40,68 +40,79 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.T))
         {
-            testMode = !testMode; 
+            testMode = !testMode;
             SetPlayer();
         }
-        
-        if(testMode)
+
+        if (testMode)
         {
-            if (Input.GetKey(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                level = 1; 
+                level = 1;
             }
 
-            if (Input.GetKey(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                level = 2; 
+                level = 2;
             }
 
-            if (Input.GetKey(KeyCode.Alpha3))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                level = 3; 
+                level = 3;
             }
 
-            if(level == 1)
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                gameManager.AbilityGestion("ADDLIFE", true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                gameManager.ApplyDamage();
+            }
+
+            if (level == 1)
             {
                 if (Input.GetKeyDown(KeyCode.T))
                 {
-                    player.transform.position = tDamageDealers; 
+                    player.transform.position = tDamageDealers;
                 }
 
                 if (Input.GetKeyDown(KeyCode.Y))
                 {
-                    player.transform.position = yCheckpoint; 
+                    player.transform.position = yCheckpoint;
                 }
 
                 if (Input.GetKeyDown(KeyCode.U))
                 {
-                    player.transform.position = uElevator; 
+                    player.transform.position = uElevator;
                 }
-            } 
+            }
 
-            if(level == 2)
+            if (level == 2)
             {
                 if (Input.GetKeyDown(KeyCode.T))
                 {
-                    player.transform.position = tPlatforms; 
+                    player.transform.position = tPlatforms;
                 }
-            } 
+            }
 
-            if(level == 3)
+            if (level == 3)
             {
                 if (Input.GetKeyDown(KeyCode.T))
                 {
-                    player.transform.position = tPuzzle; 
+                    player.transform.position = tPuzzle;
                 }
-            } 
-        } 
+            }
+        }
     }
 
     private void SetPlayer()
     {
-        if(gameManager.player != null)
+        if (gameManager.player != null)
         {
             player = gameManager.player;
+
             gameManager.AbilityGestion("DASH", true);
             gameManager.AbilityGestion("JUMP", true);
             gameManager.AbilityGestion("EXTRAJUMPS", true);

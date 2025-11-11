@@ -147,13 +147,19 @@ public class GameManager : MonoBehaviour
     }
 
     // Deals damage
-    public void ApplyDamage() 
+    public void ApplyDamage()
     {
         player.ApplyDamage();
     }
 
     // Feezes or unfeezes the player
-    public void Freeze(bool frozen) 
+    public bool FrozenState()
+    {
+        return player.FrozenState();
+    }
+
+    // Feezes or unfeezes the player
+    public void Freeze(bool frozen)
     {
         player.Freeze(frozen);
     }
@@ -170,6 +176,12 @@ public class GameManager : MonoBehaviour
         return player.GetRespawn();
     }
 
+    // Respawns in the registered spawnpoint
+    public void Respawn()
+    {
+        player.Respawn();
+    }
+
     // Ability gestion
     public void AbilityGestion(string abilityName, bool active)
     {
@@ -178,7 +190,7 @@ public class GameManager : MonoBehaviour
 
     // ---------------------------------------------------------------------------[ UI ]---------------------------------------------------------------------------------------
 
-        // Activates or deactivates the UI
+    // Activates or deactivates the UI
     public void ActivateUI(bool active)
     {
         Debug.Log("[GAME MANAGER] Active UI " + active + ".");
@@ -304,7 +316,7 @@ public class GameManager : MonoBehaviour
     // Moving platform audio control
     public void MovingPlatformAudio(AudioSource source, bool play)
     {
-       audioController.MovingPlatformAudio(source, play);
+        audioController.MovingPlatformAudio(source, play);
     }
 
     // Closing door audio control

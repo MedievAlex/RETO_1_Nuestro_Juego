@@ -52,11 +52,11 @@ public class Player2D : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
+        AnimationControl();
+        AudioControl();
+
         if (!isFrozen)
         {
-            AnimationControl();
-            AudioControl();
-
             // Movement
             if (Input.GetAxis("Horizontal") != 0)
             {
@@ -130,7 +130,7 @@ public class Player2D : MonoBehaviour
 
             if (isFrozen)
             {
-                isFrozen = false;
+                Freeze(false);
             }
         }
     }
@@ -151,6 +151,7 @@ public class Player2D : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
         {
             ground = false;
+            walking = false;
             jumping = true;
         }
     }
@@ -165,21 +166,30 @@ public class Player2D : MonoBehaviour
     }
 
     // Deals damage
-    public void ApplyDamage() 
+    public void ApplyDamage()
     {
-        playerRB.linearVelocity = Vector3.zero;
-        playerRB.angularVelocity = Vector3.zero;
-        
-        jumping = false;
+        if (!isFrozen)
+        {
+            playerRB.linearVelocity = Vector3.zero;
+            playerRB.angularVelocity = Vector3.zero;
 
-        gameManager.PlayerEffects("DAMAGE");
-        lifeCount--;
-        gameManager.UpdateLives(lifeCount);
-        gameManager.ShowDamageBorder(true, 0.5f);
+            jumping = false;
+
+            gameManager.PlayerEffects("DAMAGE");
+            lifeCount--;
+            gameManager.UpdateLives(lifeCount);
+            gameManager.ShowDamageBorder(true, 0.5f);
+        }
     }
 
     // Changes the state of frozen
-    public void Freeze(bool frozen) 
+    public bool FrozenState()
+    {
+        return isFrozen;
+    }
+
+    // Changes the state of frozen
+    public void Freeze(bool frozen)
     {
         isFrozen = frozen;
     }
@@ -199,6 +209,14 @@ public class Player2D : MonoBehaviour
     public Vector3 GetRespawn()
     {
         return spawnPoint;
+    }
+
+    // Respawns in the registered spawnpoint
+    public void Respawn()
+    {
+        playerRB.linearVelocity = Vector3.zero;
+        playerRB.angularVelocity = Vector3.zero;
+        transform.position = spawnPoint;
     }
 
     // Ability gestion
@@ -260,5 +278,5 @@ public class Player2D : MonoBehaviour
             gameManager.PlayerAudio(audioSource, "WALK", false);
             gameManager.PlayerAudio(audioSource, "RUN", false);
         }
-    } 
+    }
 }

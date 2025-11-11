@@ -167,12 +167,21 @@ public class Player2D : MonoBehaviour
     // Deals damage
     public void ApplyDamage() 
     {
+        rigidbody.linearVelocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+        
         jumping = false;
 
         gameManager.PlayerEffects("DAMAGE");
         lifeCount--;
         gameManager.UpdateLives(lifeCount);
         gameManager.ShowDamageBorder(true, 0.5f);
+    }
+
+    // Changes the state of frozen
+    public void Freeze(bool frozen) 
+    {
+        isFrozen = frozen;
     }
 
     public Rigidbody GetRigidbody()

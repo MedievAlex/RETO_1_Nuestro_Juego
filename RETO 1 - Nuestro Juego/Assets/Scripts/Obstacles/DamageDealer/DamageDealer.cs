@@ -2,15 +2,31 @@ using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
 {
+    // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;  
+
+    [Header("Knockback Settings")]
+    public float horizontalForce = 3f;
+    public float upwardForce = 5f;
+    public float knockbackDuration = 0.3f;
+    public float damageCooldown = 2f;
+
+    private PlayerControl2D targetPlayer;
+    private Rigidbody playerRB;
+    
+
     // Not visible variables
     private Player2D targetPlayer;
     private Rigidbody playerRB;
 
+    private bool canDamage = true;
+
     // It runs once before the first Update it's executed
     void Start()
     {
-        targetPlayer = GameObject.Find("Player2D").GetComponent<Player2D>(); // Finds the GameObject of the class PlayerControl2D
-        playerRB = targetPlayer.GetComponent<Rigidbody>();
+        Debug.Log("[Elevator] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
     }
 
     // Update is executed once per frame
@@ -22,13 +38,38 @@ public class DamageDealer : MonoBehaviour
     // Executed when a collision occurs
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
+        if (collision.gameObject.CompareTag("Player") && canDamage) // Check that the collided object has the "Player" label
         {
+            targetPlayer = collision.GetComponent<Player2D>();
+            
+            StartCoroutine(ApplyKnockback(targetPlayer));
+
             if(!targetPlayer.isFrozen)
             {
                 targetPlayer.isFrozen = true;
                 targetPlayer.ApplyDamage(); // Deals damage
             }
         }
+    }
+
+    // Knockback
+    private IEnumerator ApplyKnockback()
+    {
+        canDamage = false;
+        gameManager.Freeze(true);
+        gameManager.applyDamage();
+
+        float horizontalDirection = Mathf.Sign(targetPlayer.transform.position.x - transform.position.x);
+
+        Vector3 knockback = new Vector3(horizontalDirection * horizontalForce, upwardForce, 0f);
+
+        playerRB.AddForce(knockback, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        gameManager.Freeze(false);
+
+        yield return new WaitForSeconds(damageCooldown);
+        canDamage = true;
     }
 }

@@ -1,8 +1,12 @@
 -- THINGS TO DO --
 
-[   ] Check issues with the audio.
-  -  MacRange.
-  -  MinRange.
+[   ] Finish placing all the Sprites.
 
-[ - ] Test and apply the knockback. ( Victor )
+[   ] Finish moving to GameManager hierarchy:
+  -  PlayerControl2D.
+  -  Platform.
+  -  Obstacles.
+
+[   ] Add to DamageDealer the Knockback.
+
 

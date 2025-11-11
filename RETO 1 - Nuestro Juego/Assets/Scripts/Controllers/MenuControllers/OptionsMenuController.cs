@@ -93,6 +93,7 @@ public class OptionsMenuController : MonoBehaviour
         SetActive(false);
     }
 
+    // Updates the slider volume and the general volume
     private void OnVolumeChanged(float volume)
     {
         AudioListener.volume = volume;
@@ -104,6 +105,7 @@ public class OptionsMenuController : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // Updates the percentage
     private void UpdateVolumeText(float volume)
     {
         int percent = Mathf.RoundToInt(volume * 100);

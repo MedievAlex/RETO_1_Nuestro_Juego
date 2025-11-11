@@ -151,6 +151,12 @@ public class GameManager : MonoBehaviour
         player.ApplyDamage();
     }
 
+    // Feezes or unfeezes the player
+    public void Freeze(bool frozen) 
+    {
+        player.Freeze(frozen);
+    }
+
     // Sets respawn
     public void SetRespawn(Vector3 newSpawnPoint)
     {
@@ -168,8 +174,6 @@ public class GameManager : MonoBehaviour
     {
         player.AbilityGestion(abilityName, active);
     }
-
-    
 
     // ---------------------------------------------------------------------------[ UI ]---------------------------------------------------------------------------------------
 

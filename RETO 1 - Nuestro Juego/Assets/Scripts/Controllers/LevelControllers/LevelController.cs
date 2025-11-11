@@ -45,8 +45,7 @@ public class LevelController : MonoBehaviour
     // Main menu
     public void MainMenu()
     {
-        currentLevel = 0;
-        SetSpecificBackground();
+        LoadLevel(0);
     }
 
     // Makes the name of the Level
@@ -81,6 +80,13 @@ public class LevelController : MonoBehaviour
     {
         switch (level)
         {
+            case 0:
+                currentLevel = 0;
+                Debug.Log("[LevelController]: Loading Main Menu.");
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+                SetSpecificBackground();
+                break;
+            
             case 1:
                 currentLevel = 1;
                 Debug.Log("[LevelController]: Loading Level-" + currentLevel + ".");

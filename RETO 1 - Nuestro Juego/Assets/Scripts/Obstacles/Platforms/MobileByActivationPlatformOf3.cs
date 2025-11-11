@@ -2,21 +2,17 @@ using System.Drawing;
 using UnityEngine;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-/** [ AUTOMATIC MOBILE PLATFORM TO A-B-C ]
-- The object moves by activation or time from the entered points A, B, and C
-- Goes back automatically to point C after some time
-*/
 public class MobileByActivationPlatformOf3 : MonoBehaviour
 {
     // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;  
     public Vector3 pointA; // First position
     public Vector3 pointB; // Second position
     public Vector3 pointC; // Third position
     public float speed = 3f; // Movement speed
 
     // Not visible variables 
-    private AudioController audioController;
-
     private bool plyerOnTop = false; // If the platform is in movement
     private bool inMovement = false; // If the platform is in movement
     private bool towardsA = false; // Moving towards the first position (point A)
@@ -29,7 +25,8 @@ public class MobileByActivationPlatformOf3 : MonoBehaviour
     // It runs once before the first Update it's executed
     void Start()
     {
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        Debug.Log("[PlatformByActivation] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
     }
 
     // Update is executed once per frame
@@ -84,11 +81,11 @@ public class MobileByActivationPlatformOf3 : MonoBehaviour
 
         if (inMovement)
         {
-            audioController.MovingPlatformAudio(GetComponent<AudioSource>(), true);
+            gameManager.MovingPlatformAudio(GetComponent<AudioSource>(), true);
         }
         else
         {
-            audioController.MovingPlatformAudio(GetComponent<AudioSource>(), false);
+            gameManager.MovingPlatformAudio(GetComponent<AudioSource>(), false);
         }
     }
     

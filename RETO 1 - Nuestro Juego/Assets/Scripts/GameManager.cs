@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
         ActivateUI(!active);
         menuController.SetPauseActivable(!active);
         audioController.GameOverAudio();
+        levelController.MainMenu();
         menuController.OpenGameOverMenu(active);
     }
 

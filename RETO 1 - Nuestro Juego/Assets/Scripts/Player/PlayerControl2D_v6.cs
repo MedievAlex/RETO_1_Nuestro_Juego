@@ -15,7 +15,7 @@ public class Player2D : MonoBehaviour
     // Not visible variables
     private GameManager gameManager;
 
-    private Rigidbody rigidbody; // Reference to the Rigidbody
+    private Rigidbody playerRB; // Reference to the Rigidbody
     private AudioSource audioSource; // Reference to the Audio Source
     private Animator animator; // Reference to the animator
 
@@ -39,7 +39,7 @@ public class Player2D : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Gets the Game Manager
         gameManager.SetPlayer(this);
 
-        rigidbody = GetComponent<Rigidbody>(); // Get the Rigidbody component
+        playerRB = GetComponent<Rigidbody>(); // Get the Rigidbody component
         audioSource = GetComponent<AudioSource>(); // Get the Audio Source component
         animator = gameObject.GetComponent<Animator>(); // Get the Animator component
 
@@ -103,11 +103,11 @@ public class Player2D : MonoBehaviour
 
                 if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
                 {
-                    rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 }
                 else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
                 {
-                    rigidbody.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+                    playerRB.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
                 }
                 jumpsReset = false;
                 jumpsLeft--;
@@ -167,8 +167,8 @@ public class Player2D : MonoBehaviour
     // Deals damage
     public void ApplyDamage() 
     {
-        rigidbody.linearVelocity = Vector3.zero;
-        rigidbody.angularVelocity = Vector3.zero;
+        playerRB.linearVelocity = Vector3.zero;
+        playerRB.angularVelocity = Vector3.zero;
         
         jumping = false;
 
@@ -186,7 +186,7 @@ public class Player2D : MonoBehaviour
 
     public Rigidbody GetRigidbody()
     {
-        return rigidbody;
+        return playerRB;
     }
 
     // Sets new respawn point

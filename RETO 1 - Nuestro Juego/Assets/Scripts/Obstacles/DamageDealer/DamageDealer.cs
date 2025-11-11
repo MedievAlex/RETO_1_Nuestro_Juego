@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DamageDealer : MonoBehaviour
 {
@@ -11,10 +12,6 @@ public class DamageDealer : MonoBehaviour
     public float upwardForce = 5f;
     public float knockbackDuration = 0.3f;
     public float damageCooldown = 2f;
-
-    private PlayerControl2D targetPlayer;
-    private Rigidbody playerRB;
-    
 
     // Not visible variables
     private Player2D targetPlayer;
@@ -40,9 +37,9 @@ public class DamageDealer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && canDamage) // Check that the collided object has the "Player" label
         {
-            targetPlayer = collision.GetComponent<Player2D>();
+            targetPlayer = collision.transform.GetComponent<Player2D>();
             
-            StartCoroutine(ApplyKnockback(targetPlayer));
+            StartCoroutine(ApplyKnockback());
 
             if(!targetPlayer.isFrozen)
             {
@@ -57,7 +54,7 @@ public class DamageDealer : MonoBehaviour
     {
         canDamage = false;
         gameManager.Freeze(true);
-        gameManager.applyDamage();
+        gameManager.ApplyDamage();
 
         float horizontalDirection = Mathf.Sign(targetPlayer.transform.position.x - transform.position.x);
 

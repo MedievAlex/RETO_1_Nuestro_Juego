@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &48301691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 80532456945471264, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+  m_PrefabInstance: {fileID: 2649212194482371733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &157509245 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8709364386743623044, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
@@ -168,12 +173,32 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6932073568635328967, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
   m_PrefabInstance: {fileID: 2649212194482371733}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 48301691}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2deb07c169a6e9f4496590b5c0480788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1256416532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48301691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9e7671e28c7c14d8556df1c4f01f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  player: {fileID: 0}
+  level: 0
+  tDamageDealers: {x: 0, y: 0, z: 0}
+  yCheckpoint: {x: 0, y: 0, z: 0}
+  uElevator: {x: 0, y: 0, z: 0}
+  tPlatforms: {x: 0, y: 0, z: 0}
+  tPuzzle: {x: 0, y: 0, z: 0}
 --- !u!1 &1275897221
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +552,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 893921345664082058, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 80532456945471264, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1256416532}
   m_SourcePrefab: {fileID: 100100000, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

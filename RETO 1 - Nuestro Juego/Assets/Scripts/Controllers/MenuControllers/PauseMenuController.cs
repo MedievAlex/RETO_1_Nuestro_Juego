@@ -34,7 +34,7 @@ public class PauseMenuController : MonoBehaviour
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
 
         Debug.Log("[PauseMenu] Setting Buttons.");
-        resumeButton.onClick.AddListener(TogglePause); // When clicking Resume button goes back to the game
+        resumeButton.onClick.AddListener(ResumeGame); // When clicking Resume button goes back to the game
         mainMenuButton.onClick.AddListener(OpenMainMenu); // When clicking Menu button goes back to the main menu
         optionsButton.onClick.AddListener(OpenOptionsMenu); // When clicking Options button opens the options menu 
     }
@@ -44,6 +44,7 @@ public class PauseMenuController : MonoBehaviour
     {
         if (activable && Input.GetKeyDown(KeyCode.Escape))
         {
+            SetActivable(false);
             TogglePause();
         }
     }
@@ -116,6 +117,13 @@ public class PauseMenuController : MonoBehaviour
                 backgroundImage.sprite = thirdLevelBackground;
                 break;
         }
+    }
+
+    // Resumes the game
+    private void ResumeGame()
+    {
+        SetActivable(true);
+        TogglePause();
     }
 
     // Goes back to the Main Menu

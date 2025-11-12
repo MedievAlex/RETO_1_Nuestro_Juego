@@ -323,7 +323,7 @@ public class AudioController : MonoBehaviour
         {
             if (!source.isPlaying)
             {
-                source.PlayOneShot(incorrectCombination);
+                source.PlayOneShot(incorrectCombination, (generalVolume * 2));
             } 
         }
     }

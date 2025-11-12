@@ -8963,7 +8963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1661488321793337249, guid: 3f20af9e3c180f049b28ca096e744bed, type: 3}
       propertyPath: closeLocation.x
-      value: 13.63
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 1661488321793337249, guid: 3f20af9e3c180f049b28ca096e744bed, type: 3}
       propertyPath: closeLocation.y

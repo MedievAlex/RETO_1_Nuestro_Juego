@@ -66,11 +66,11 @@ public class LevelController : MonoBehaviour
     {
         if (currentLevel > 0)
         {
-            Debug.LogWarning("[LevelController] Setting specific Background for Level-" + currentLevel + ".");
+            Debug.Log("[LevelController] Setting specific Background for Level-" + currentLevel + ".");
         }
         else
         {
-            Debug.LogWarning("[LevelController] Setting specific Background for Main Menu.");
+            Debug.Log("[LevelController] Setting specific Background for Main Menu.");
         }
         gameManager.SetSpecificBackground(currentLevel);
     }

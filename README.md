@@ -8,5 +8,3 @@
   -  Obstacles.
 
 [   ] Add to DamageDealer the Knockback.
-
-

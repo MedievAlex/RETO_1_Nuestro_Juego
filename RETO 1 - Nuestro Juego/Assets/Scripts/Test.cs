@@ -37,7 +37,7 @@ public class Test : MonoBehaviour
         tPlatforms = new Vector3(-38f, 15f, 0f);
         yEnd = new Vector3(56.5f, 25f, 0f);
 
-        tPuzzle = new Vector3(-3f, 5f, 0f);
+        tPuzzle = new Vector3(-3f, 3f, 0f);
     }
 
     void Update()

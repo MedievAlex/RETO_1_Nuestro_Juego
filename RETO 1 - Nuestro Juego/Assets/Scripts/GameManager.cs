@@ -59,10 +59,9 @@ public class GameManager : MonoBehaviour
     public void OpenMainMenu(bool active)
     {
         Debug.Log("[GAME MANAGER] Open Main Menu " + active + ".");
-        ActivateUI(!active);
-        menuController.SetPauseActivable(!active);
+        BackgroundAudio("MENU", true);
+        ActivateUI(false);
         levelController.MainMenu();
-        menuController.OpenMainMenu(active);
     }
 
     // Opens Options Menu
@@ -91,14 +90,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GAME MANAGER] Open Options Menu " + active + ".");
         ActivateUI(!active);
-        menuController.SetPauseActivable(!active);
-        audioController.GameOverAudio();
+        //menuController.SetPauseActivable(!active);
+        //audioController.GameOverAudio();
         levelController.MainMenu();
         menuController.OpenGameOverMenu(active);
     }
 
     // ---------------------------------------------------------------------------[ Level ]------------------------------------------------------------------------------------
-
+    
     // Loads the fist level
     public void GameStart()
     {

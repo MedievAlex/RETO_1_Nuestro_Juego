@@ -88,7 +88,6 @@ public class OptionsMenuController : MonoBehaviour
     private void CloseMenu()
     {
         Debug.Log("[OptionsMenu] Saving changes.");
-        PlayerPrefs.Save();
 
         SetActive(false);
     }

@@ -30,14 +30,14 @@ public class MenuController : MonoBehaviour
 
         //EnsureEventSystem();
 
-        OpenMainMenu(true);
-
         OpenPauseMenu(false);
         SetPauseActivable(false);
 
         OpenOptionsMenu(false);
 
         OpenGameOverMenu(false);
+
+        OpenMainMenu(true);
     }
 
     // To use buttons
@@ -90,7 +90,8 @@ public class MenuController : MonoBehaviour
     public void OpenMainMenu(bool active)
     {
         Debug.Log("[MenuController] Opening Main Menu " + active + ".");
-        gameManager.BackgroundAudio("MENU", true);
+        SetPauseActivable(false);
+        gameManager.OpenMainMenu(active);
         mainMenu.SetActive(active);
     }
 
@@ -99,7 +100,8 @@ public class MenuController : MonoBehaviour
     // Opens Options Menu
     public void OpenOptionsMenu(bool active)
     {
-        Debug.Log("[MenuController] Opening Options Menu " + active + ".");
+        Debug.Log("[MenuController] Opening Options Menu " + active + "."); 
+        SetPauseActivable(false);
         optionsMenu.SetActive(active);
     }
 
@@ -159,6 +161,8 @@ public class MenuController : MonoBehaviour
     public void OpenGameOverMenu(bool active)
     {
         Debug.Log("[MenuController] Opening Game Over Menu " + active + ".");
+        SetPauseActivable(false);
+        gameManager.OpenMainMenu(active);
         gameOverMenu.SetActive(active);
         if (active)
         {

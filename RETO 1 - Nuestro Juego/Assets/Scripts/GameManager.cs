@@ -329,6 +329,12 @@ public class GameManager : MonoBehaviour
         audioController.ClosingDoorAudio(source);
     }
 
+    // Plays the correct or incorrect audio
+    public void CombinationAudio(AudioSource source, bool correct)
+    {
+        audioController.CombinationAudio(source, correct);
+    }
+
     // Checkpoint audio control
     public void CheckPointAudio(AudioSource source)
     {

@@ -1,8 +1,13 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SquareLoopPlatfrom : MonoBehaviour
 {
     // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
+
+    [Header("Positions")] // Makes a header on the public variables
     public Vector3 pointA; // First position
     public Vector3 pointB; // Second position
     public Vector3 pointC; // Third position
@@ -10,14 +15,26 @@ public class SquareLoopPlatfrom : MonoBehaviour
     public float speed = 2f; // Movement speed
 
     // Not visible variables
+    private AudioSource audioSource;
     private bool towardsA = true; // Moving towards the first position (point A)
     private bool towardsB = false; // Moving towards the second position (point B)
     private bool towardsC = false; // Moving towards the third position (point C)
     private bool towardsD = false; // Moving towards the fourth position (point D)
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        Debug.Log("[Lever] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Sceneent 
+
+        audioSource = GetComponent<AudioSource>();
+    }
+
     // Update is executed once per frame
     void Update()
     {
+        gameManager.MovingPlatformAudio(audioSource, true);
+
         if (towardsA) // Moving towards the first position (point A)
         {
             transform.position = Vector3.MoveTowards(transform.position, pointA, speed * Time.deltaTime);

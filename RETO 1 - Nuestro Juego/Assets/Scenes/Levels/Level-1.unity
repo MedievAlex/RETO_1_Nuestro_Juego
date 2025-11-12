@@ -2050,6 +2050,7 @@ Transform:
   - {fileID: 17613526}
   - {fileID: 1012736923}
   - {fileID: 2131745015}
+  - {fileID: 833991762}
   m_Father: {fileID: 1049592736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &119023762
@@ -10662,6 +10663,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElevatorCallLever (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9209913429820950113, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: MaxDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209913429820950113, guid: 539f0ef49e94f9d40b91ab44c2f71dab, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4829716508558297612, guid: a39244c79cbb2204bbe6dc4d2451ffb8, type: 3}
       propertyPath: elevator
       value: 
@@ -13307,6 +13316,92 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 259834043940450339, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
   m_PrefabInstance: {fileID: 5109904902978870208}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &833991761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833991762}
+  - component: {fileID: 833991764}
+  - component: {fileID: 833991763}
+  m_Layer: 0
+  m_Name: Border (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &833991762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833991761}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 49.66, y: 16.15, z: 0.01}
+  m_LocalScale: {x: 14.217707, y: 31.41827, z: 17.41341}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 114621723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &833991763
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833991761}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: de19174ed21a9f142b578f187c6d2c7a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &833991764
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833991761}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &835633803
 GameObject:
   m_ObjectHideFlags: 0
@@ -34628,6 +34723,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ce73ccbb91813cc45b4aa27971cdbc36, type: 2}
+    - target: {fileID: 4894636885349023288, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
+      propertyPath: MaxDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4894636885349023288, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5801335755113261170, guid: c53bffd60ea7f27458b7ee55f1491a77, type: 3}
       propertyPath: clip
       value: 

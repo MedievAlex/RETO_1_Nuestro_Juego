@@ -55,9 +55,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -159,6 +159,8 @@ MonoBehaviour:
   elevatorEnd: {fileID: 8300000, guid: a51b5d89b59fd1d44b6958cef56adfc9, type: 3}
   movingPlatform: {fileID: 8300000, guid: caac9a1da43c5ad41aefc25f13a0bf71, type: 3}
   closingDoor: {fileID: 8300000, guid: 75db98cdbdbf6564d8c9145d2e9203d8, type: 3}
+  correctCombination: {fileID: 8300000, guid: 6cda2aefd9aa54e4fa5c8522b384c0f7, type: 3}
+  incorrectCombination: {fileID: 8300000, guid: 04710ca5283f628449459f2e44ada287, type: 3}
   checkPoint: {fileID: 8300000, guid: 0b3f115b8c5cbe347be8338079099afc, type: 3}
   lifeObject: {fileID: 8300000, guid: 495c307b4d041454281f9d9e4896235b, type: 3}
   rockBreak: {fileID: 8300000, guid: ca0ba077a8a686540b5551bd6b6081da, type: 3}

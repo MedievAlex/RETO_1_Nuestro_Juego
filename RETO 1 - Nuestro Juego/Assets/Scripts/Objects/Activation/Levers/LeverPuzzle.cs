@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class LeverPuzzle : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class LeverPuzzle : MonoBehaviour
     public int attempts; // Attempts to complete the puzzle
 
     // Not visible variables  
+    private AudioSource audioSource;
     private List<Lever> levers = new List<Lever>();
     private List<SpriteRenderer> lamps = new List<SpriteRenderer>();
     private int remainingAttempts; // Remaining extra attempts
@@ -40,6 +42,8 @@ public class LeverPuzzle : MonoBehaviour
         Debug.Log("[LeverPuzzle] Searching for GameManager.");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Sceneent
 
+        audioSource = GetComponent<AudioSource>();
+
         remainingAttempts = attempts;
 
         GetLamps();
@@ -49,15 +53,16 @@ public class LeverPuzzle : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
-        SetLamp();
-
         if (!blocked)
         {
+            SetLamp();
+
             if (testLever.GetState())
             {
                 if (VerifyPuzzle()) // Correct combination
                 {
                     SetTestLight("GREEN");
+                    gameManager.CombinationAudio(audioSource, true);
                     blocked = true;
                     timePassed += Time.deltaTime; // Calculates the time
                     if (timePassed > checkTime) // Creates a new object and restarts the counter
@@ -71,6 +76,7 @@ public class LeverPuzzle : MonoBehaviour
                 else // Incorrect combination
                 {
                     SetTestLight("RED");
+                    gameManager.CombinationAudio(audioSource, false);
                     timePassed += Time.deltaTime; // Calculates the time
                     if (timePassed > checkTime) // Creates a new object and restarts the counter
                     {

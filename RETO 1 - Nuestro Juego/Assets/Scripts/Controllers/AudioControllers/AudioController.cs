@@ -32,6 +32,8 @@ public class AudioController : MonoBehaviour
     public AudioClip elevatorEnd;
     public AudioClip movingPlatform;
     public AudioClip closingDoor;
+    public AudioClip correctCombination;
+    public AudioClip incorrectCombination;
 
     [Header("Object Clips")] // Makes a header on the public variables
     public AudioClip checkPoint;
@@ -303,6 +305,27 @@ public class AudioController : MonoBehaviour
         Debug.Log("[AudioController] Closing Door.");
         source.volume = generalVolume;
         source.PlayOneShot(closingDoor);
+    }
+
+    // Plays the correct or incorrect audio
+    public void CombinationAudio(AudioSource source, bool correct)
+    {
+        source.volume = generalVolume;
+
+        if (correct)
+        {
+            if (!source.isPlaying)
+            {
+                source.PlayOneShot(correctCombination);
+            }           
+        }
+        else
+        {
+            if (!source.isPlaying)
+            {
+                source.PlayOneShot(incorrectCombination);
+            } 
+        }
     }
 
     // ---------------------------------------------------------------------------[ Objects ]-------------------------------------------------------------------------------

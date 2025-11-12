@@ -5,6 +5,8 @@ public class LevelEnd : MonoBehaviour
     // Visible variables
     [Header("Manager")] // Makes a header on the public variables
     public GameManager gameManager;
+
+    public bool ending;
     
     // START runs once before the first Update it's executed
     void Start()
@@ -24,6 +26,11 @@ public class LevelEnd : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player") && collider.transform.parent != null)
         {
+            if (ending)
+            {
+                gameManager.PauseTimer(true);
+            }
+
             if (collider.gameObject.transform.parent.gameObject.CompareTag("Elevator")) // Check that the collided object has the "Player" label and its in the "Elevator"
             {
                 Debug.Log("[LevelEnd] Player to Next Level.");

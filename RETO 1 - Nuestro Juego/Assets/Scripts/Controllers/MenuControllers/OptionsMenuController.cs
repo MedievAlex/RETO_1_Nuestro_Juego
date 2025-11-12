@@ -25,6 +25,7 @@ public class OptionsMenuController : MonoBehaviour
     public Sprite thirdLevelBackground;
 
     // Not visible variables
+    private static float savedVolume = 1f;
     private Image backgroundImage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,7 +34,6 @@ public class OptionsMenuController : MonoBehaviour
         Debug.Log("[OptionsMenu] Getting Background.");
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
 
-        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         volumeSlider.value = savedVolume;
         UpdateVolumeText(savedVolume);
 
@@ -96,13 +96,12 @@ public class OptionsMenuController : MonoBehaviour
     // Updates the slider volume and the general volume
     private void OnVolumeChanged(float volume)
     {
+        savedVolume = volume;
         AudioListener.volume = volume;
 
         menuController.SetVolume(volume);
 
         UpdateVolumeText(volume);
-        PlayerPrefs.SetFloat("MasterVolume", volume);
-        PlayerPrefs.Save();
     }
 
     // Updates the percentage
@@ -110,10 +109,5 @@ public class OptionsMenuController : MonoBehaviour
     {
         int percent = Mathf.RoundToInt(volume * 100);
         volumePercentText.text = percent + "%";
-    }
-
-    private void OnDestroy()
-    {
-        PlayerPrefs.Save();
     }
 }

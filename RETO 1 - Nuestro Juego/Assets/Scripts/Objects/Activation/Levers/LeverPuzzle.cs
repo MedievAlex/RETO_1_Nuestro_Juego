@@ -29,8 +29,8 @@ public class LeverPuzzle : MonoBehaviour
     // Not visible variables  
     private List<Lever> levers = new List<Lever>();
     private List<SpriteRenderer> lamps = new List<SpriteRenderer>();
-    private SpriteRenderer testLeverLamp;
     private int remainingAttempts; // Remaining extra attempts
+    private bool blocked = false;
     private float checkTime = 1;
     private float timePassed;
 
@@ -51,39 +51,44 @@ public class LeverPuzzle : MonoBehaviour
     {
         SetLamp();
 
-        if (testLever.GetState())
+        if (!blocked)
         {
-            if (VerifyPuzzle()) // Correct combination
+            if (testLever.GetState())
             {
-                SetTestLight("GREEN");
-                timePassed += Time.deltaTime; // Calculates the time
-                if (timePassed > checkTime) // Creates a new object and restarts the counter
+                if (VerifyPuzzle()) // Correct combination
                 {
-                    Debug.Log("[LeverPuzzle] Correct combination.");
-                    door.changeState();
-                    testLever.SetState(false);
-                    timePassed = 0f;
-                }
-            }
-            else // Incorrect combination
-            {
-                SetTestLight("RED");
-                timePassed += Time.deltaTime; // Calculates the time
-                if (timePassed > checkTime) // Creates a new object and restarts the counter
-                {
-                    remainingAttempts--;
-                    Debug.Log("[LeverPuzzle] Incorrect combination. " + remainingAttempts + " attemps left.");
-                    testLever.SetState(false);
-                    ResetPuzzle();
-                    if (remainingAttempts == 0)
+                    SetTestLight("GREEN");
+                    blocked = true;
+                    timePassed += Time.deltaTime; // Calculates the time
+                    if (timePassed > checkTime) // Creates a new object and restarts the counter
                     {
-                        gameManager.ApplyDamage();
-                        remainingAttempts = attempts;
+                        Debug.Log("[LeverPuzzle] Correct combination.");
+                        door.changeState();
+                        testLever.SetState(false);
+                        timePassed = 0f;
                     }
-                    timePassed = 0f;
+                }
+                else // Incorrect combination
+                {
+                    SetTestLight("RED");
+                    timePassed += Time.deltaTime; // Calculates the time
+                    if (timePassed > checkTime) // Creates a new object and restarts the counter
+                    {
+                        remainingAttempts--;
+                        Debug.Log("[LeverPuzzle] Incorrect combination. " + remainingAttempts + " attemps left.");
+                        testLever.SetState(false);
+                        ResetPuzzle();
+                        if (remainingAttempts == 0)
+                        {
+                            gameManager.ApplyDamage();
+                            remainingAttempts = attempts;
+                        }
+                        timePassed = 0f;
+                    }
                 }
             }
         }
+
     }
 
     // Gets each Lever Lamp and it's light
@@ -95,7 +100,7 @@ public class LeverPuzzle : MonoBehaviour
         levers.Add(lever3);
         levers.Add(lever4);
 
-        foreach(Lever lever in levers)
+        foreach (Lever lever in levers)
         {
             lamps.Add(lever.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>());
         }
@@ -161,7 +166,7 @@ public class LeverPuzzle : MonoBehaviour
 
     // Sets Lamps Light color
     private void SetLamp()
-    {  
+    {
         for (int i = 1; i < levers.Count; i++)
         {
             lamps[i].sprite = SetLigth(levers[i].stateActive);

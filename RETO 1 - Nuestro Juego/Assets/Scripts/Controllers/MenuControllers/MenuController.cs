@@ -93,6 +93,7 @@ public class MenuController : MonoBehaviour
         SetPauseActivable(false);
         gameManager.OpenMainMenu(active);
         mainMenu.SetActive(active);
+        gameManager.BackgroundAudio("MENU", true);
     }
 
     // ---------------------------------------------------------------------------[ Options Menu ]-----------------------------------------------------------------------------------

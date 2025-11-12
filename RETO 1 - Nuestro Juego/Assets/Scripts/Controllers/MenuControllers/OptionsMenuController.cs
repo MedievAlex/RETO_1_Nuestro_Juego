@@ -53,6 +53,24 @@ public class OptionsMenuController : MonoBehaviour
         }
     }
 
+    // Updates the slider volume and the general volume
+    private void OnVolumeChanged(float volume)
+    {
+        savedVolume = volume;
+        AudioListener.volume = volume;
+
+        menuController.SetVolume(volume);
+
+        UpdateVolumeText(volume);
+    }
+
+    // Updates the percentage
+    private void UpdateVolumeText(float volume)
+    {
+        int percent = Mathf.RoundToInt(volume * 100);
+        volumePercentText.text = percent + "%";
+    }
+
     // Sets the background for each level
     public void SetSpecificBackground(int level)
     {
@@ -90,23 +108,5 @@ public class OptionsMenuController : MonoBehaviour
         Debug.Log("[OptionsMenu] Saving changes.");
 
         SetActive(false);
-    }
-
-    // Updates the slider volume and the general volume
-    private void OnVolumeChanged(float volume)
-    {
-        savedVolume = volume;
-        AudioListener.volume = volume;
-
-        menuController.SetVolume(volume);
-
-        UpdateVolumeText(volume);
-    }
-
-    // Updates the percentage
-    private void UpdateVolumeText(float volume)
-    {
-        int percent = Mathf.RoundToInt(volume * 100);
-        volumePercentText.text = percent + "%";
     }
 }

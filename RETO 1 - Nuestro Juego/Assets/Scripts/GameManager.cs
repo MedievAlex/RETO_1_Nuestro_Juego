@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
     public void OpenMainMenu(bool active)
     {
         Debug.Log("[GAME MANAGER] Open Main Menu " + active + ".");
-        BackgroundAudio("MENU", true);
         ActivateUI(false);
         levelController.MainMenu();
     }

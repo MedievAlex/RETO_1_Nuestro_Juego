@@ -45,6 +45,7 @@ public class Test : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.T) && Input.GetKey(KeyCode.M))
         {
             testMode = true;
+            level = gameManager.GetLevel();
         }
 
         if (testMode)

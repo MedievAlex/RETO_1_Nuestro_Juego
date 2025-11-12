@@ -210,6 +210,7 @@ MonoBehaviour:
   yCheckpoint: {x: 0, y: 0, z: 0}
   uElevator: {x: 0, y: 0, z: 0}
   tPlatforms: {x: 0, y: 0, z: 0}
+  yEnd: {x: 0, y: 0, z: 0}
   tPuzzle: {x: 0, y: 0, z: 0}
 --- !u!1 &1275897221
 GameObject:
@@ -412,6 +413,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 4326637102518392169, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: border
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c0cee89a7003764696438d84a86a907, type: 3}
     - target: {fileID: 4728169879466301492, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: menuBackground
       value: 

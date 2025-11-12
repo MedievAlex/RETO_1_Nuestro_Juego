@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e719dcbd815515246b3639f387ffa4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  border: {fileID: 21300000, guid: 2a3dbe7a3aae7b240ad175f163d25870, type: 3}
+  border: {fileID: 21300000, guid: 3c0cee89a7003764696438d84a86a907, type: 3}
 --- !u!1 &4622327093351766080
 GameObject:
   m_ObjectHideFlags: 0

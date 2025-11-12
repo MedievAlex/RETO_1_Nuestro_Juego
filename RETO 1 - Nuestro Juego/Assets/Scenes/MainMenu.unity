@@ -211,7 +211,8 @@ MonoBehaviour:
   uElevator: {x: 0, y: 0, z: 0}
   tPlatforms: {x: 0, y: 0, z: 0}
   yEnd: {x: 0, y: 0, z: 0}
-  tPuzzle: {x: 0, y: 0, z: 0}
+  tPastRocks: {x: 0, y: 0, z: 0}
+  yPuzzle: {x: 0, y: 0, z: 0}
 --- !u!1 &1275897221
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2441502414855981840, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: MaxDistance
-      value: 40
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2441502414855981840, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: rolloffMode
@@ -391,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2441502414855981840, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3018858210786491031, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

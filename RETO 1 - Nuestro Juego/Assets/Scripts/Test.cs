@@ -22,7 +22,8 @@ public class Test : MonoBehaviour
     public Vector3 yEnd;
 
     [Header("Key locations Level-3")]
-    public Vector3 tPuzzle;
+    public Vector3 tPastRocks;
+    public Vector3 yPuzzle;
 
     private bool testMode = false;
 
@@ -37,7 +38,8 @@ public class Test : MonoBehaviour
         tPlatforms = new Vector3(-38f, 15f, 0f);
         yEnd = new Vector3(56.5f, 25f, 0f);
 
-        tPuzzle = new Vector3(-3f, 3f, 0f);
+        tPastRocks = new Vector3(-13f, 35.1f, 0f);
+        yPuzzle = new Vector3(-3f, 3f, 0f);
     }
 
     void Update()
@@ -55,22 +57,36 @@ public class Test : MonoBehaviour
                 SetPlayer();
             }
 
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.G)) // Adds 1 minute
             {
                 timerController.AddTime();
             }
 
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.H)) // +1 heart
             {
-                gameManager.AbilityGestion("ADDLIFE", true);
+                if(player.lifeCount < 5)
+                {
+                    gameManager.AbilityGestion("ADDLIFE", true);
+                }    
             }
 
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.J)) // - 1 heart
             {
-                gameManager.ApplyDamage();
-            } 
+                if (player.lifeCount > 1)
+                {
+                    gameManager.ApplyDamage();
+                }
+            }
 
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetKey(KeyCode.K)) // Kills the player
+            {
+                for (int i = 0; i < player.lifeCount; i++)
+                {
+                    gameManager.ApplyDamage();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.T)) // Moves towards the first key location
             {
                 level = gameManager.GetLevel();
 
@@ -84,11 +100,11 @@ public class Test : MonoBehaviour
                 }
                 else if (level == 3)
                 {
-                    player.transform.position = tPuzzle;
+                    player.transform.position = tPastRocks;
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (Input.GetKeyDown(KeyCode.Y)) // Moves towards the second key location
             {
                 level = gameManager.GetLevel();
 
@@ -102,11 +118,11 @@ public class Test : MonoBehaviour
                 }
                 else if (level == 3)
                 {
-
+                    player.transform.position = yPuzzle;
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.U)) // Moves towards the third key location
             {
                 level = gameManager.GetLevel();
 

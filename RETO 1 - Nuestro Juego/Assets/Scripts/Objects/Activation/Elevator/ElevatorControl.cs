@@ -80,6 +80,7 @@ public class ElevatorControl : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             gameManager.AbilityGestion("JUMP", false);
+            gameManager.AbilityGestion("DASH", false);
 
             if (activated)
             {
@@ -95,6 +96,7 @@ public class ElevatorControl : MonoBehaviour
         if (collider.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
             gameManager.AbilityGestion("JUMP", true);
+            gameManager.AbilityGestion("DASH", true);
             collider.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }

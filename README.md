@@ -2,6 +2,7 @@
 To activate Test Mode: [Ctrl] + [T] + [M].
 
 Test Commands:
+  -  To go directly to the ending: [Ctrl] + [E].
   -  Teleport to interest Locations in each Level:
        -  First Location [T]
        -  First Location [Y]

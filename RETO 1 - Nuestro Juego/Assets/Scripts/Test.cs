@@ -46,6 +46,7 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.T) && Input.GetKey(KeyCode.M))
         {
+            Debug.LogWarning("Test Mode: ACTIVE");
             testMode = true;
             level = gameManager.GetLevel();
         }

@@ -362,4 +362,12 @@ public class GameManager : MonoBehaviour
     {
         audioController.FallBoxAudio(source);
     }
+
+    // ---------------------------------------------------------------------------[ ENDING ]-----------------------------------------------------------------------------------
+
+    // Game ending and credits
+    public void StartEnding()
+    {
+
+    }
 }

@@ -101,3 +101,6 @@ RETO 1 - Nuestro Juego/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 # Documentation
 *.docx
 *.dio
+
+#Executable
+Executable/*

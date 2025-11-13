@@ -103,4 +103,4 @@ RETO 1 - Nuestro Juego/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 *.dio
 
 #Executable
-#Executable/*
+Executable/*

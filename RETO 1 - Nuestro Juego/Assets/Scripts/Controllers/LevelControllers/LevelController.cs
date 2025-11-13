@@ -11,10 +11,10 @@ public class LevelController : MonoBehaviour
     // Not visible variables
     private int currentLevel;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Sets the values before starting the game
+    public void StartSettings()
     {
-
+        currentLevel = 0;
     }
 
     // Loads the fist level
@@ -22,6 +22,13 @@ public class LevelController : MonoBehaviour
     {
         Debug.Log("[LevelController] Game Start.");
         LoadLevel(1);
+    }
+
+    // Loads the Credits scene
+    public void EndingScene()
+    {
+        Debug.Log("[LevelController] Loading Credits.");
+        SceneManager.LoadScene("Ending", LoadSceneMode.Single);
     }
 
     // Loads the next level
@@ -45,7 +52,8 @@ public class LevelController : MonoBehaviour
     // Main menu
     public void MainMenu()
     {
-        LoadLevel(0);
+        StartSettings();
+        LoadLevel(currentLevel);
     }
 
     // Makes the name of the Level

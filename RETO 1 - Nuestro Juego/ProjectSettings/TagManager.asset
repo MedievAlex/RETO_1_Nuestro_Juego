@@ -15,6 +15,7 @@ TagManager:
   - Static
   - Elevator
   - Climbable
+  - LevelEnd
   layers:
   - Default
   - TransparentFX

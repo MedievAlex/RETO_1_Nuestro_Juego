@@ -28,6 +28,8 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("[MenuController] Starting Menus.");
 
+        EnsureEventSystem();
+
         OpenPauseMenu(false);
         SetPauseActivable(false);
 
@@ -92,6 +94,19 @@ public class MenuController : MonoBehaviour
         gameManager.OpenMainMenu(active);
         mainMenu.SetActive(active);
         gameManager.BackgroundAudio("MENU", true);
+    }
+
+    public void ReturnToMainMenu(bool active)
+    {
+        SetPauseActivable(false);
+        mainMenu.SetActive(active);
+        gameManager.BackgroundAudio("MENU", true);
+    }
+
+    // Closes the Game
+    public void CloseGame()
+    {
+        gameManager.CloseGame();
     }
 
     // ---------------------------------------------------------------------------[ Options Menu ]-----------------------------------------------------------------------------------
@@ -174,13 +189,5 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("[MenuController] Restart Game.");
         gameManager.RestartGame();
-    }
-
-    // ---------------------------------------------------------------------------[ The End Menu ]------------------------------------------------------------------------------------
-
-    // Opens The End Menu
-    public void OpenTheEndMenu()
-    {
-
     }
 }

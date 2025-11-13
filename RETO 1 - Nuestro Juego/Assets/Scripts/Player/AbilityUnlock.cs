@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AbilityUnlock : MonoBehaviour
+public class EndingCredits : MonoBehaviour
 {
     // Visible variables
     [Header("Manager")] // Makes a header on the public variables

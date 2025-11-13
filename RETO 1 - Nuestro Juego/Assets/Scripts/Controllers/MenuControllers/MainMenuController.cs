@@ -53,15 +53,7 @@ public class MainMenuController : MonoBehaviour
     // Closes the Game
     private void ExitGame()
     {
-        Debug.Log("[MainMenu] Closing the Game.");
-
-        if (EditorApplication.isPlaying)
-        {
-            EditorApplication.ExitPlaymode();
-        }
-        else
-        {
-            Application.Quit();
-        }
+        Debug.LogWarning("[MainMenu] Closing the Game.");
+        menuController.CloseGame();
     }
 }

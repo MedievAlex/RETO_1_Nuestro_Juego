@@ -24,6 +24,13 @@ public class LevelController : MonoBehaviour
         LoadLevel(1);
     }
 
+    // Loads the Credits scene
+    public void EndingScene()
+    {
+        Debug.Log("[LevelController] Loading Credits.");
+        SceneManager.LoadScene("Ending", LoadSceneMode.Single);
+    }
+
     // Loads the next level
     public void NextLevel()
     {

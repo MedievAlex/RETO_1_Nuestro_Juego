@@ -36,7 +36,7 @@ public class LevelEnd : MonoBehaviour
         if (ending)
         {
             gameManager.PauseTimer(true);
-            gameManager.StartEnding();
+            gameManager.EndingScene();
         }
     }
 }

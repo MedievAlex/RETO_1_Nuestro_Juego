@@ -69,6 +69,14 @@ public class GameManager : MonoBehaviour
         levelController.MainMenu();
     }
 
+    public void ReturnToMainMenu(bool active)
+    {
+        Debug.Log("[GAME MANAGER] Open Main Menu " + active + ".");
+        ActivateUI(false);
+        levelController.MainMenu();
+        menuController.ReturnToMainMenu(active);
+    }
+
     // Opens Options Menu
     public void OpenOptionsMenu(bool active)
     {
@@ -365,9 +373,9 @@ public class GameManager : MonoBehaviour
 
     // ---------------------------------------------------------------------------[ ENDING ]-----------------------------------------------------------------------------------
 
-    // Game ending and credits
-    public void StartEnding()
+    // Loads the Credits scene
+    public void EndingScene()
     {
-
+        levelController.EndingScene();
     }
 }

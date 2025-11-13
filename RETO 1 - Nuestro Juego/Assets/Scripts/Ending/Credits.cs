@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class EndingCredits : MonoBehaviour
+public class NameCredits : MonoBehaviour
 {
     // Visible variables
     [Header("Manager")] // Makes a header on the public variables
     public GameManager gameManager;    
 
-    public GameObject tutorial;
-    public string abilityName;
-    public bool activates;
+    public GameObject nameLetter;
+    public GameObject fullName;
+
 
     // It runs once before the first Update it's executed
     void Start()
@@ -24,9 +24,7 @@ public class EndingCredits : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            Debug.Log("[AbilityUnlock] " + abilityName + activates);
             tutorialGestion(true);
-            gameManager.AbilityGestion(abilityName, activates);
             Destroy(gameObject); // It's destoyed
         }
     }
@@ -34,10 +32,10 @@ public class EndingCredits : MonoBehaviour
     // Shows the tutorial
     private void tutorialGestion(bool active)
     {
-        if (tutorial != null)
+        if (fullName != null)
         {
             Debug.Log("[AbilityUnlock] Tutorial Active " + active);
-            tutorial.SetActive(active);
+            fullName.SetActive(active);
         }
     }
 }

@@ -96,6 +96,13 @@ public class MenuController : MonoBehaviour
         gameManager.BackgroundAudio("MENU", true);
     }
 
+    public void ReturnToMainMenu(bool active)
+    {
+        SetPauseActivable(false);
+        mainMenu.SetActive(active);
+        gameManager.BackgroundAudio("MENU", true);
+    }
+
     // Closes the Game
     public void CloseGame()
     {

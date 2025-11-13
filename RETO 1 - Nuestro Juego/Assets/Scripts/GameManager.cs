@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -53,6 +54,12 @@ public class GameManager : MonoBehaviour
         uiController.StartSettings();
     }
 
+    // Closes the Game
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
     // ---------------------------------------------------------------------------[ Menu ]------------------------------------------------------------------------------------
 
     // Opens Main Menu
@@ -89,8 +96,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GAME MANAGER] Open Options Menu " + active + ".");
         ActivateUI(!active);
-        //menuController.SetPauseActivable(!active);
-        //audioController.GameOverAudio();
         levelController.MainMenu();
         menuController.OpenGameOverMenu(active);
     }

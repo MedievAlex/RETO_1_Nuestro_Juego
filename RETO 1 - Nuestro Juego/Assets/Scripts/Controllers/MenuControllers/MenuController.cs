@@ -94,6 +94,12 @@ public class MenuController : MonoBehaviour
         gameManager.BackgroundAudio("MENU", true);
     }
 
+    // Closes the Game
+    public void CloseGame()
+    {
+        gameManager.CloseGame();
+    }
+
     // ---------------------------------------------------------------------------[ Options Menu ]-----------------------------------------------------------------------------------
 
     // Opens Options Menu

@@ -28,7 +28,7 @@ public class PauseMenuController : MonoBehaviour
     private bool pause = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         Debug.Log("[PauseMenu] Getting Background.");
         backgroundImage = transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();

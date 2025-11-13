@@ -11,12 +11,6 @@ public class LevelController : MonoBehaviour
     // Not visible variables
     private int currentLevel;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
     // Loads the fist level
     public void GameStart()
     {

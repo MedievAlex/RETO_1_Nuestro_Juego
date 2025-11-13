@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
     public void OpenGameOverMenu(bool active)
     {
         Debug.Log("[GAME MANAGER] Open Options Menu " + active + ".");
-        ActivateUI(!active);
+        ActivateUI(false);
         levelController.MainMenu();
         menuController.OpenGameOverMenu(active);
     }

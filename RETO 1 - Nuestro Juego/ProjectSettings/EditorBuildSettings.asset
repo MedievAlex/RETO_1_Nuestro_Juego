@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7f61fa24f9b9ade45bac620ed41b5150
-  - enabled: 0
-    path: Assets/Scenes/Menus/OptionsMenu.unity
-    guid: b99ec42bb72221a43917fae626b75a47
   - enabled: 1
     path: Assets/Scenes/Levels/Level-1.unity
     guid: 1eba325f15a8d894d87a955aae5e2cd8
@@ -20,15 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level-3.unity
     guid: 72c48e4e864319c45b452a1653869dbe
-  - enabled: 0
-    path: Assets/Scenes/Menus/GameOverMenu.unity
-    guid: 10b2a79c33dbfbb4b8003e4639128f10
-  - enabled: 0
-    path: Assets/Scenes/Menus/PauseMenu.unity
-    guid: 3ccb42fb3bc3f7f45b8cc3a3e43189d9
-  - enabled: 0
-    path: Assets/Scenes/Menus/TheEndMenu.unity
-    guid: a052970fc1ab51244a03ec78f83fc47e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -6,7 +6,13 @@ using UnityEngine.InputSystem.XR;
 public class TimerController : MonoBehaviour
 {
     // Visible variables
+    [Header("Timer")] // Makes a header on the public variables
     public TextMeshProUGUI timer; // Text showing the numbers
+
+    [Header("Time Limits")] // Makes a header on the public variables
+    public bool customTime;
+    public float timeLimit;
+    public float alertLimit;
 
     // Not visible variables
     private UIController uiController;
@@ -15,6 +21,7 @@ public class TimerController : MonoBehaviour
     private float timePassed;
     private string minutes;
     private string seconds;
+    private float countdownLimit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +30,13 @@ public class TimerController : MonoBehaviour
         uiController = transform.parent.GetComponentInParent<UIController>();
 
         audioSource = GetComponent<AudioSource>(); // Get the Audio Source component
+
+        if (!customTime)
+        {
+            timeLimit = 1800f;
+            alertLimit = 1500f;
+        }
+        countdownLimit = (timeLimit - 60f); // Default = 1740f
     }
 
     // Update is called once per frame
@@ -34,7 +48,7 @@ public class TimerController : MonoBehaviour
         }
 
         timer.text = TimeFormat();
-        TimerColor();
+        TimerStyle();
     }
 
     // Transforms float value to seconds and minutes giving it format
@@ -47,19 +61,20 @@ public class TimerController : MonoBehaviour
     }
 
     // Color and Countdown control
-    private void TimerColor()
+    private void TimerStyle()
     {
-        if (timePassed > 1500f)
+        if (timePassed > alertLimit)
         {
-            timer.color = Color.red;
-            if (timePassed > 1740f)
+            timer.color = Color.red; 
+        }
+
+        if (timePassed > countdownLimit)
+        {
+            uiController.CountdownAudio(audioSource);
+            if (timePassed > timeLimit)
             {
-                uiController.CountdownAudio(audioSource);
-                if (timePassed > 1800f)
-                {
-                    uiController.GameOver();
-                    timer.color = Color.white;
-                }
+                uiController.GameOver();
+                timer.color = Color.white;
             }
         }
     }

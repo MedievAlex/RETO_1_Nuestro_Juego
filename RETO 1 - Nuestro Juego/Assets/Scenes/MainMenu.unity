@@ -486,6 +486,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6459215067352556957, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: timeLimit
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459215067352556957, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: alertLimit
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459215067352556957, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: customTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459215067352556957, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
+      propertyPath: countdownLimit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6791508880221443322, guid: 7907af4160d630646a41b963d805f3b0, type: 3}
       propertyPath: Canvas
       value: 

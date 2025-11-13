@@ -28,6 +28,8 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("[MenuController] Starting Menus.");
 
+        EnsureEventSystem();
+
         OpenPauseMenu(false);
         SetPauseActivable(false);
 

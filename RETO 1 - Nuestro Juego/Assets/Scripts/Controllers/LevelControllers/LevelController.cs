@@ -11,6 +11,12 @@ public class LevelController : MonoBehaviour
     // Not visible variables
     private int currentLevel;
 
+    // Sets the values before starting the game
+    public void StartSettings()
+    {
+        currentLevel = 0;
+    }
+
     // Loads the fist level
     public void GameStart()
     {
@@ -39,7 +45,8 @@ public class LevelController : MonoBehaviour
     // Main menu
     public void MainMenu()
     {
-        LoadLevel(0);
+        StartSettings();
+        LoadLevel(currentLevel);
     }
 
     // Makes the name of the Level

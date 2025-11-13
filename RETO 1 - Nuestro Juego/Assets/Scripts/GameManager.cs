@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     private void StartSettings()
     {
         Debug.Log("[GAME MANAGER] Starting Levels.");
-        levelController.MainMenu();
+        levelController.StartSettings();
         Debug.Log("[GAME MANAGER] Starting Menus.");
         menuController.StartSettings();
         Debug.Log("[GAME MANAGER] Starting UI.");

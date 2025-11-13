@@ -190,12 +190,4 @@ public class MenuController : MonoBehaviour
         Debug.Log("[MenuController] Restart Game.");
         gameManager.RestartGame();
     }
-
-    // ---------------------------------------------------------------------------[ The End Menu ]------------------------------------------------------------------------------------
-
-    // Opens The End Menu
-    public void OpenTheEndMenu()
-    {
-
-    }
 }

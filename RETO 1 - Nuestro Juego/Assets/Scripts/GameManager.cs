@@ -376,6 +376,7 @@ public class GameManager : MonoBehaviour
     // Loads the Credits scene
     public void EndingScene()
     {
+        menuController.SetPauseActivable(false);
         levelController.EndingScene();
     }
 }

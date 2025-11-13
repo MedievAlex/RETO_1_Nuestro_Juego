@@ -1,19 +1,9 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
-/** [ STONE OBJECT FALLS AND DISAPPEARS ]
-- Spawns and it falls. Once touching the floor dissapears.
-*/
 public class FallingStone : MonoBehaviour
 {
     // Not visible variables
     private bool broken = false; // Indicates whether the object has touched the ground  
-
-    // It runs once before the first Update it's executed
-    void Start()
-    {
-
-    }
 
     // Update is executed once per frame
     void Update()

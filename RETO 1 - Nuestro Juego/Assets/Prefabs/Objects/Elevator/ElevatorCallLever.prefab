@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5278081109546970742}
   - component: {fileID: 8822632637899722918}
   - component: {fileID: 9209913429820950113}
-  - component: {fileID: 5635086805023430378}
+  - component: {fileID: 6483469036078256414}
+  - component: {fileID: 3564251495269866297}
   m_Layer: 0
   m_Name: ElevatorCallLever
   m_TagString: Untagged
@@ -132,9 +133,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 40
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -167,7 +168,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -207,7 +208,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5635086805023430378
+--- !u!114 &6483469036078256414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,11 +217,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8548419936711974189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8adf27d6b0849f45adba249785e9652, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e5463d9acd3d7e4692f352b6c8f1745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  stateActive: 0
+  activeSprite: {fileID: 2100000, guid: 449e6b7d94efefd4a94867dff979afe1, type: 2}
+  inactiveSprite: {fileID: 2100000, guid: c10f92968a705e34fb8fe33f700a2af8, type: 2}
+--- !u!114 &3564251495269866297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548419936711974189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b57406d97c198e42821727f3b4b1ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   elevator: {fileID: 0}
   destinationPosition: {x: 0, y: 0, z: 0}
-  stateActive: 0
-  activeSprite: {fileID: 2100000, guid: 449e6b7d94efefd4a94867dff979afe1, type: 2}
-  inactiveSprite: {fileID: 2100000, guid: c10f92968a705e34fb8fe33f700a2af8, type: 2}

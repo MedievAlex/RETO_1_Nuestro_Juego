@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class FallingStonesSpawn : MonoBehaviour
 {
-    // Visible variables 
+    // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;
+
+    [Header("Atributes")] // Makes a header on the public variables
     public FallingStone fallingStone;
     public StonesLever stonesController;
     public float spawnTime = 2f;
@@ -14,8 +18,9 @@ public class FallingStonesSpawn : MonoBehaviour
 
     // It runs once before the first Update it's executed
     void Start()
-    { 
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+    {
+        Debug.Log("[FallingStonesSpawn] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
         spawnPoint = transform.position;
     }
 
@@ -36,7 +41,7 @@ public class FallingStonesSpawn : MonoBehaviour
     // Generates more stones
     private void SpawnStone() // Spawns the object in the spawnpoint
     {
-        audioController.rockBreakAudio(GetComponent<AudioSource>());    
+        gameManager.RockBreakAudio(GetComponent<AudioSource>());    
         Instantiate(fallingStone, spawnPoint, Quaternion.identity, this.transform); 
     } 
 }

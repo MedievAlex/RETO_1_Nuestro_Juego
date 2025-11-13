@@ -1,20 +1,6 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static Unity.VisualScripting.Member;
 
-/** [ 2D MOVEMENT CONTROLS V.6 ]
-- Movement: Left and right
-- Jump: Single jump
-- Double jump: As many jumps as indicated
-- Respawn: Respawn at the first point
-- Checkpoints: Stores the location of checkpoints to respawn there
-- Dash: Holding Left Shift will double movement speed
-*/
-public class PlayerControl2D : MonoBehaviour
+public class Player2D : MonoBehaviour
 {
     // Visible variables 
     [Header("Abilities")] // Makes a header on the public variables
@@ -27,10 +13,10 @@ public class PlayerControl2D : MonoBehaviour
     public bool isFrozen = false;
 
     // Not visible variables
-    private UIController uiController;
-    private AudioController audioController;
+    private GameManager gameManager;
 
-    private Rigidbody rb; // Referencia al Rigidbody
+    private Rigidbody playerRB; // Reference to the Rigidbody
+    private AudioSource audioSource; // Reference to the Audio Source
     private Animator animator; // Reference to the animator
 
     private Vector3 spawnPoint; // Referencia al punto de reaparición
@@ -49,14 +35,16 @@ public class PlayerControl2D : MonoBehaviour
     // START runs once before the first UPDATE it's executed
     void Start()
     {
-        uiController = GameObject.Find("UI").GetComponent<UIController>(); // Finds the UIController of the Scene
-        audioController = GameObject.Find("AudioController").GetComponent<AudioController>(); // Finds the AudioController of the Scene
+        Debug.Log("[Player] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
+        gameManager.SetPlayer(this);
 
-        rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
+        playerRB = GetComponent<Rigidbody>(); // Get the Rigidbody component
+        audioSource = GetComponent<AudioSource>(); // Get the Audio Source component
         animator = gameObject.GetComponent<Animator>(); // Get the Animator component
 
-        lifeCount = uiController.getLife(); // Get the life points
-        uiController.setLife(lifeCount); // Sets the life points in the UI
+        lifeCount = gameManager.GetLives(); // Get the life points
+        gameManager.UpdateLives(lifeCount); // Sets the life points in the UI
 
         spawnPoint = transform.position; // Save the initial position
     }
@@ -64,12 +52,11 @@ public class PlayerControl2D : MonoBehaviour
     // UPDATE is executed once per frame
     void Update()
     {
+        AnimationControl();
+        AudioControl();
 
         if (!isFrozen)
         {
-            animationControl();
-            audioControl();
-
             // Movement
             if (Input.GetAxis("Horizontal") != 0)
             {
@@ -112,25 +99,19 @@ public class PlayerControl2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
                 jumping = true;
-                audioController.playerEfects("JUMP");
+                gameManager.PlayerEffects("JUMP");
 
                 if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
                 {
-                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 }
                 else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
                 {
-                    rb.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+                    playerRB.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
                 }
                 jumpsReset = false;
                 jumpsLeft--;
             }
-        }
-
-        // Game Over
-        if (lifeCount == 0)
-        {
-            uiController.gameOver();
         }
     }
 
@@ -149,7 +130,7 @@ public class PlayerControl2D : MonoBehaviour
 
             if (isFrozen)
             {
-                isFrozen = false;
+                Freeze(false);
             }
         }
     }
@@ -170,6 +151,7 @@ public class PlayerControl2D : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Static")) // Check that the collided object will restart the jumps
         {
             ground = false;
+            walking = false;
             jumping = true;
         }
     }
@@ -177,47 +159,68 @@ public class PlayerControl2D : MonoBehaviour
     // Executed when a collision with a trigger occurs
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("CheckPoint")) // Check that the collided object has the "CheckPoint" label
-        {
-            spawnPoint = transform.position; // Saves the checkpoint position
-            Destroy(collider.gameObject); // Destroys the checkpoint
-        }
-
         if (collider.gameObject.CompareTag("LevelEnd")) // Check that the collided object has the "CheckPoint" label
         {
-            uiController.saveLife(lifeCount);
+            gameManager.SaveLives(lifeCount);
         }
     }
 
-
-
-    // Respawn methods
-    public void applyDamage() // Deals damage
+    // Deals damage
+    public void ApplyDamage()
     {
-        jumping = false;
+        if (!isFrozen)
+        {
+            playerRB.linearVelocity = Vector3.zero;
+            playerRB.angularVelocity = Vector3.zero;
 
-        audioController.playerEfects("DAMAGE");
-        lifeCount--;
-        uiController.setLife(lifeCount);
+            jumping = false;
+
+            gameManager.PlayerEffects("DAMAGE");
+            lifeCount--;
+            gameManager.UpdateLives(lifeCount);
+            gameManager.ShowDamageBorder(true, 0.5f);
+        }
     }
 
-    public void setRespawn(Vector3 newSpawnPoint)
+    // Changes the state of frozen
+    public bool FrozenState()
+    {
+        return isFrozen;
+    }
+
+    // Changes the state of frozen
+    public void Freeze(bool frozen)
+    {
+        isFrozen = frozen;
+    }
+
+    public Rigidbody GetRigidbody()
+    {
+        return playerRB;
+    }
+
+    // Sets new respawn point
+    public void SetRespawn(Vector3 newSpawnPoint)
     {
         spawnPoint = newSpawnPoint;
     }
 
-    public Vector3 getRespawn()
+    // Gets the actual respawn point
+    public Vector3 GetRespawn()
     {
         return spawnPoint;
     }
 
-    public Rigidbody getRigidbody()
+    // Respawns in the registered spawnpoint
+    public void Respawn()
     {
-        return rb;
+        playerRB.linearVelocity = Vector3.zero;
+        playerRB.angularVelocity = Vector3.zero;
+        transform.position = spawnPoint;
     }
 
     // Ability gestion
-    public void abilityGestion(string abilityName, bool active)
+    public void AbilityGestion(string abilityName, bool active)
     {
         switch (abilityName.ToUpper())
         {
@@ -239,13 +242,15 @@ public class PlayerControl2D : MonoBehaviour
 
             case "ADDLIFE":
                 lifeCount++;
-                uiController.setLife(lifeCount);
+                gameManager.UpdateLives(lifeCount);
+                break;
+            default:
                 break;
         }
     }
 
     // Animation and sound controller
-    private void animationControl()
+    private void AnimationControl()
     {
         // Walking
         animator.SetBool("walking", walking);
@@ -257,23 +262,23 @@ public class PlayerControl2D : MonoBehaviour
         animator.SetBool("jumping", jumping);
     }
 
-    private void audioControl()
+    private void AudioControl()
     {
         if (walking && ground)
         {
             if (running)
             {
-                audioController.playerAudio(GetComponent<AudioSource>(), "RUN", true);
+                gameManager.PlayerAudio(audioSource, "RUN", true);
             }
             else
             {
-                audioController.playerAudio(GetComponent<AudioSource>(), "WALK", true);
+                gameManager.PlayerAudio(audioSource, "WALK", true);
             }
         }
         else if (!walking || jumping || !ground)
         {
-            audioController.playerAudio(GetComponent<AudioSource>(), "WALK", false);
-            audioController.playerAudio(GetComponent<AudioSource>(), "RUN", false);
+            gameManager.PlayerAudio(audioSource, "WALK", false);
+            gameManager.PlayerAudio(audioSource, "RUN", false);
         }
     }
 }

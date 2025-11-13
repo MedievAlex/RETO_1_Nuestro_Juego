@@ -1,8 +1,23 @@
+-- TEST MODE --
+To activate Test Mode: [Ctrl] + [T] + [M].
+
+Test Commands:
+  -  Teleport to interest Locations in each Level:
+       -  First Location [T]
+       -  First Location [Y]
+       -  First Location [U]
+  -  Lives:
+       -  Gain 1 live [H]
+       -  Lose 1 live [J]
+       -  Kill the player [K]
+  -  Timer:
+       -  Add 1 minute [G]
+
 -- THINGS TO DO --
 
-[   ] Check issues with the audio.
-  -  MacRange.
-  -  MinRange.
+[   ] Finish placing all the Sprites.
 
-[ - ] Test and apply the knockback. ( Victor )
+[   ] Finish moving to GameManager hierarchy:
+  -  PlayerControl2D.
 
+[   ] Add to DamageDealer the Knockback.

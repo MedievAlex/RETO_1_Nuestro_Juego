@@ -1,22 +1,21 @@
 using UnityEngine;
+using System.Collections;
 
 public class DamageDealer : MonoBehaviour
 {
+    // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;  
+
     // Not visible variables
-    private PlayerControl2D targetPlayer;
-    private Rigidbody playerRB;
+    private float horizontalForce = 3f;
+    private float upwardForce = 5f;
+    private float knockbackDuration = 0.3f;
 
     // It runs once before the first Update it's executed
     void Start()
     {
-        targetPlayer = GameObject.Find("Player2D").GetComponent<PlayerControl2D>(); // Finds the GameObject of the class PlayerControl2D
-        playerRB = targetPlayer.GetComponent<Rigidbody>();
-    }
-
-    // Update is executed once per frame
-    void Update()
-    {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the GameManager of the Scene
     }
 
     // Executed when a collision occurs
@@ -24,11 +23,24 @@ public class DamageDealer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            if(!targetPlayer.isFrozen)
+            StartCoroutine(ApplyKnockback(collision));
+
+            if (!gameManager.FrozenState())
             {
-                targetPlayer.isFrozen = true;
-                targetPlayer.applyDamage(); // Deals damage
+                gameManager.ApplyDamage();
+                gameManager.Freeze(true); 
             }
         }
+    }
+
+    // Knockback
+    private IEnumerator ApplyKnockback(Collision collision)
+    {
+        float horizontalDirection = Mathf.Sign(collision.transform.position.x - transform.position.x);
+
+        Vector3 knockback = new Vector3(horizontalDirection * horizontalForce, upwardForce, 0f);
+
+        collision.transform.GetComponent<Rigidbody>().AddForce(knockback, ForceMode.Impulse);
+        yield return new WaitForSeconds(knockbackDuration);
     }
 }

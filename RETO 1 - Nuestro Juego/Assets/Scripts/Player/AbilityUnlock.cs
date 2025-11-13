@@ -3,20 +3,20 @@ using UnityEngine;
 public class AbilityUnlock : MonoBehaviour
 {
     // Visible variables
+    [Header("Manager")] // Makes a header on the public variables
+    public GameManager gameManager;    
+
     public GameObject tutorial;
     public string abilityName;
     public bool activates;
 
-    // START runs once before the first UPDATE it's executed
+    // It runs once before the first Update it's executed
     void Start()
     {
-        tutorialGestion(false);
-    }
+        Debug.Log("[AbilityUnlock] Searching for GameManager.");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Finds the AudioController of the Scene
 
-    // UPDATE is executed once per frame
-    void Update()
-    {
-        
+        tutorialGestion(false);
     }
 
     // Executed when a collision with a trigger occurs
@@ -24,16 +24,19 @@ public class AbilityUnlock : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
+            Debug.Log("[AbilityUnlock] " + abilityName + activates);
             tutorialGestion(true);
-            collider.GetComponent<PlayerControl2D>().abilityGestion(abilityName, activates);
+            gameManager.AbilityGestion(abilityName, activates);
             Destroy(gameObject); // It's destoyed
         }
     }
 
+    // Shows the tutorial
     private void tutorialGestion(bool active)
     {
         if (tutorial != null)
         {
+            Debug.Log("[AbilityUnlock] Tutorial Active " + active);
             tutorial.SetActive(active);
         }
     }

@@ -63,7 +63,6 @@ public class LeverPuzzle : MonoBehaviour
                 {
                     SetTestLight("GREEN");
                     gameManager.CombinationAudio(audioSource, true);
-                    blocked = true;
                     timePassed += Time.deltaTime; // Calculates the time
                     if (timePassed > checkTime) // Creates a new object and restarts the counter
                     {
@@ -71,6 +70,7 @@ public class LeverPuzzle : MonoBehaviour
                         door.changeState();
                         testLever.SetState(false);
                         timePassed = 0f;
+                        blocked = true;
                     }
                 }
                 else // Incorrect combination
@@ -94,7 +94,6 @@ public class LeverPuzzle : MonoBehaviour
                 }
             }
         }
-
     }
 
     // Gets each Lever Lamp and it's light
@@ -115,7 +114,7 @@ public class LeverPuzzle : MonoBehaviour
     // Resets the puzzle values
     private bool VerifyPuzzle()
     {
-        if (lever1.stateActive && !lever2.stateActive && !lever3.stateActive && !lever4.stateActive)
+        if (!lever1.stateActive && lever2.stateActive && lever3.stateActive && !lever4.stateActive)
         {
             return true;
         }

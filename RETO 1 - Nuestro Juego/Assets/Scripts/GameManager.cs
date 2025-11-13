@@ -69,6 +69,14 @@ public class GameManager : MonoBehaviour
         levelController.MainMenu();
     }
 
+    public void ReturnToMainMenu(bool active)
+    {
+        Debug.Log("[GAME MANAGER] Open Main Menu " + active + ".");
+        ActivateUI(false);
+        levelController.MainMenu();
+        menuController.ReturnToMainMenu(active);
+    }
+
     // Opens Options Menu
     public void OpenOptionsMenu(bool active)
     {
@@ -94,7 +102,7 @@ public class GameManager : MonoBehaviour
     public void OpenGameOverMenu(bool active)
     {
         Debug.Log("[GAME MANAGER] Open Options Menu " + active + ".");
-        ActivateUI(!active);
+        ActivateUI(false);
         levelController.MainMenu();
         menuController.OpenGameOverMenu(active);
     }
@@ -360,5 +368,14 @@ public class GameManager : MonoBehaviour
     public void FallBoxAudio(AudioSource source)
     {
         audioController.FallBoxAudio(source);
+    }
+
+    // ---------------------------------------------------------------------------[ ENDING ]-----------------------------------------------------------------------------------
+
+    // Loads the Credits scene
+    public void EndingScene()
+    {
+        menuController.SetPauseActivable(false);
+        levelController.EndingScene();
     }
 }

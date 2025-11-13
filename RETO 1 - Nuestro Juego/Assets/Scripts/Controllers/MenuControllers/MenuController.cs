@@ -98,6 +98,13 @@ public class MenuController : MonoBehaviour
         gameManager.BackgroundAudio("MENU", true);
     }
 
+    public void ReturnToMainMenu(bool active)
+    {
+        SetPauseActivable(false);
+        mainMenu.SetActive(active);
+        gameManager.BackgroundAudio("MENU", true);
+    }
+
     // Closes the Game
     public void CloseGame()
     {
@@ -184,13 +191,5 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("[MenuController] Restart Game.");
         gameManager.RestartGame();
-    }
-
-    // ---------------------------------------------------------------------------[ The End Menu ]------------------------------------------------------------------------------------
-
-    // Opens The End Menu
-    public void OpenTheEndMenu()
-    {
-
     }
 }

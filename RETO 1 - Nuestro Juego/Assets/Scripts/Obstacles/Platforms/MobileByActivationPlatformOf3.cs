@@ -11,7 +11,7 @@ public class MobileByActivationPlatformOf3 : MonoBehaviour
     public float speed = 3f; // Movement speed
 
     // Not visible variables 
-    private bool plyerOnTop = false; // If the platform is in movement
+    private bool playerOnTop = false; // If the platform is in movement
     private bool inMovement = false; // If the platform is in movement
     private bool towardsA = false; // Moving towards the first position (point A)
     private bool towardsB = false; // Moving towards the second position (point B)
@@ -66,7 +66,7 @@ public class MobileByActivationPlatformOf3 : MonoBehaviour
             }
         }
 
-        if (transform.position == pointC && !plyerOnTop)
+        if (transform.position == pointC && !playerOnTop)
         {
             timePassed += Time.deltaTime; // Calculates the time
             if (timePassed > resetTime) 
@@ -92,7 +92,7 @@ public class MobileByActivationPlatformOf3 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the collided object has the "Player" label
         {
-            plyerOnTop = true;
+            playerOnTop = true;
             collision.transform.SetParent(transform); // Makes the object labeled "Player" a child of the platform, causing it to move along with it
 
             if (!inMovement)
@@ -116,7 +116,7 @@ public class MobileByActivationPlatformOf3 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check that the object that has stopped colliding has the "Player" tag
         {
-            plyerOnTop = false;
+            playerOnTop = false;
             collision.transform.SetParent(null); // Removes the platform as the parent of the object labeled "Player"
         }
     }

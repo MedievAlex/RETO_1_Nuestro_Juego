@@ -110,7 +110,6 @@ public class GameManager : MonoBehaviour
         ActivateUI(true);
         ResetTimer();
         PauseTimer(false);
-        menuController.SetPauseActivable(true);
     }
 
     // Loads the next level

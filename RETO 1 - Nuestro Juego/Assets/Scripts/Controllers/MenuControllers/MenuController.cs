@@ -65,6 +65,8 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("[MenuController] Game Start.");
         gameManager.GameStartAudio();
+        OpenGameOverMenu(false);
+        SetPauseActivable(true);
         gameManager.GameStart();
     }
 

@@ -31,6 +31,10 @@ public class DamageBorderController : MonoBehaviour
                 ShowDamageBorder(visible, 0f);
             }  
         }
+        else
+        {
+            ShowDamageBorder(visible, 0f);
+        }
     }
 
     // Shows or hides the border

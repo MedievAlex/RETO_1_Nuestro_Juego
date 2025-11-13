@@ -1,6 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static UnityEngine.SpriteMask;
+
 public class UIController : MonoBehaviour
 {
     // Visible variables

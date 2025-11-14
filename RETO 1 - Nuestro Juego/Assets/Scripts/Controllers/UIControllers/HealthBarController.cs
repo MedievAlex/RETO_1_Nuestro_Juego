@@ -127,6 +127,7 @@ public class HealthBarController : MonoBehaviour
         Debug.Log("[HealthBar] Setting default Health Bar.");
 
         currentHearts = 3;
+        maxHearts = 3;
 
         transform.GetChild(0).GetComponent<Image>().sprite = heatlhBarS;
         transform.GetChild(1).GetComponent<Image>().sprite = heatlhBarM;

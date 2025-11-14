@@ -114,7 +114,7 @@ public class LeverPuzzle : MonoBehaviour
     // Resets the puzzle values
     private bool VerifyPuzzle()
     {
-        if (!lever1.stateActive && lever2.stateActive && lever3.stateActive && !lever4.stateActive)
+        if (!lever1.stateActive && lever2.stateActive && !lever3.stateActive && lever4.stateActive)
         {
             return true;
         }
@@ -136,7 +136,7 @@ public class LeverPuzzle : MonoBehaviour
             lever3.stateActive = RandomState();
             lever4.stateActive = RandomState();
         }
-        while (lever1.stateActive && !lever2.stateActive && !lever3.stateActive && !lever4.stateActive);
+        while (!lever1.stateActive && lever2.stateActive && !lever3.stateActive && lever4.stateActive);
     }
 
     // Generate a random boolean state

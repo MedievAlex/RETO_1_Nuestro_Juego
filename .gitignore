@@ -99,7 +99,7 @@ RETO 1 - Nuestro Juego/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting
 RETO 1 - Nuestro Juego/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
 # Documentation
-#*.docx
+*.docx
 *.dio
 
 #Executable

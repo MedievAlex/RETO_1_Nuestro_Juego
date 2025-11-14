@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         ActivateUI(false);
         levelController.MainMenu();
         menuController.ReturnToMainMenu(active);
+        uiController.SetDefault();
     }
 
     // Opens Options Menu
@@ -82,7 +83,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GAME MANAGER] Open Options Menu " + active + ".");
         menuController.OpenOptionsMenu(active);
-        uiController.SetDefault();
     }
 
     // Sets the background for each level

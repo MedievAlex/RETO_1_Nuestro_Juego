@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         ActivateUI(false);
         levelController.MainMenu();
         menuController.ReturnToMainMenu(active);
+        uiController.SetDefault();
     }
 
     // Opens Options Menu

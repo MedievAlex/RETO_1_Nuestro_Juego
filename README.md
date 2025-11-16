@@ -14,11 +14,8 @@ Test Commands:
   -  Timer:
        -  Add 1 minute [G]
 
--- THINGS TO DO --
+-- EXECUTABLE --
+Executable doesnt't work right. Here the issues that don't happen when running the game in Unity:
 
-[   ] Finish placing all the Sprites.
-
-[   ] Finish moving to GameManager hierarchy:
-  -  PlayerControl2D.
-
-[   ] Add to DamageDealer the Knockback.
+ - The Main Menu audio won't play at first.
+ - When playing the game for the first time, it jumps the Game Over screen. It's only the first time, after that everything works correctly.

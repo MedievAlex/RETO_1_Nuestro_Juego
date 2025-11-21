@@ -207,19 +207,22 @@ public class Player2D : MonoBehaviour
     // Jump control
     public void JumpMovement()
     {
-        jumping = true;
-        gameManager.PlayerEffects("JUMP");
+        if(jumpsLeft > 0 && activeJump)
+        {
+            jumping = true;
+            gameManager.PlayerEffects("JUMP");
 
-        if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
-        {
-            playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
+            {
+                playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
+            {
+                playerRB.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+            }
+            jumpsReset = false;
+            jumpsLeft--;
         }
-        else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
-        {
-            playerRB.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
-        }
-        jumpsReset = false;
-        jumpsLeft--;
     }
 
     public void DashMovement(bool dashing)

@@ -47,6 +47,18 @@ public class UIController : MonoBehaviour
         }
     }
 
+    // Movement control
+    public void LeftRightMovement()
+    {
+        gameManager.LeftRightMovement();
+    }
+
+    // Jump control
+    public void JumpMovement()
+    {
+        gameManager.JumpMovement();
+    }
+
     // ---------------------------------------------------------------------------[ UI: Health Bar ]---------------------------------------------------------------------------
 
     // Updates life

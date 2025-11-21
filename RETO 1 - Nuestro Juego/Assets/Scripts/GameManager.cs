@@ -157,6 +157,18 @@ public class GameManager : MonoBehaviour
         this.player = player;
     }
 
+    // Movement control
+    public void LeftRightMovement()
+    {
+        player.LeftRightMovement();
+    }
+
+    // Jump control
+    public void JumpMovement()
+    {
+        player.JumpMovement();
+    }
+
     // Deals damage
     public void ApplyDamage()
     {

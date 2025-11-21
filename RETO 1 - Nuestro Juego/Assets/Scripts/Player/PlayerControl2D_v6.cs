@@ -171,7 +171,7 @@ public class Player2D : MonoBehaviour
         }
     }
 
-    // Movement controls for UI
+    // Movement control
     public void LeftRightMovement()
     {
         walking = true;
@@ -204,6 +204,7 @@ public class Player2D : MonoBehaviour
         }
     }
 
+    // Jump control
     public void JumpMovement()
     {
         jumping = true;

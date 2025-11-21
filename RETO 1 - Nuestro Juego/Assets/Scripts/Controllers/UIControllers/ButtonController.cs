@@ -22,8 +22,8 @@ public class ButtonController : MonoBehaviour
     void Start()
     {
         uiController = transform.parent.GetComponentInParent<UIController>();
-        leftButton.onClick.AddListener(LeftMovement); // When clicking Left button starts the game
-        rightButton.onClick.AddListener(RightMovement); // When clicking Right button closes the game
+        leftButton.onClick.AddListener(LeftRightMovement); // When clicking Left button starts the game
+        rightButton.onClick.AddListener(LeftRightMovement); // When clicking Right button closes the game
         jumpButton.onClick.AddListener(JumpMovement); // When clicking Jump button opens the Options Menu
         dashButton.onClick.AddListener(DashMovement); // When clicking Dash button opens the Options Menu
         interactButton.onClick.AddListener(Interact); // When clicking Dash button opens the Options Menu
@@ -35,22 +35,16 @@ public class ButtonController : MonoBehaviour
         
     }
 
-    // Left movement button
-    private void LeftMovement()
+    // Movement control
+    public void LeftRightMovement()
     {
-        
+        uiController.LeftRightMovement();
     }
 
-    // Right movement button
-    private void RightMovement()
+    // Jump control
+    public void JumpMovement()
     {
-        
-    }
-
-    // Jump movement button
-    private void JumpMovement()
-    {
-        
+        uiController.JumpMovement();
     }
 
     // Dash movement button

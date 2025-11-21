@@ -11,17 +11,19 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject Canvas;
 
     // Not visible variables
+    private DamageBorderController damageBorder;
     private HealthBarController healthBarController;
     private TimerController timerController;
-    private DamageBorderController damageBorder;
+    private ButtonController buttons;
 
     // Awake is called when the script instance is being loaded
     void Awake()
     {
         Debug.Log("[UIController] Setting Elements.");
-        healthBarController = transform.GetChild(0).transform.GetChild(1).GetComponent<HealthBarController>(); // Gets the Health Bar Controller
-        timerController = transform.GetChild(0).transform.GetChild(2).GetComponent<TimerController>(); // Gets the Timer Controller
-        damageBorder  = transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<DamageBorderController>(); // Gets the Damage Border Controller
+        buttons  = transform.GetChild(0).transform.GetChild(0).GetComponent<ButtonController>(); // Gets the Buttons Controller
+        damageBorder  = transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).GetComponent<DamageBorderController>(); // Gets the Damage Border Controller
+        healthBarController = transform.GetChild(0).transform.GetChild(2).GetComponent<HealthBarController>(); // Gets the Health Bar Controller
+        timerController = transform.GetChild(0).transform.GetChild(3).GetComponent<TimerController>(); // Gets the Timer Controller
     }
 
     // Sets the values for the start

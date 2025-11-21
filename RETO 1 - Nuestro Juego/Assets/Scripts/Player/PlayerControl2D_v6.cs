@@ -60,6 +60,8 @@ public class Player2D : MonoBehaviour
             // Movement
             if (Input.GetAxis("Horizontal") != 0)
             {
+                LeftRightMovement();
+                /*
                 walking = true;
 
                 // Sideways movement
@@ -88,6 +90,7 @@ public class Player2D : MonoBehaviour
                 {
                     GetComponent<SpriteRenderer>().flipX = false;
                 }
+                */
             }
             else
             {
@@ -98,6 +101,8 @@ public class Player2D : MonoBehaviour
             // Jump
             if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && activeJump) // If it has jumps left and it has 
             {
+                JumpMovement();
+                /*
                 jumping = true;
                 gameManager.PlayerEffects("JUMP");
 
@@ -111,6 +116,7 @@ public class Player2D : MonoBehaviour
                 }
                 jumpsReset = false;
                 jumpsLeft--;
+                */
             }
         }
     }
@@ -163,6 +169,61 @@ public class Player2D : MonoBehaviour
         {
             gameManager.SaveLives(lifeCount);
         }
+    }
+
+    // Movement controls for UI
+    public void LeftRightMovement()
+    {
+        walking = true;
+
+        // Sideways movement
+        float moveLeftRight = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        transform.Translate(moveLeftRight, 0, 0); // X, Y, Z
+
+        // Dash
+        if (Input.GetKey(KeyCode.LeftShift) && activeDash)
+        {
+            running = true;
+
+            speed = baseSpeed * 1.7f;
+        }
+        else
+        {
+            running = false;
+
+            speed = baseSpeed;
+        }
+
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
+
+    public void JumpMovement()
+    {
+        jumping = true;
+        gameManager.PlayerEffects("JUMP");
+
+        if (jumpsLeft == extraJumps && activeJump) // The first jump is 100% of the strength
+        {
+            playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+        else if (jumpsLeft < extraJumps && activeExtraJumps) // Extra jumps are 7% of the strength
+        {
+            playerRB.AddForce(Vector3.up * (jumpForce * 0.7f), ForceMode.Impulse);
+        }
+        jumpsReset = false;
+        jumpsLeft--;
+    }
+
+    public void DashMovement(bool dashing)
+    {
+ 
     }
 
     // Deals damage
